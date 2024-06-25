@@ -1,33 +1,81 @@
 package com.flipkart.bean;
 
-public class GymCentre extends AbstractUser{
-    private String PAN;
-    private String Aadhaar;
+import java.util.ArrayList;
 
-    public String getPAN() {
-        return PAN;
+public class GymCentre {
+    private String centreID;
+    private String ownerID;
+    private ArrayList<String> slots;
+    private int capacity;
+    private boolean approved;
+    private String city;
+    private String state;
+    private String pincode;
+
+    public String getCentreID() {
+        return centreID;
     }
 
-    public void setPAN(String PAN) {
-        this.PAN = PAN;
+    public void setCentreID(String centreID) {
+        this.centreID = centreID;
     }
 
-    public String getAadhaar() {
-        return Aadhaar;
+    public String getOwnerID() {
+        return ownerID;
     }
 
-    public void setAadhaar(String aadhaar) {
-        Aadhaar = aadhaar;
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
     }
 
-    public String getGSTIN() {
-        return GSTIN;
+    public ArrayList<String> getSlots() {
+        return slots;
     }
 
-    public void setGSTIN(String GSTIN) {
-        this.GSTIN = GSTIN;
+    public void setSlots(ArrayList<String> slots) {
+        this.slots = slots;
     }
 
-    private String GSTIN;
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getPincode() {
+        return pincode;
+    }
+
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
+
+    
 
 }
