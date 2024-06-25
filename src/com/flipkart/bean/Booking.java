@@ -31,6 +31,7 @@ public class Booking {
         this.slotId = slotId;
     }
 
+
     public boolean isdeleted() {
         return isdeleted;
     }
