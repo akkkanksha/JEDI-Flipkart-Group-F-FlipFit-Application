@@ -2,6 +2,7 @@ package com.flipkart.client;
 
 import com.flipkart.bean.AdminUser;
 import com.flipkart.business.AdminUserBusiness;
+import com.flipkart.business.FlipFitCustomerBusiness;
 import com.flipkart.business.GymCentreBusiness;
 import com.flipkart.business.GymOwnerBusiness;
 
@@ -17,6 +18,14 @@ public class FlipFitClientApp {
         System.out.println("Gym Owner details edited:> " + GOBservice.editDetails());
 
         // Customer
+        FlipFitCustomerBusiness service = new FlipFitCustomerBusiness();
+        int userId=101;
+        String slot="6am-7am";
+        service.viewBookedSlots(userId);
+        service.checkBookingConflicts(userId, startTime);
+        service.viewCentres(userId);
+        service.makePayment(userId);
+        service.editDetails(userId);
 
         // Admin
 
