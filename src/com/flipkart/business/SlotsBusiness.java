@@ -8,6 +8,7 @@ public class SlotsBusiness {
     }
 
     public void getSlotDetails() {
+
         System.out.println("Getting Slot Details");
     }
 }
