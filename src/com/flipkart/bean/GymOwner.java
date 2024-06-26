@@ -1,6 +1,6 @@
 package com.flipkart.bean;
 
-public class GymOwner extends AbstactUser{
+public class GymOwner extends AbstractUser{
     public String panId;
     public String gstNum;
     public String aadharNumber;
