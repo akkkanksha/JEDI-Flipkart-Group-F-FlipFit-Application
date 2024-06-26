@@ -1,6 +1,6 @@
 package com.flipkart.business;
-
-public class FlipFitCustomerBusiness {
+import com.flipkart.business.interfaces.IFlipFitCustomer;
+public class FlipFitCustomerBusiness extends  {
 	public void viewBookedSlots(int userId) {
         System.out.println("Viewing booked slots:> ");
     }
