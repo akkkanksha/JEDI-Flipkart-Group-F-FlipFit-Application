@@ -11,6 +11,7 @@ public class AdminUserBusiness implements IAdminUser {
     public AdminUserBusiness(AdminUser adminUser){
         this.adminUser=adminUser;
     }
+
     public boolean adminLogin(AdminUser adminUser){
         System.out.println("AdminUserBusiness.adminLogin");
         return true;
