@@ -42,7 +42,7 @@ public class GymFlipFitApplication {
                         case "GymOwner": {
                             // gym owner
                             System.out.println("GymOwner Menu");
-                            GymFlipFitOwnerMenu.getFlipFitOwnerMenu();
+                            GymFlipFitOwnerMenu.getFlipFitOwnerView();
                             break;
                         }
                     }
