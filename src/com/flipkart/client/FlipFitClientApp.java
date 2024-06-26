@@ -2,6 +2,7 @@ package com.flipkart.client;
 
 import com.flipkart.bean.AdminUser;
 import com.flipkart.business.*;
+import com.flipkart.business.interfaces.IAdminUser;
 
 public class FlipFitClientApp {
     public static void main(String[] args) {
@@ -26,7 +27,7 @@ public class FlipFitClientApp {
 
         // Admin
         AdminUser adminUser = new AdminUser();
-        AdminUserBusiness adminService = new AdminUserBusiness(adminUser);
+        IAdminUser adminService = new AdminUserBusiness(adminUser);
         int ownerId=101;
         adminService.adminLogin(adminUser);
         adminService.getPendingOwnerList();
