@@ -3,22 +3,35 @@ package com.flipkart.client;
 import com.flipkart.business.GymCentreBusiness;
 import com.flipkart.business.GymOwnerBusiness;
 
-public class GymFlipFitOwnerMenu {
-    public static void getFlipFitOwnerMenu() {
-        GymOwnerBusiness GOBservice = new GymOwnerBusiness();
-        GOBservice.addCentre();
-        GOBservice.viewCentres();
-        GOBservice.viewFlipFitCustomers();
-        GOBservice.viewPayments();
-        System.out.println("Gym Owner details edited:> " + GOBservice.editDetails());
-    }
+import java.util.Scanner;
 
-    public static void getFlipFitCentreMenu() {
-        // Gym Centre
-        GymCentreBusiness GCBservice = new GymCentreBusiness();
-        GCBservice.createGymCentre();
-        // System.out.println("Update Gym Centre" + GCBservice.updateGymCentre());
-        // System.out.println("Delete Gym Centre" + GCBservice.deleteGymCentre());
-        GCBservice.viewAvailableSlots();
+public class GymFlipFitOwnerMenu {
+    public static void getFlipFitOwnerView() {
+        GymOwnerBusiness gymOwnerBusiness = new GymOwnerBusiness();
+        System.out.println("Choose an option");
+        System.out.println("1. Add Gym Centre");
+        System.out.println("2. Update Owner Details");
+        System.out.println("3. View All Centres");
+        System.out.println("4. View Customer with slots");
+        Scanner in = new Scanner(System.in);
+        int option = in.nextInt();
+        switch (option) {
+            case 1: {
+                gymOwnerBusiness.addCentre();
+                break;
+            }
+            case 2: {
+                gymOwnerBusiness.editDetails();
+                break;
+            }
+            case 3: {
+                gymOwnerBusiness.viewCentres();
+                break;
+            }
+            case 4: {
+                gymOwnerBusiness.viewFlipFitCustomers();
+                break;
+            }
+        }
     }
 }
