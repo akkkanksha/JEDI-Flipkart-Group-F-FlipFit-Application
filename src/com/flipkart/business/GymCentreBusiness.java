@@ -1,6 +1,8 @@
 package com.flipkart.business;
 
-public class GymCentreBusiness {
+import com.flipkart.business.interfaces.IGymCentre;
+
+public class GymCentreBusiness implements IGymCentre {
     public void createGymCentre(){
         System.out.println("Creating Gym Centre:> ");
     }
