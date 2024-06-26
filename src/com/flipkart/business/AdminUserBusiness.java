@@ -1,11 +1,12 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.AdminUser;
+import com.flipkart.business.interfaces.IAdminUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminUserBusiness {
+public class AdminUserBusiness implements IAdminUser {
     private AdminUser adminUser;
     public AdminUserBusiness(AdminUser adminUser){
         this.adminUser=adminUser;
