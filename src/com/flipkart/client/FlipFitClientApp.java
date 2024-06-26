@@ -25,7 +25,14 @@ public class FlipFitClientApp {
         service.editDetails(userId);
 
         // Admin
-
+        AdminUserBusiness adminService = new AdminUserBusiness();
+        AdminUser adminUser = new AdminUser();
+        int ownerId=101;
+        adminService.adminLogin(adminUser);
+        adminService.getPendingOwnerList();
+        adminService.getUserList();
+        adminService.validateOwner(ownerId);
+        adminService.deleteOwner(ownerId);
 
         // Bookings
         BookingsBusiness BBservice = new BookingsBusiness();
