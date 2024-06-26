@@ -15,20 +15,7 @@ public class GymCentreBusiness implements IGymCentre {
     private String city;
     private String state;
     private String pincode;
-    public void createGymCentre(String ownerID, ArrayList<String>slots,String city, String state, String pincode, int capacity, boolean approved){
-        int centerSize = gymCentreList.size();
-        GymCentre newGymCentre = new GymCentre();
-        newGymCentre.setOwnerID(ownerID);
-        newGymCentre.setSlots(slots);
-        newGymCentre.setCity(city);
-        newGymCentre.setState(state);
-        newGymCentre.setPincode(pincode);
-        newGymCentre.setCapacity(capacity);
-        newGymCentre.setApproved(approved);
-
-
-
-
+    public void createGymCentre(){
         System.out.println("Creating Gym Centre:> ");
     }
 
