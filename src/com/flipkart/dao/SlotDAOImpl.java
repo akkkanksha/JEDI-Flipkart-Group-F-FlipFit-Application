@@ -1,2 +1,4 @@
-package com.flipkart.dao;public class SlotDAOImpl {
+package com.flipkart.dao;
+
+public class SlotDAOImpl {
 }

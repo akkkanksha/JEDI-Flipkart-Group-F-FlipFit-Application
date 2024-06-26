@@ -1,2 +1,4 @@
-package com.flipkart.dao;public interface IRoleDAO {
+package com.flipkart.dao;
+
+public interface IRoleDAO {
 }

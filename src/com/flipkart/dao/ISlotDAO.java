@@ -1,2 +1,4 @@
-package com.flipkart.dao;public interface ISlot {
+package com.flipkart.dao;
+
+public interface ISlot {
 }

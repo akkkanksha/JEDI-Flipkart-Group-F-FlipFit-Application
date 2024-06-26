@@ -1,2 +1,4 @@
-package com.flipkart.dao;public interface IGymOwnerDAO {
+package com.flipkart.dao;
+
+public interface IGymOwnerDAO {
 }

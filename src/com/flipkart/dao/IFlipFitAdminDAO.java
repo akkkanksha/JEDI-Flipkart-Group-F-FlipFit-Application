@@ -1,2 +1,4 @@
-package com.flipkart.dao;public interface IFlipFitAdminDAO {
+package com.flipkart.dao;
+
+public interface IFlipFitAdminDAO {
 }

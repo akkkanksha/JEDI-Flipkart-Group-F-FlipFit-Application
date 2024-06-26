@@ -1,2 +1,4 @@
-package com.flipkart.dao;public interface IGymCentre {
+package com.flipkart.dao;
+
+public interface IGymCentre {
 }

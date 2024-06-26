@@ -1,2 +1,4 @@
-package com.flipkart.dao;public class GymOwnerDAOImpl {
+package com.flipkart.dao;
+
+public class GymOwnerDAOImpl {
 }

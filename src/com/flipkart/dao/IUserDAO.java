@@ -1,2 +1,4 @@
-package com.flipkart.dao;public interface IUserDAO {
+package com.flipkart.dao;
+
+public interface IUserDAO {
 }

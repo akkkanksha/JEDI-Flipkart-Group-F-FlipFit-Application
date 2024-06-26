@@ -1,4 +1,4 @@
 package com.flipkart.dao;
 
-public interface IBookingGymDAO {
+public interface IBookingDAO {
 }

@@ -1,2 +1,4 @@
-package com.flipkart.dao;public class CustomerDAOImp {
+package com.flipkart.dao;
+
+public class CustomerDAOImpl {
 }

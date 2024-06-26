@@ -1,2 +1,4 @@
-package com.flipkart.dao;public class FlipFitAdminDAOImpl {
+package com.flipkart.dao;
+
+public class FlipFitAdminDAOImpl {
 }
