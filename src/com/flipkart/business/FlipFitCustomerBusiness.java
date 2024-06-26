@@ -1,6 +1,15 @@
 package com.flipkart.business;
+import com.flipkart.bean.FlipFitCustomer;
+import com.flipkart.bean.GymCentre;
+import com.flipkart.bean.Slots;
 import com.flipkart.business.interfaces.IFlipFitCustomer;
 public class FlipFitCustomerBusiness implements  IFlipFitCustomer {
+
+    public void registerCustomer(String username) {
+        System.out.println("Registering Customer " + username);
+    }
+
+
 	public void viewBookedSlots(int userId) {
         System.out.println("Viewing booked slots:> ");
     }
@@ -10,6 +19,7 @@ public class FlipFitCustomerBusiness implements  IFlipFitCustomer {
     }
     public void viewCentres() {
         System.out.println("view centres called:> ");
+
     }
     public boolean makePayment(int userId) {
         System.out.println("Make payment called:> ");
