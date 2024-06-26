@@ -1,6 +1,8 @@
 package com.flipkart.business;
 
-public class GymOwnerBusiness {
+import com.flipkart.business.interfaces.IGymOwner;
+
+public class GymOwnerBusiness implements IGymOwner {
     public boolean addCentre() {
         System.out.println("Centre added:> ");
         return true;
