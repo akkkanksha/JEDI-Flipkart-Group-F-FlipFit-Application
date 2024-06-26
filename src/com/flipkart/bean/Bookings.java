@@ -39,3 +39,4 @@ public class Bookings {
     public void setIsdeleted(boolean isdeleted) {
         this.isdeleted = isdeleted;
     }
+}
