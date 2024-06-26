@@ -6,7 +6,7 @@ import com.flipkart.business.GymOwnerBusiness;
 import java.util.Scanner;
 
 public class GymFlipFitOwnerMenu {
-    public static void getFlipFitOwnerMenu() {
+    public static void getFlipFitOwnerView() {
         GymOwnerBusiness GOBservice = new GymOwnerBusiness();
         System.out.println("Gym Owner Menu:> ");
         System.out.println("Choose an option:" +
