@@ -17,10 +17,6 @@ public class GymCentreBusiness implements IGymCentre {
         return true;
     }
 
-    public void listGymCentres(){
-        System.out.println("Listing Gym Centres:> ");
-    }
-
     public void viewAvailableSlots() {
         System.out.println("Viewing Available Slots:> ");
     }

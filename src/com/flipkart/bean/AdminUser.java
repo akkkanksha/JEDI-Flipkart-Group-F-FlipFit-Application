@@ -1,6 +1,8 @@
 package com.flipkart.bean;
 
-public class AdminUser {
+import com.flipkart.business.interfaces.IAdminUser;
+
+public class AdminUser  {
     private String userId;
     private String password;
 
