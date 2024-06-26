@@ -2,6 +2,7 @@ package com.flipkart.client;
 
 import com.flipkart.bean.AdminUser;
 import com.flipkart.business.*;
+import com.flipkart.business.interfaces.ISlots;
 
 public class FlipFitClientApp {
     public static void main(String[] args) {
@@ -41,7 +42,7 @@ public class FlipFitClientApp {
         BBservice.deleteBooking(userID, slot);
 
         // Slots
-        SlotsBusiness SBservice = new SlotsBusiness();
+        ISlots SBservice = new SlotsBusiness();
         SBservice.getSlotDetails();
         System.out.println("Update availability:> "+SBservice.updateAvailability());
 
