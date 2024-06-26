@@ -2,7 +2,7 @@ package com.flipkart.client;
 
 import com.flipkart.bean.AdminUser;
 import com.flipkart.business.*;
-import com.flipkart.business.interfaces.IAdminUser;
+import com.flipkart.business.interfaces.ISlots;
 
 public class FlipFitClientApp {
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class FlipFitClientApp {
 
         // Admin
         AdminUser adminUser = new AdminUser();
-        IAdminUser adminService = new AdminUserBusiness(adminUser);
+        AdminUserBusiness adminService = new AdminUserBusiness(adminUser);
         int ownerId=101;
         adminService.adminLogin(adminUser);
         adminService.getPendingOwnerList();
@@ -42,7 +42,7 @@ public class FlipFitClientApp {
         BBservice.deleteBooking(userID, slot);
 
         // Slots
-        SlotsBusiness SBservice = new SlotsBusiness();
+        ISlots SBservice = new SlotsBusiness();
         SBservice.getSlotDetails();
         System.out.println("Update availability:> "+SBservice.updateAvailability());
 
