@@ -15,10 +15,6 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
     @Override
     public void viewBookedSlots(int userId) {
 
-    }
-
-    public void viewBookedSlots(int userId) {
-
         System.out.println("Viewing booked slots:> ");
         FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
         FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();

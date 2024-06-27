@@ -1,6 +1,8 @@
 package com.flipkart.business;
 import com.flipkart.bean.FlipFitBooking;
+import com.flipkart.bean.FlipFitSlots;
 import com.flipkart.dao.FlipFitBookingDAOImpl;
+import com.flipkart.dao.FlipFitSlotDAOImpl;
 
 import java.util.Random;
 
@@ -15,10 +17,14 @@ public class BookingsBusiness {
         booking.setUserId(userId);
         booking.setIsdeleted(false);
         bookingDAO.makeBooking(booking);
+        FlipFitSlotsBusiness flipFitSlotsBusiness = new FlipFitSlotsBusiness();
+        flipFitSlotsBusiness.updateAvailability(slotId);
     }
 
-    public boolean deleteBooking(String userID, String slot) {
-        System.out.println("Deleting a booking for " + userID);
+    public boolean deleteBooking(int bookingId) {
+        System.out.println("Deleting a booking for " + bookingId);
+        FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
+        bookingDAO.deleteBooking(bookingId);
         return true;
     }
 }
