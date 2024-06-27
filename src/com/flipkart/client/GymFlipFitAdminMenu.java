@@ -21,7 +21,7 @@ public class GymFlipFitAdminMenu {
         switch (choice){
             case 1:{
                 String adminId = "101";
-                adminService.getPendingOwnerList(adminId);
+                adminService.getPendingOwnerList();
 
                 System.out.println("Type the ownerId of owner you wish to approve");
                 String ownerId = sc.next();
