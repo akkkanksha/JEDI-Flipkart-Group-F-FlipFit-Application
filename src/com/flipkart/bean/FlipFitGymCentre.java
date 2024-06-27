@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class FlipFitGymCentre {
     private String centreID;
     private String ownerID;
-    private ArrayList<String> slots;
     private int capacity;
     private boolean approved;
     private String city;
@@ -26,14 +25,6 @@ public class FlipFitGymCentre {
 
     public void setOwnerID(String ownerID) {
         this.ownerID = ownerID;
-    }
-
-    public ArrayList<String> getSlots() {
-        return slots;
-    }
-
-    public void setSlots(ArrayList<String> slots) {
-        this.slots = slots;
     }
 
     public int getCapacity() {

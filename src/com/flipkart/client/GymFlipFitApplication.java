@@ -59,9 +59,6 @@ public class GymFlipFitApplication {
                     String city = in.next();
                     System.out.println("Enter your pin code:> ");
                     String pinCode = in.next();
-                    System.out.println("Registration of customer");
-                    System.out.print("Enter your EmailId:> ");
-                    String username = in.next();
                     System.out.print("Enter your password:> ");
                     String password = in.next();
                     String role = "Customer";
@@ -80,9 +77,6 @@ public class GymFlipFitApplication {
                     String city = in.next();
                     System.out.println("Enter your pin code:> ");
                     String pinCode = in.next();
-                    System.out.println("Registration of customer");
-                    System.out.print("Enter your EmailId:> ");
-                    String username = in.next();
                     System.out.print("Enter your password:> ");
                     String password = in.next();
                     String role = "Gym Owner";
