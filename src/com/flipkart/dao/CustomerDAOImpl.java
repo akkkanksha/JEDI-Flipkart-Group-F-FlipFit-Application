@@ -1,5 +1,7 @@
 package com.flipkart.dao;
 
+import com.flipkart.dao.interfaces.ICustomerDAO;
+
 public class CustomerDAOImpl implements ICustomerDAO {
 
     @Override

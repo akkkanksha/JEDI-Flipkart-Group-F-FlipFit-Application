@@ -1,4 +1,4 @@
-package com.flipkart.dao;
+package com.flipkart.dao.interfaces;
 
 public interface ICustomerDAO {
     public void registerCustomer();
