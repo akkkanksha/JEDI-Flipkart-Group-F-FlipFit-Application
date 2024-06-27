@@ -1,8 +1,10 @@
 package com.flipkart.dao.interfaces;
 
+import com.flipkart.bean.FlipFitGymCentre;
+
 public interface IFlipFitGymCentreDAO {
-        public void createGymCentre();
-        public boolean updateGymCentre();
-        public boolean deleteGymCentre();
-        public void viewAvailableSlots();
+        public void createGymCentre(FlipFitGymCentre FFGC);
+        public void updateGymCentre(FlipFitGymCentre FFGC);
+        public void deleteGymCentre(FlipFitGymCentre FFGC);
+        public void viewAvailableSlots(FlipFitGymCentre FFGC);
 }

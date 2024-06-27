@@ -8,6 +8,9 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
     @Override
     public boolean adminLogin(FlipFitAdmin adminUser) {
         return false;
+        // conn.getCon
+        //prepare statement
+        //conn.close
     }
 
     @Override
