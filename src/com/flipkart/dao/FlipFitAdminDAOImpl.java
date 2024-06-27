@@ -1,10 +1,12 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.AdminUser;
+import com.flipkart.dao.interfaces.IFlipFitAdminDAO;
 
 import java.util.List;
 
-public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
+public class FlipFitAdminDAOImpl implements IFlipFitAdminDAO {
+
     @Override
     public boolean adminLogin(AdminUser adminUser) {
         return false;

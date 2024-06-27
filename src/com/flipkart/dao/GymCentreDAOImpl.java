@@ -6,7 +6,7 @@ public class GymCentreDAOImpl implements IGymCentreDAO {
 
     @Override
     public void createGymCentre() {
-        
+
     }
 
     @Override
