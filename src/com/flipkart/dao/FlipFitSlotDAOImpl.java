@@ -1,7 +1,7 @@
 package com.flipkart.dao;
 import com.flipkart.dao.interfaces.*;
 
-public class SlotDAOImpl implements IFlipFitSlotDAO {
+public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
     @Override
     public boolean addSlot(int slotID) {
         return false;

@@ -1,6 +1,6 @@
 package com.flipkart.dao;
-import com.flipkart.dao.interfaces.*;
-public class BookingDAOImpl implements IBookingDAO {
+import com.flipkart.dao.interfaces.IFlipFitBookingDAO;
+public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
     @Override
     public void makeBooking() {
 

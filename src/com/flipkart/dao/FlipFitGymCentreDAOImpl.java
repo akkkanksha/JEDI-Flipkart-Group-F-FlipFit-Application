@@ -1,4 +1,4 @@
 package com.flipkart.dao;
 
-public class GymCentreDAOImpl {
+public class FlipFitGymCentreDAOImpl {
 }

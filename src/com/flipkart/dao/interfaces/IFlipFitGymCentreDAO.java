@@ -1,6 +1,6 @@
 package com.flipkart.dao.interfaces;
 
-public interface IGymCentreDAO {
+public interface IFlipFitGymCentreDAO {
         public void createGymCentre();
         public boolean updateGymCentre();
         public boolean deleteGymCentre();

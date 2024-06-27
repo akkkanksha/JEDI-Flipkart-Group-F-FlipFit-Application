@@ -1,12 +1,13 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.GymCentre;
-import com.flipkart.business.interfaces.IGymCentre;
+import com.flipkart.bean.FlipFitGymCentre;
+import com.flipkart.bean.FlipFitGymCentre;
+import com.flipkart.business.interfaces.IFlipFitGymCentre;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlipFitGymCentreBusiness implements IGymCentre {
-    List<GymCentre> gymCentreList = new ArrayList<GymCentre>();
+public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
+    List<FlipFitGymCentre> gymCentreList = new ArrayList<FlipFitGymCentre>();
     private String centreID;
     private String ownerID;
     private ArrayList<String> slots;

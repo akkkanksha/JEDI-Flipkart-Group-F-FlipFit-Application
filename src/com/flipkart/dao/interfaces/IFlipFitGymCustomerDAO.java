@@ -1,6 +1,6 @@
 package com.flipkart.dao.interfaces;
 
-public interface ICustomerDAO {
+public interface IFlipFitGymCustomerDAO {
     public void registerCustomer();
     public void viewBookedSlots(int userId);
     public boolean checkBookingConflicts(int userId, String slot);

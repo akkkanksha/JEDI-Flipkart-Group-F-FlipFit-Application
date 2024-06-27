@@ -2,7 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.dao.interfaces.IFlipFitGymOwnerDAO;
 
-public class GymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
+public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
 
     @Override
     public boolean addCentre() {

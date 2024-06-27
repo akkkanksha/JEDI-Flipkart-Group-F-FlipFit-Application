@@ -1,14 +1,13 @@
 package com.flipkart.client;
 
 import com.flipkart.business.BookingsBusiness;
-import com.flipkart.business.FlipFitCustomerBusiness;
-import com.flipkart.business.GymCentreBusiness;
-import com.flipkart.business.SlotsBusiness;
-import com.flipkart.business.interfaces.ISlots;
+import com.flipkart.business.FlipFitGymCustomerBusiness;
+import com.flipkart.business.FlipFitSlotsBusiness;
+import com.flipkart.business.interfaces.IFlipFitSlots;
 
 public class GymFlipFitCustomerMenu {
     public static String slot = "6am-7am";
-    static FlipFitCustomerBusiness service = new FlipFitCustomerBusiness();
+    static FlipFitGymCustomerBusiness service = new FlipFitGymCustomerBusiness();
     static int userId = 101;
 
     public static void getFlipFitCustomerMenu() {
@@ -26,7 +25,7 @@ public class GymFlipFitCustomerMenu {
     }
     public static void getFlipFitSlotMenu() {
         // Slots
-        ISlots SBservice = new SlotsBusiness();
+        FlipFitSlotsBusiness SBservice = new FlipFitSlotsBusiness();
         SBservice.getSlotDetails();
         System.out.println("Update availability:> " + SBservice.updateAvailability());
     }

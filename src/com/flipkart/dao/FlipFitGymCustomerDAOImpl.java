@@ -2,7 +2,7 @@ package com.flipkart.dao;
 
 import com.flipkart.dao.interfaces.IFlipFitGymCustomerDAO;
 
-public class CustomerDAOImpl implements IFlipFitGymCustomerDAO {
+public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
 
     @Override
     public void registerCustomer() {

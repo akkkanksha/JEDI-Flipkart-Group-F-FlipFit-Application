@@ -1,11 +1,11 @@
 package com.flipkart.dao.interfaces;
 
-import com.flipkart.bean.AdminUser;
+import com.flipkart.bean.FlipFitAdmin;
 
 import java.util.List;
 
 public interface IFlipFitAdminDAO {
-    public boolean adminLogin(AdminUser adminUser);
+    public boolean adminLogin(FlipFitAdmin adminUser);
     public List<Object> getPendingOwnerList();
     public List<Object> getUserList();
     public boolean validateOwner(int ownerId);

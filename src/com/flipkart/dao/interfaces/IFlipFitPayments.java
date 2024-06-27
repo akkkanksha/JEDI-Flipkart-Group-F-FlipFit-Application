@@ -1,2 +1,4 @@
-package com.flipkart.dao.interfaces;public interface IFlipFitPayments {
+package com.flipkart.dao.interfaces;
+
+public interface IFlipFitPayments {
 }

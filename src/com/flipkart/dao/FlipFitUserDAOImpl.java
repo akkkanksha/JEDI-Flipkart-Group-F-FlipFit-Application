@@ -1,7 +1,7 @@
 package com.flipkart.dao;
 import com.flipkart.dao.interfaces.*;
 
-public class UserDAOImpl implements IFlipFitUserDAO {
+public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
     @Override
     public boolean addUser(int userId) {
         return false;

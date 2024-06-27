@@ -1,10 +1,10 @@
 package com.flipkart.business;
 
-import com.flipkart.business.interfaces.IGymOwner;
+import com.flipkart.business.interfaces.IFlipFitGymOwner;
 
 import java.util.Scanner;
 
-public class FlipFitGymOwnerBusiness implements IGymOwner {
+public class FlipFitGymOwnerBusiness implements IFlipFitGymOwner {
     Scanner scanner = new Scanner(System.in);
     public boolean addCentre() {
         System.out.println("Give the following details:");

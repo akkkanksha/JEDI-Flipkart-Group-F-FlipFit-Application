@@ -1,2 +1,5 @@
-package com.flipkart.dao;public class FlipFitPayments {
+package com.flipkart.dao;
+import com.flipkart.dao.interfaces.IFlipFitPayments;
+
+public class FlipFitPaymentsDAOImpl {
 }
