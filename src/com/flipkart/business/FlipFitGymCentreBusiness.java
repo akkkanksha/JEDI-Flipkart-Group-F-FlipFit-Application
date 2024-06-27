@@ -16,21 +16,31 @@ public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
     private String city;
     private String state;
     private String pincode;
-    public void createGymCentre(){
+
+
+    public void createGymCentre(String centreCity, String centreCapacity, String centreState,String centreZipCode, String slotsTiming){
         System.out.println("Creating Gym Centre:> ");
     }
 
-    public boolean updateGymCentre(){
+    public boolean updateGymCentre(String CentreId){
         System.out.println("Updating Gym Centre:> ");
         return true;
     }
-
-    public boolean deleteGymCentre(){
+    public boolean viewGymCentre(String city) {
+        System.out.println("View Gym Centre:> ");
+        return true;
+    }
+    public boolean viewAllGymCentres(String OwnerId) {
+        System.out.println("View All Gym Centre:> ");
+        return true;
+    }
+    public boolean deleteGymCentre(String CentreId){
         System.out.println("Deleting Gym Centre:> ");
         return true;
     }
 
-    public void viewAvailableSlots() {
+    public void viewAvailableSlots(String centreID) {
+
         System.out.println("Viewing Available Slots:> ");
     }
 }

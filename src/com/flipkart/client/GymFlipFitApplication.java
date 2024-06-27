@@ -36,7 +36,7 @@ public class GymFlipFitApplication {
                         case "Admin": {
                             // admin menu
                             System.out.println("Admin Menu");
-                            GymFlipFitAdminMenu.getAdminMenu();
+                            GymFlipFitAdminMenu.getAdminView();
                             break;
                         }
                         case "GymOwner": {
@@ -49,11 +49,46 @@ public class GymFlipFitApplication {
                     break;
                 }
                 case 2 : {
+
+                    System.out.println("Enter your email address:> ");
+                    String emailID = in.next();
+                    System.out.println("Enter your phone number:> ");
+                    String phoneNumber = in.next();
+                    System.out.println("Enter your city:> ");
+                    String city = in.next();
+                    System.out.println("Enter your pin code:> ");
+                    String pinCode = in.next();
                     System.out.println("Registration of customer");
+                    System.out.print("Enter your username:> ");
+                    String username = in.next();
+                    System.out.print("Enter your password:> ");
+                    String password = in.next();
+                    String role = "Customer";
+                    System.out.println("Registration completed");
+                    System.out.println("Customer Menu");
+                    GymFlipFitCustomerMenu.getFlipFitCustomerMenu();
                     break;
                 }
                 case 3 : {
                     System.out.println("Registration of gym owner");
+                    System.out.println("Enter your email address:> ");
+                    String emailID = in.next();
+                    System.out.println("Enter your phone number:> ");
+                    String phoneNumber = in.next();
+                    System.out.println("Enter your city:> ");
+                    String city = in.next();
+                    System.out.println("Enter your pin code:> ");
+                    String pinCode = in.next();
+                    System.out.println("Registration of customer");
+                    System.out.print("Enter your username:> ");
+                    String username = in.next();
+                    System.out.print("Enter your password:> ");
+                    String password = in.next();
+                    String role = "Gym Owner";
+                    // owner have to verify first
+                    System.out.println("Registration completed");
+                    System.out.println("GymOwner Menu");
+                    GymFlipFitOwnerMenu.getFlipFitOwnerView();
                     break;
                 }
                 case 4 : {

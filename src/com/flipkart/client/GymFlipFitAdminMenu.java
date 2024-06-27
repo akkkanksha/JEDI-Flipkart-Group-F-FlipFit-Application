@@ -8,7 +8,7 @@ import com.flipkart.business.interfaces.IFlipFitAdmin;
 import java.util.Scanner;
 
 public class GymFlipFitAdminMenu {
-    public static void getAdminMenu() {
+    public static void getAdminView() {
         Scanner sc=new Scanner(System.in);
         FlipFitAdmin adminUser = new FlipFitAdmin();
         FlipFitAdminBusiness adminService = new FlipFitAdminBusiness(adminUser);
@@ -20,7 +20,8 @@ public class GymFlipFitAdminMenu {
 
         switch (choice){
             case 1:{
-                adminService.getPendingOwnerList();
+                String adminId = "101";
+                adminService.getPendingOwnerList(adminId);
                 break;
             }
             case 2:{

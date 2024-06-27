@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IFlipFitAdminDAO {
     public boolean adminLogin(FlipFitAdmin adminUser);
-    public List<Object> getPendingOwnerList();
+    public List<FlipFitAdmin> getPendingOwnerList(int adminId);
     public List<Object> getUserList();
     public boolean validateOwner(int ownerId);
     public boolean deleteOwner(int ownerId);
