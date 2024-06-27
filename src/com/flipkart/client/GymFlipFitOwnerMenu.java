@@ -16,8 +16,7 @@ public class GymFlipFitOwnerMenu {
                 "\n 4. View Payments" +
                 "\n 5. Edit Owner Details");
         Scanner in = new Scanner(System.in);
-
-        int choice = 0;
+        int choice = in.nextInt();
         switch (choice) {
             case 1: {
                 System.out.println("Add Centre");
@@ -40,21 +39,16 @@ public class GymFlipFitOwnerMenu {
                 break;
             }
             case 5: {
-                System.out.println("Edit Owner Details");
-                System.out.println("Gym Owner details edited:> " + GOBservice.editDetails());
+                System.out.println("Edit Details");
+                boolean change = GOBservice.editDetails();
+                if (change) {
+                    System.out.println("Successfully edited details");
+                }
+                else {
+                    System.out.println("Failed to edit details");
+                }
                 break;
             }
         }
-    }
-
-    public static void getFlipFitCentreMenu() {
-        // Gym Centre
-        FlipFitGymCentreBusiness GCBservice = new FlipFitGymCentreBusiness();
-        System.out.println("Gym Centre Menu:> ");
-
-        GCBservice.createGymCentre();
-        // System.out.println("Update Gym Centre" + GCBservice.updateGymCentre());
-        // System.out.println("Delete Gym Centre" + GCBservice.deleteGymCentre());
-        GCBservice.viewAvailableSlots();
     }
 }
