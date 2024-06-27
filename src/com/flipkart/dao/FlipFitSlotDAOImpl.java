@@ -70,8 +70,8 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
 
             PreparedStatement stmt = con.prepareStatement("UPDATE Slot SET centerId = ?, startTime = ?, seatsAvailable = ? WHERE slotId = ?");
 
-            stmt.setInt(1, slot.getCenterId());
-            stmt.setLong(2, slot.getStartTime());
+            stmt.setInt(1, slot.getCentreId());
+            stmt.setLong(2, slot.getSlotTime());
             stmt.setInt(3, slot.getSeatsAvailable());
             stmt.setInt(4, slot.getSlotId());
 

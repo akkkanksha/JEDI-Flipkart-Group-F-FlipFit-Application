@@ -14,7 +14,7 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
 
     @Override
     public void viewBookedSlots(int userId) {
-        
+
     }
 
     //	public void viewBookedSlots(int userId) {
