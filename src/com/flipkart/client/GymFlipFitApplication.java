@@ -20,12 +20,13 @@ public class GymFlipFitApplication {
                 case 1 : {
                     // Login
                     System.out.println("Login");
-                    System.out.print("Enter your username:> ");
+                    System.out.print("Enter your emailId:> ");
                     String username = in.next();
                     System.out.print("Enter your password:> ");
                     String password = in.next();
                     System.out.print("Enter your role:> Customer/Admin/GymOwner ");
                     String role = in.next();
+                    System.out.println("Login Successful");
                     switch (role) {
                         case "Customer": {
                             // customer menu
@@ -58,9 +59,6 @@ public class GymFlipFitApplication {
                     String city = in.next();
                     System.out.println("Enter your pin code:> ");
                     String pinCode = in.next();
-                    System.out.println("Registration of customer");
-                    System.out.print("Enter your username:> ");
-                    String username = in.next();
                     System.out.print("Enter your password:> ");
                     String password = in.next();
                     String role = "Customer";
@@ -79,9 +77,6 @@ public class GymFlipFitApplication {
                     String city = in.next();
                     System.out.println("Enter your pin code:> ");
                     String pinCode = in.next();
-                    System.out.println("Registration of customer");
-                    System.out.print("Enter your username:> ");
-                    String username = in.next();
                     System.out.print("Enter your password:> ");
                     String password = in.next();
                     String role = "Gym Owner";
