@@ -1,9 +1,7 @@
 package com.flipkart.business;
-import com.flipkart.bean.FlipFitCustomer;
-import com.flipkart.bean.GymCentre;
-import com.flipkart.bean.Slots;
-import com.flipkart.business.interfaces.IFlipFitCustomer;
-public class FlipFitCustomerBusiness implements  IFlipFitCustomer {
+import com.flipkart.bean.*;
+import com.flipkart.business.interfaces.IFlipFitGymCustomer;
+public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
 
     public void registerCustomer(String username) {
         System.out.println("Registering Customer " + username);

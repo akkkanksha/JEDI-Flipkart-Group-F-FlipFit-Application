@@ -5,7 +5,7 @@ import com.flipkart.business.interfaces.IGymCentre;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GymCentreBusiness implements IGymCentre {
+public class FlipFitGymCentreBusiness implements IGymCentre {
     List<GymCentre> gymCentreList = new ArrayList<GymCentre>();
     private String centreID;
     private String ownerID;

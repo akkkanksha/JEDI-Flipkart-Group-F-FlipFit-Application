@@ -1,18 +1,18 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.AdminUser;
-import com.flipkart.business.interfaces.IAdminUser;
+import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.business.interfaces.IFlipFitAdmin;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminUserBusiness implements IAdminUser {
-    private AdminUser adminUser;
-    public AdminUserBusiness(AdminUser adminUser){
-        this.adminUser=adminUser;
+public class FlipFitAdminBusiness implements IFlipFitAdmin {
+    private FlipFitAdmin FFAdmin;
+    public FlipFitAdminBusiness(FlipFitAdmin FFAdmin){
+        this.FFAdmin=FFAdmin;
     }
 
-    public boolean adminLogin(AdminUser adminUser){
+    public boolean adminLogin(FlipFitAdmin adminUser){
         System.out.println("AdminUserBusiness.adminLogin");
         return true;
     }

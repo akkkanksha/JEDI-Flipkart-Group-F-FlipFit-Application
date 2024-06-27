@@ -1,8 +1,6 @@
 package com.flipkart.bean;
 
-import com.flipkart.business.interfaces.IAdminUser;
-
-public class AdminUser  {
+public class FlipFitAdmin  {
     private String userId;
     private String password;
 

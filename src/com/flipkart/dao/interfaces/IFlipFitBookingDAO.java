@@ -1,6 +1,6 @@
 package com.flipkart.dao.interfaces;
 
-public interface IBookingDAO {
+public interface IFlipFitBookingDAO {
     public void makeBooking();
     public boolean deleteBooking();
 }

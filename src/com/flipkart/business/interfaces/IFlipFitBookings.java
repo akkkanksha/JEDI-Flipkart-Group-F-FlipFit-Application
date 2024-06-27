@@ -1,5 +1,5 @@
 package com.flipkart.business.interfaces;
-public interface IBookings{
+public interface IFlipFitBookings{
     public void makeBooking();
     public boolean deleteBooking();
 }

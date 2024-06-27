@@ -2,7 +2,7 @@ package com.flipkart.bean;
 
 import java.util.ArrayList;
 
-public class GymCentre {
+public class FlipFitGymCentre {
     private String centreID;
     private String ownerID;
     private ArrayList<String> slots;

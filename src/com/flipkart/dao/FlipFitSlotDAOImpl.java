@@ -1,19 +1,19 @@
 package com.flipkart.dao;
 import com.flipkart.dao.interfaces.*;
 
-public class RoleDAOImpl implements IRoleDAO {
+public class SlotDAOImpl implements IFlipFitSlotDAO {
     @Override
-    public boolean addRole(int roleId) {
+    public boolean addSlot(int slotID) {
         return false;
     }
 
     @Override
-    public boolean deleteRole(int roleId) {
+    public boolean deleteSlot(int slotID) {
         return false;
     }
 
     @Override
-    public boolean changeRole(int roleId) {
+    public boolean changeSlot(int slotID) {
         return false;
     }
 }

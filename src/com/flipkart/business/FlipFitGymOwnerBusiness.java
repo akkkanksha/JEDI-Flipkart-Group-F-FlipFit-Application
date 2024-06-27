@@ -4,7 +4,7 @@ import com.flipkart.business.interfaces.IGymOwner;
 
 import java.util.Scanner;
 
-public class GymOwnerBusiness implements IGymOwner {
+public class FlipFitGymOwnerBusiness implements IGymOwner {
     Scanner scanner = new Scanner(System.in);
     public boolean addCentre() {
         System.out.println("Give the following details:");

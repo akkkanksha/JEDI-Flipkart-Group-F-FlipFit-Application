@@ -1,8 +1,6 @@
 package com.flipkart.business.interfaces;
 
-import java.util.ArrayList;
-
-public interface IGymCentre {
+public interface IFlipFitGymCentre {
     public void createGymCentre();
     public boolean updateGymCentre();
     public boolean deleteGymCentre();

@@ -1,12 +1,11 @@
 package com.flipkart.business.interfaces;
 
-import com.flipkart.bean.AdminUser;
+import com.flipkart.bean.FlipFitAdmin;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public interface IAdminUser {
-    public boolean adminLogin(AdminUser adminUser);
+public interface IFlipFitAdmin {
+    public boolean adminLogin(FlipFitAdmin admin);
     public List<Object> getPendingOwnerList();
     public List<Object> getUserList();
     public boolean validateOwner(int ownerId);

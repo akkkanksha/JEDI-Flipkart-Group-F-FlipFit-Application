@@ -1,6 +1,6 @@
 package com.flipkart.business.interfaces;
 
-public interface ISlots {
+public interface IFlipFitSlots {
     public boolean updateAvailability();
     public void getSlotDetails();
 }

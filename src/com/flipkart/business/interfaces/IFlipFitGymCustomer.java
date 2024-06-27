@@ -1,5 +1,5 @@
 package com.flipkart.business.interfaces;
-public interface IFlipFitCustomer {
+public interface IFlipFitGymCustomer {
     public void viewBookedSlots(int userId);
     public boolean checkBookingConflicts(int userId, String slot);
     public void viewCentres();

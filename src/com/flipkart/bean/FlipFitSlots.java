@@ -1,6 +1,6 @@
 package com.flipkart.bean;
 
-public class Slots {
+public class FlipFitSlots {
     private int slotId;
     private int centerId;
     private long startTime;

@@ -2,7 +2,7 @@ package com.flipkart.business;
 
 import com.flipkart.business.interfaces.ISlots;
 
-public class SlotsBusiness implements ISlots {
+public class FlipFitSlotsBusiness implements ISlots {
 
     public boolean updateAvailability() {
         System.out.println("Updating Slot Availability");
