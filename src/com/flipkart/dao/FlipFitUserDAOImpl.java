@@ -35,6 +35,29 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
 //    }
 
     @Override
+    public int login(String emailID, String password){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
+
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO User VALUES (?, ?, ?, ?, ?, ?)");
+
+            FlipFitUser FFU = new FlipFitUser();
+
+
+
+            int i = stmt.executeUpdate();
+            System.out.println(i + " user added");
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return 0;
+    }
+
+    @Override
     public void addUser(FlipFitUser FFU) {
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -106,4 +129,11 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public FlipFitUser getUser(int userID) {
+        FlipFitUser FFU = new FlipFitUser();
+        return FFU;
+    }
+
 }
