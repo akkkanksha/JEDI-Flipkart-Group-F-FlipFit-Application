@@ -17,7 +17,7 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
         System.out.println("Viewing booked slots:> ");
         FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
         FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
-        List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(userId);
+        List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(String.valueOf(userId));
         for (FlipFitBooking booking : bookingsList) {
             FlipFitSlots slotdetails = slotDAO.getSlotById(booking.getSlotId());
             System.out.println("Booking ID: " + booking.getBookingId() + "Slot timing " + slotdetails.getStartTime());

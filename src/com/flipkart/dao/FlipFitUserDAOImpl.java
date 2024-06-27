@@ -11,33 +11,33 @@ import java.util.Random;
 
 public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
     Random rand = new Random();
-
-    public static void main(String[] args) {
-        FlipFitUser FFU = new FlipFitUser();
-
-        FFU.setUserName("PP");
-        FFU.setPassword("pp2");
-        FFU.setRoleID(1);
-        FFU.setEmailID("pp@mail");
-        FFU.setPhoneNumber("9800756987");
-
-        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
-        FFUDAO.addUser(FFU);
-
-        FlipFitUser FFU1 = new FlipFitUser();
-
-        FFU.setUserName("GG");
-        FFU.setPassword("gg2");
-        FFU.setRoleID(0);
-        FFU.setEmailID("gg@mail");
-        FFU.setPhoneNumber("9899756987");
-
-        FFUDAO.changeUser(FFU);
-        FlipFitUser FFU2 = FFUDAO.getUser(644);
-        System.out.println(FFU2.getEmailID());
-        System.out.println(FFU2.getPhoneNumber());
-
-    }
+//
+//    public static void main(String[] args) {
+//        FlipFitUser FFU = new FlipFitUser();
+//
+//        FFU.setUserName("PP");
+//        FFU.setPassword("pp2");
+//        FFU.setRoleID(1);
+//        FFU.setEmailID("pp@mail");
+//        FFU.setPhoneNumber("9800756987");
+//
+//        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
+//        FFUDAO.addUser(FFU);
+//
+//        FlipFitUser FFU1 = new FlipFitUser();
+//
+//        FFU.setUserName("GG");
+//        FFU.setPassword("gg2");
+//        FFU.setRoleID(0);
+//        FFU.setEmailID("gg@mail");
+//        FFU.setPhoneNumber("9899756987");
+//
+//        FFUDAO.changeUser(FFU);
+//        FlipFitUser FFU2 = FFUDAO.getUser(644);
+//        System.out.println(FFU2.getEmailID());
+//        System.out.println(FFU2.getPhoneNumber());
+//
+//    }
 
     @Override
     public int login(String emailID, String password){
