@@ -4,9 +4,10 @@ import com.flipkart.bean.FlipFitGymCustomer;
 
 public interface IFlipFitGymCustomerDAO {
 
-    public FlipFitGymCustomer registerCustomer(String username, String password, String emailID, String phoneNumber, String city, String pinCode, int role);
+    public void registerCustomer(FlipFitGymCustomer flipFitGymCustomer);
     public boolean checkBookingConflicts(int userId, String slot);
 
+    public void viewBookedSlots(int userId);
     public boolean makePayment(int userId);
-    public FlipFitGymCustomer editDetails(int userId);
+    public void editDetails(FlipFitGymCustomer flipFitGymCustomer);
 }

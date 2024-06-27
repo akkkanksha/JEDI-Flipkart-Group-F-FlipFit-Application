@@ -40,7 +40,7 @@ public class GymFlipFitOwnerMenu {
             case 2: {
                 String ownerId = "101";
                 System.out.println("View Centres for this owner");
-                GCService.viewAllGymCentres(ownerId);
+                GCService.viewAllGymCentresByOwnerId(ownerId);
                 break;
             }
             case 3: {

@@ -1,19 +1,21 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.bean.FlipFitGymCustomer;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.dao.interfaces.*;
 import java.util.List;
 import com.flipkart.dao.GetConnection;
 import java.sql.*;
 public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
     @Override
-    public boolean adminLogin(FlipFitAdmin adminUser) {
+    public FlipFitAdmin adminLogin(String email, String password){
         try{
             Connection con = GetConnection.getConnection();
 
             PreparedStatement stmt=con.prepareStatement("insert into Admin values(?,?)");
-            stmt.setString(1, adminUser.getUserID());//1 specifies the first parameter in the query
-            stmt.setString(2, adminUser.getPassword());
+            stmt.setString(1, email);//1 specifies the first parameter in the query
+            stmt.setString(2, password);
 
             int i=stmt.executeUpdate();
             System.out.println(i+" records inserted");
@@ -21,11 +23,11 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
             con.close();
 
         }catch(Exception e){ System.out.println(e);}
-        return false;
+        return null;
     }
 
     @Override
-    public List<FlipFitAdmin> getPendingOwnerList(int adminId) {
+    public List<FlipFitGymOwner> getPendingOwnerList(int adminId){
         try{
             Connection con = GetConnection.getConnection();
 
@@ -43,7 +45,7 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
     }
 
     @Override
-    public List<Object> getUserList() {
+    public List<FlipFitGymCustomer> getUserList() {
         return List.of();
     }
 
