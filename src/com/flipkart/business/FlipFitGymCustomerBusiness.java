@@ -17,18 +17,18 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
 
     }
 
-    //	public void viewBookedSlots(int userId) {
-//
-//        System.out.println("Viewing booked slots:> ");
-//        FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
-//        FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
-//        List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(String.valueOf(userId));
-//        for (FlipFitBooking booking : bookingsList) {
-//            FlipFitSlots slotdetails = slotDAO.getSlotById(booking.getSlotId());
-//            System.out.println("Booking ID: " + booking.getBookingId() + "Slot timing " + slotdetails.getSlotTime());
-//        }
-//
-//    }
+    public void viewBookedSlots(int userId) {
+
+        System.out.println("Viewing booked slots:> ");
+        FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
+        FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
+        List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(userId);
+        for (FlipFitBooking booking : bookingsList) {
+            FlipFitSlots slotdetails = slotDAO.getSlotDetailsById(booking.getSlotId());
+            System.out.println("Booking ID: " + booking.getBookingId() + "Slot timing " + slotdetails.getSlotTime());
+        }
+
+    }
     public boolean checkBookingConflicts(int userId, String slot) {
         System.out.println("Checking conflict for slot " + slot);
         return true;

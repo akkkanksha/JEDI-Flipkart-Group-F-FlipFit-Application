@@ -121,4 +121,7 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
         }
         return slots;
     }
+    public FlipFitSlots getSlotDetailsById(int slotId){
+        return new FlipFitSlots();
+    }
 }
