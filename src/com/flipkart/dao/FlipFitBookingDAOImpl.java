@@ -56,16 +56,6 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
         return false;
     }
 
-    @Override
-    public List<FlipFitBooking> getAllBooking(String userId) {
-        return List.of();
-    }
-
-    @Override
-    public List<FlipFitBooking> getAllBookings(String userId) {
-        return List.of();
-    }
-
 //    @Override
     public List<FlipFitBooking> getAllBookings(int userId) {
         List<FlipFitBooking> bookings = new ArrayList<FlipFitBooking>();

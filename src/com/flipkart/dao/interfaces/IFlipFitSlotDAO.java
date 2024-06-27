@@ -10,6 +10,5 @@ public interface IFlipFitSlotDAO {
     public boolean deleteSlot(int slotId);
     public boolean changeSlot(FlipFitSlots slot);
     public List<FlipFitSlots> getAllSlots(int slotID);
-    public List<FlipFitSlots> slots = new ArrayList<>();
-
+    public FlipFitSlots getSlotDetailsById(int slotId);
 }
