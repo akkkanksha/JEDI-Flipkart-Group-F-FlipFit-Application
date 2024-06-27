@@ -20,8 +20,8 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
             PreparedStatement stmt = con.prepareStatement("INSERT INTO Slot (slotId, centerId, startTime, seatsAvailable) VALUES (?, ?, ?, ?)");
 
             stmt.setInt(1, slot.getSlotId());
-            stmt.setInt(2, slot.getCenterId());
-            stmt.setLong(3, slot.getStartTime());
+            stmt.setInt(2, slot.getCentreId());
+            stmt.setLong(3, slot.getSlotTime());
             stmt.setInt(4, slot.getSeatsAvailable());
             int i = stmt.executeUpdate();
             System.out.println(i + " slot added");

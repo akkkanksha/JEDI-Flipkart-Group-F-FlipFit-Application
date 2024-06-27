@@ -76,6 +76,22 @@ public class FlipFitPaymentsDAOImpl implements IFlipFitPaymentsDAO {
 
     @Override
     public void deletePaymentInfo(FlipFitPayments FFP) {
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM Payments WHERE userID=(?)");
+
+            stmt.setInt(1, FFP.getUserID());
+
+            int i = stmt.executeUpdate();
+            System.out.println( i + " payment info deleted");
+
+            con.close();
+        } catch(Exception e){
+            System.out.println(e);
+        }
     }
+
 }
