@@ -2,7 +2,12 @@ package com.flipkart.dao;
 import com.flipkart.dao.interfaces.IFlipFitBookingDAO;
 import java.sql.*;
 import com.flipkart.bean.FlipFitBooking;
-import com.flipkart.dao.GetConnection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
     @Override
     public void makeBooking(FlipFitBooking booking) {
@@ -46,6 +51,42 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
         }
         return false;
     }
+
+    @Override
+    public List<FlipFitBooking> getAllBooking(String userId) {
+        return List.of();
+    }
+
+    @Override
+    public List<FlipFitBooking> getAllBookings(String userId) {
+        List<FlipFitBooking> bookings = new ArrayList<>();
+
+        try {
+            Connection con = GetConnection.getConnection();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Booking WHERE userId = ?");
+            stmt.setString(1, userId);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int UserId = rs.getInt("userID");
+                int slotId  = rs.getInt("slotID");
+                boolean isdeleted = rs.getBoolean("isdeleted");
+
+                FlipFitBooking booking = new FlipFitBooking();
+                bookings.add(booking);
+            }
+
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving bookings: " + e.getMessage());
+        }
+
+        return bookings;
+    }
+
 
 }
 

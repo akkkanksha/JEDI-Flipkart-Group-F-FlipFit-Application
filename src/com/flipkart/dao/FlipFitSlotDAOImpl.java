@@ -2,7 +2,13 @@ package com.flipkart.dao;
 import com.flipkart.dao.interfaces.*;
 import java.sql.*;
 import com.flipkart.bean.FlipFitSlots;
-import com.flipkart.dao.GetConnection;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
     @Override
     public boolean addSlot(FlipFitSlots slot) {
@@ -76,5 +82,37 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
         }
 
         return false;
+    }
+
+    @Override
+    public List<FlipFitSlots> getAllSlots(int CenterID) {
+        List<FlipFitSlots> slots = new ArrayList<>();
+
+        try {
+            Connection con = GetConnection.getConnection();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Slot WHERE centerId = ?");
+            stmt.setInt(1, CenterID);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int slotID = rs.getInt("slotId");
+                int centerID = rs.getInt("centerId");
+                long StartTime = rs.getLong("startTime");
+                int SeatsAvailable = rs.getInt("seatsAvailable");
+
+                FlipFitSlots slot = new FlipFitSlots();
+                slots.add(slot);
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving slots: " + e.getMessage());
+        }
+        return slots;
     }
 }
