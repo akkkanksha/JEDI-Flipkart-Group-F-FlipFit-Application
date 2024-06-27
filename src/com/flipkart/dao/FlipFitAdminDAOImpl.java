@@ -71,7 +71,7 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
 
     @Override
     public boolean validateOwner(int ownerId) {
-        String sql = "UPDATE gym_owner SET approved = 1 WHERE ownerID = ?";
+        String sql = "UPDATE GymOwner SET approved = 1 WHERE ownerID = ?";
         try (Connection conn = GetConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, ownerId);
