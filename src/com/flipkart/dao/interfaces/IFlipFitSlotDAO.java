@@ -6,4 +6,5 @@ public interface IFlipFitSlotDAO {
     public boolean addSlot(FlipFitSlots slot);
     public boolean deleteSlot(int slotId);
     public boolean changeSlot(FlipFitSlots slot);
+    public FlipFitSlots getSlotById(int slotId);
 }

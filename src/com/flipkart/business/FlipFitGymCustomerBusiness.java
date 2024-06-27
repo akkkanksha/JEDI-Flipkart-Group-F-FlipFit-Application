@@ -1,6 +1,10 @@
 package com.flipkart.business;
 import com.flipkart.bean.*;
 import com.flipkart.business.interfaces.IFlipFitGymCustomer;
+import java.util.List;
+import com.flipkart.dao.FlipFitBookingDAOImpl;
+import com.flipkart.dao.FlipFitSlotDAOImpl;
+
 public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
 
     public void registerCustomer(String username) {
@@ -9,7 +13,16 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
 
 
 	public void viewBookedSlots(int userId) {
+
         System.out.println("Viewing booked slots:> ");
+        FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
+        FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
+        List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(userId);
+        for (FlipFitBooking booking : bookingsList) {
+            FlipFitSlots slotdetails = slotDAO.getSlotById(booking.getSlotId());
+            System.out.println("Booking ID: " + booking.getBookingId() + "Slot timing " + slotdetails.getStartTime());
+        }
+
     }
     public boolean checkBookingConflicts(int userId, String slot) {
         System.out.println("Checking conflict for slot " + slot);
