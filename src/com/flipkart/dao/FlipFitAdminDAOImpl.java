@@ -1,59 +1,99 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.bean.FlipFitGymCustomer;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.dao.interfaces.*;
+
+import java.util.ArrayList;
 import java.util.List;
-import com.flipkart.dao.GetConnection;
 import java.sql.*;
 public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
     @Override
     public boolean adminLogin(FlipFitAdmin adminUser) {
-        try{
-            Connection con = GetConnection.getConnection();
+        String sql = "SELECT * FROM GymAdmin WHERE adminID = ? AND password = ?";
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            PreparedStatement stmt=con.prepareStatement("insert into Admin values(?,?)");
-            stmt.setString(1, adminUser.getUserID());//1 specifies the first parameter in the query
+            stmt.setInt(1, adminUser.getUserID());
             stmt.setString(2, adminUser.getPassword());
 
-            int i=stmt.executeUpdate();
-            System.out.println(i+" records inserted");
-
-            con.close();
-
-        }catch(Exception e){ System.out.println(e);}
-        return false;
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next(); // If there's a result, login is successful
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public List<FlipFitAdmin> getPendingOwnerList(int adminId) {
-        try{
-            Connection con = GetConnection.getConnection();
+    public List<FlipFitGymOwner> getPendingOwnerList() {
+        List<FlipFitGymOwner> pendingOwners = new ArrayList<>();
+        String sql = "SELECT * FROM GymOwner WHERE approved = 0";
 
-            PreparedStatement stmt=con.prepareStatement("Select * from Admin where id = ?");
-            stmt.setInt(1, adminId);//1 specifies the first parameter in the query
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
-
-            int i=stmt.executeUpdate();
-            System.out.println(i+" records inserted");
-
-            con.close();
-
-        }catch(Exception e){ System.out.println(e);}
-        return null;
+            while (rs.next()) {
+                FlipFitGymOwner owner = new FlipFitGymOwner();
+                owner.setUserId(rs.getInt("ownerID"));
+                owner.setAadharNumber(rs.getString("Aadhar"));
+                pendingOwners.add(owner);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pendingOwners;
     }
 
     @Override
-    public List<Object> getUserList() {
-        return List.of();
+    public List<FlipFitGymCustomer> getUserList() {
+        List<FlipFitGymCustomer> users = new ArrayList<>();
+        String sql = "SELECT * FROM User";
+
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                // Assuming you have a User class
+                FlipFitGymCustomer user = new FlipFitGymCustomer(); // Replace with actual User class
+                user.setUserId(rs.getInt("userID"));
+                user.setUserName(rs.getString("userName"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
     @Override
     public boolean validateOwner(int ownerId) {
-        return false;
+        String sql = "UPDATE gym_owner SET approved = 1 WHERE ownerID = ?";
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, ownerId);
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean deleteOwner(int ownerId) {
-        return false;
+        String sql = "DELETE FROM GymOwner WHERE ownerID = ?";
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, ownerId);
+            int affectedRows = stmt.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
