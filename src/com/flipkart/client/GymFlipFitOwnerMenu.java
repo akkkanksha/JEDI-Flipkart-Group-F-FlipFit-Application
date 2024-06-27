@@ -1,13 +1,13 @@
 package com.flipkart.client;
 
-import com.flipkart.business.GymCentreBusiness;
-import com.flipkart.business.GymOwnerBusiness;
+import com.flipkart.business.FlipFitGymCentreBusiness;
+import com.flipkart.business.FlipFitGymOwnerBusiness;
 
 import java.util.Scanner;
 
 public class GymFlipFitOwnerMenu {
     public static void getFlipFitOwnerView() {
-        GymOwnerBusiness GOBservice = new GymOwnerBusiness();
+        FlipFitGymOwnerBusiness GOBservice = new FlipFitGymOwnerBusiness();
         System.out.println("Gym Owner Menu:> ");
         System.out.println("Choose an option:" +
                 "\n 1. Add Centre" +
@@ -49,7 +49,7 @@ public class GymFlipFitOwnerMenu {
 
     public static void getFlipFitCentreMenu() {
         // Gym Centre
-        GymCentreBusiness GCBservice = new GymCentreBusiness();
+        FlipFitGymCentreBusiness GCBservice = new FlipFitGymCentreBusiness();
         System.out.println("Gym Centre Menu:> ");
 
         GCBservice.createGymCentre();

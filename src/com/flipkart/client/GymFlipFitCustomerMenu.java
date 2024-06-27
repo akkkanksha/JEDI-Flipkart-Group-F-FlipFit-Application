@@ -1,34 +1,40 @@
 package com.flipkart.client;
 
-import com.flipkart.business.BookingsBusiness;
-import com.flipkart.business.FlipFitCustomerBusiness;
-import com.flipkart.business.GymCentreBusiness;
-import com.flipkart.business.SlotsBusiness;
-import com.flipkart.business.interfaces.ISlots;
+import com.flipkart.business.FlipFitGymCustomerBusiness;
+
+import java.util.Scanner;
+
 
 public class GymFlipFitCustomerMenu {
-    public static String slot = "6am-7am";
-    static FlipFitCustomerBusiness service = new FlipFitCustomerBusiness();
-    static int userId = 101;
 
     public static void getFlipFitCustomerMenu() {
-        service.viewBookedSlots(userId);
-//        service.checkBookingConflicts(userId, slot);
-        service.viewCentres();
-//        service.makePayment(userId);
-        service.editDetails(userId);
-    }
-    public static void getFlipFitBookingMenu() {
-        BookingsBusiness BBservice = new BookingsBusiness();
-        String userID = "101";
-        BBservice.makeBooking(userID);
-        BBservice.deleteBooking(userID, slot);
-    }
-    public static void getFlipFitSlotMenu() {
-        // Slots
-        ISlots SBservice = new SlotsBusiness();
-        SBservice.getSlotDetails();
-        System.out.println("Update availability:> " + SBservice.updateAvailability());
-    }
 
+        Scanner sc=new Scanner(System.in);
+        FlipFitGymCustomerBusiness FCBservice = new FlipFitGymCustomerBusiness();
+        System.out.println("FlipFit Customer Menu:> ");
+        System.out.println("Choose an option:" +
+                "\n 1. View Booked Slots" +
+                "\n 2. View Centres" +
+                "\n 3. Edit Details");
+
+        int choice=sc.nextInt();
+
+        switch (choice) {
+            case 1: {
+                System.out.println("View Booked Slots:");
+                FCBservice.viewBookedSlots(1);
+                break;
+            }
+            case 2: {
+                System.out.println("View Centres");
+                FCBservice.viewCentres();
+                break;
+            }
+            case 3: {
+                System.out.println("Edit Details");
+                System.out.println("Owner details edited:> " + FCBservice.editDetails(1));
+                break;
+            }
+        }
+    }
 }

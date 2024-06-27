@@ -1,16 +1,17 @@
 package com.flipkart.client;
 
-import com.flipkart.bean.AdminUser;
-import com.flipkart.business.AdminUserBusiness;
-import com.flipkart.business.interfaces.IAdminUser;
+import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.business.FlipFitAdminBusiness;
+import com.flipkart.business.interfaces.IFlipFitAdmin;
 
 import java.util.Scanner;
 
 public class GymFlipFitAdminMenu {
     public static void getAdminMenu() {
         Scanner sc=new Scanner(System.in);
-        AdminUser adminUser = new AdminUser();
-        IAdminUser adminService = new AdminUserBusiness(adminUser);
+        FlipFitAdmin adminUser = new FlipFitAdmin();
+        FlipFitAdminBusiness adminService = new FlipFitAdminBusiness(adminUser);
         System.out.println("1. View Pending Requests");
         System.out.println("2. View Approved Owners");
         System.out.println("3. View all  FlipFit Customers");
