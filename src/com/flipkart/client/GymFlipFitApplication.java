@@ -1,5 +1,8 @@
 package com.flipkart.client;
+import com.flipkart.bean.FlipFitGymCustomer;
+
 import java.util.*;
+
 public class GymFlipFitApplication {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -20,23 +23,26 @@ public class GymFlipFitApplication {
                 case 1 : {
                     // Login
                     System.out.println("Login");
-                    System.out.print("Enter your username:> ");
+                    System.out.print("Enter your emailId:> ");
                     String username = in.next();
                     System.out.print("Enter your password:> ");
                     String password = in.next();
                     System.out.print("Enter your role:> Customer/Admin/GymOwner ");
                     String role = in.next();
+                    System.out.println("Login Successful");
+
                     switch (role) {
                         case "Customer": {
                             // customer menu
                             System.out.println("Customer Menu");
-                            GymFlipFitCustomerMenu.getFlipFitCustomerMenu();
+                            FlipFitGymCustomer gymCustomer = new FlipFitGymCustomer();
+                            GymFlipFitCustomerMenu.getFlipFitCustomerMenu(gymCustomer);
                             break;
                         }
                         case "Admin": {
                             // admin menu
                             System.out.println("Admin Menu");
-                            GymFlipFitAdminMenu.getAdminMenu();
+                            GymFlipFitAdminMenu.getAdminView();
                             break;
                         }
                         case "GymOwner": {
@@ -49,11 +55,41 @@ public class GymFlipFitApplication {
                     break;
                 }
                 case 2 : {
-                    System.out.println("Registration of customer");
+
+                    System.out.println("Enter your email address:> ");
+                    String emailID = in.next();
+                    System.out.println("Enter your phone number:> ");
+                    String phoneNumber = in.next();
+                    System.out.println("Enter your city:> ");
+                    String city = in.next();
+                    System.out.println("Enter your pin code:> ");
+                    String pinCode = in.next();
+                    System.out.print("Enter your password:> ");
+                    String password = in.next();
+                    String role = "Customer";
+                    System.out.println("Registration completed");
+                    System.out.println("Customer Menu");
+                    FlipFitGymCustomer gymCustomer = new FlipFitGymCustomer();
+                    GymFlipFitCustomerMenu.getFlipFitCustomerMenu(gymCustomer);
                     break;
                 }
                 case 3 : {
                     System.out.println("Registration of gym owner");
+                    System.out.println("Enter your email address:> ");
+                    String emailID = in.next();
+                    System.out.println("Enter your phone number:> ");
+                    String phoneNumber = in.next();
+                    System.out.println("Enter your city:> ");
+                    String city = in.next();
+                    System.out.println("Enter your pin code:> ");
+                    String pinCode = in.next();
+                    System.out.print("Enter your password:> ");
+                    String password = in.next();
+                    String role = "Gym Owner";
+                    // owner have to verify first
+                    System.out.println("Registration completed");
+                    System.out.println("GymOwner Menu");
+                    GymFlipFitOwnerMenu.getFlipFitOwnerView();
                     break;
                 }
                 case 4 : {

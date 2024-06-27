@@ -9,7 +9,7 @@ public class FlipFitGymCentre {
     private boolean approved;
     private String city;
     private String state;
-    private int pincode;
+    private String pincode;
 
     public int getCentreID() {
         return centreID;
@@ -60,11 +60,11 @@ public class FlipFitGymCentre {
         this.state = state;
     }
 
-    public int getPincode() {
+    public String getPincode() {
         return pincode;
     }
 
-    public void setPincode(int pincode) {
+    public void setPincode(String pincode) {
         this.pincode = pincode;
     }
 
