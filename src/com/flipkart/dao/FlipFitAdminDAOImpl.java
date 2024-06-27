@@ -1,7 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.AdminUser;
-
+import com.flipkart.dao.interfaces.*;
 import java.util.List;
 
 public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
