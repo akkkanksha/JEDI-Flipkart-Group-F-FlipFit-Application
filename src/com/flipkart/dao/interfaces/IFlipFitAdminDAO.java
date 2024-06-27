@@ -1,4 +1,4 @@
-package com.flipkart.dao;
+package com.flipkart.dao.interfaces;
 
 import com.flipkart.bean.AdminUser;
 
