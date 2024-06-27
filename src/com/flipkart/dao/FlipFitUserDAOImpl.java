@@ -53,7 +53,7 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
 
 
             int i = stmt.executeUpdate();
-            System.out.println(i + " user added");
+            System.out.println(i + " ugit ser added");
 
             con.close();
         } catch (Exception e) {
