@@ -6,6 +6,10 @@ abstract class AbstractUser {
     private String password;
     private String emailID;
     private String phoneNumber;
+    private String city;
+    private String pinCode;
+    // Role: 0 -> customer, 1 -> gym owner
+    private int role;
 
     public int getUserId() {
         return userId;
@@ -70,11 +74,6 @@ abstract class AbstractUser {
     public void setRole(int role) {
         this.role = role;
     }
-
-    private String city;
-    private String pinCode;
-    // Role: 0 -> customer, 1 -> gym owner
-    private int role;
 
 
 }
