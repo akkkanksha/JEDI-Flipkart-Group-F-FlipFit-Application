@@ -5,6 +5,25 @@ public class FlipFitUser {
     private int userID;
     private int roleID;
 
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    private String emailID;
+    private String phoneNumber;
+
     public String getPassword() {
         return password;
     }
