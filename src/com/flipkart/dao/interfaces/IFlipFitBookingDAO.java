@@ -1,6 +1,9 @@
 package com.flipkart.dao.interfaces;
 
+import com.flipkart.bean.FlipFitBooking;
+
 public interface IFlipFitBookingDAO {
-    public void makeBooking();
-    public boolean deleteBooking();
+    public void makeBooking(FlipFitBooking booking);
+    boolean deleteBooking(int booking);
+
 }
