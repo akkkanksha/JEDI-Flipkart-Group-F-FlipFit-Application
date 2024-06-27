@@ -127,6 +127,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
         FFU.setRoleID(1);
         FFU.setEmailID("pp@mail");
         FFU.setPhoneNumber("9800756987");
+        FFU.setUserID(1);
 
 
         FlipFitUser FFU1 = new FlipFitUser();
@@ -136,10 +137,23 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
         FFU1.setRoleID(11);
         FFU1.setEmailID("pp1@mail");
         FFU1.setPhoneNumber("98007569871");
+        FFU1.setUserID(2);
 
-        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
-        FFUDAO.addUser(FFU);
-        FFUDAO.addUser(FFU1);
+//        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
+//        FFUDAO.addUser(FFU);
+//        FFUDAO.addUser(FFU1);
+
+
+        FlipFitGymCustomerDAOImpl FFGCDAO = new FlipFitGymCustomerDAOImpl();
+        List<FlipFitSlots> slots=FFGCDAO.viewBookedSlots(FFU.getUserID());
+        for(FlipFitSlots slot : slots){
+            System.out.println(slot.getSlotId());
+        }
+
+
+
+
+
 
     }
 }
