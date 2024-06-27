@@ -8,29 +8,29 @@ import java.util.List;
 
 public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
     List<FlipFitGymCentre> gymCentreList = new ArrayList<FlipFitGymCentre>();
-
-    public void createGymCentre(String centreCity, String centreCapacity, String centreState,String centreZipCode, String slotsTiming){
+    private String centreID;
+    private String ownerID;
+    private ArrayList<String> slots;
+    private int capacity;
+    private boolean approved;
+    private String city;
+    private String state;
+    private String pincode;
+    public void createGymCentre(){
         System.out.println("Creating Gym Centre:> ");
     }
 
-    public boolean updateGymCentre(String CentreId){
+    public boolean updateGymCentre(){
         System.out.println("Updating Gym Centre:> ");
         return true;
     }
-    public boolean viewGymCentre(String city) {
-        System.out.println("View Gym Centre:> ");
-        return true;
-    }
-    public boolean viewAllGymCentresByOwnerId(String OwnerId) {
-        System.out.println("View All Gym Centre:> ");
-        return true;
-    }
-    public boolean deleteGymCentre(String CentreId){
+
+    public boolean deleteGymCentre(){
         System.out.println("Deleting Gym Centre:> ");
         return true;
     }
 
-    public void viewAvailableSlots(String centreID) {
+    public void viewAvailableSlots() {
         System.out.println("Viewing Available Slots:> ");
     }
 }

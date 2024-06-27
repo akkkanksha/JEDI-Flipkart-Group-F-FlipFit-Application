@@ -1,59 +1,60 @@
 package com.flipkart.dao;
-
+import java.sql.*;
+import java.util.Random;
 import com.flipkart.bean.FlipFitGymCentre;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
+import com.flipkart.constant.DBConstants;
 
 public class FlipFitGymCentreDAOImpl {
-    public void createGymCentre(FlipFitGymCentre flipFitGymCentre){
-        System.out.println("Creating Gym Centre");
+    Random rand = new Random();
+//
+//    public static void main(String[] args) {
+//        FlipFitGymCentre FFGC = new FlipFitGymCentre();
+//
+//        //test part
+//        FFGC.setOwnerID(11);
+//        FFGC.setApproved(true);
+//        FFGC.setCapacity(45);
+//        FFGC.setCity("Pune");
+//        FFGC.setState("MH");
+//        FFGC.setPincode(411027);
+//
+//        FlipFitGymCentreDAOImpl FFGCDAO = new FlipFitGymCentreDAOImpl();
+//        FFGCDAO.createGymCentre(FFGC);
+//        FFGCDAO.updateGymCentre(FFGC);
+//        FFGCDAO.deleteGymCentre(FFGC);
+//        FFGCDAO.viewAvailableSlots(FFGC);
+//    }
+    public void createGymCentre(FlipFitGymCentre FFGC){
         try{
-            Connection con = GetConnection.getConnection();
-            PreparedStatement stmt=con.prepareStatement("insert into FlipFitGym values(?,?,?,?,?,?)");
-            stmt.setString(1, flipFitGymCentre.getOwnerID());
-            stmt.setInt(2, flipFitGymCentre.getCapacity());
-            stmt.setBoolean(3, flipFitGymCentre.isApproved());
-            stmt.setString(4, flipFitGymCentre.getCity());
-            stmt.setString(5, flipFitGymCentre.getState());
-            stmt.setString(6, flipFitGymCentre.getPincode());
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
+
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO GymCentre VALUES (?, ?, ?, ?, ?, ?)");
 
 
-            int i=stmt.executeUpdate();
-            System.out.println(i+" records inserted");
+            // Generate random integers in range 0 to 999
+            int centreID = rand.nextInt(1000);
+            stmt.setInt(1, FFGC.getCentreID());
+            stmt.setInt(2, FFGC.getOwnerID());
+            stmt.setInt(3,FFGC.getCapacity());
+            stmt.setBoolean(4, FFGC.isApproved());
+            stmt.setString(5, FFGC.getCity());
+            stmt.setString(6, FFGC.getState());
+
+            int i = stmt.executeUpdate();
+            System.out.println((i+1)+"th centre added");
 
             con.close();
-
-        }catch(Exception e){ System.out.println(e);}
-
-    }
-    public boolean updateGymCentre(FlipFitGymCentre flipFitGymCentre){
-
-        System.out.println("Updating Gym Centre");
-        try{
-            Connection con = GetConnection.getConnection();
-//            PreparedStatement customerStmt = con.prepareStatement("UPDATE flipfitCustomer SET customerName=?, customerPhone=?, customerAddress=? WHERE customerId=?");
-//
-//
-//            // Execute the customer update
-//            int customerUpdateCount = customerStmt.executeUpdate();
-//            System.out.println(customerUpdateCount + " customer record(s) updated");
-
-            // Close the connection
-            con.close();
-
-        } catch (Exception e) {
+        } catch(Exception e){
             System.out.println(e);
         }
-        return true;
-    }
-    public boolean deleteGymCentre(){
-        System.out.println("Deleting Gym Centre");
-        return true;
+    };
+    public void updateGymCentre(FlipFitGymCentre FFGC){
+    };
+    public void deleteGymCentre(FlipFitGymCentre FFGC){
+    };
+    public void viewAvailableSlots(FlipFitGymCentre FFGC){
 
-    }
-    public void viewAvailableSlots(){
-        System.out.println("Viewing Available Slots");
-    }
+    };
 }

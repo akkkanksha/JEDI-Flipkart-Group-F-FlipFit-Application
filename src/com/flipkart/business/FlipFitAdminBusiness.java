@@ -16,7 +16,7 @@ public class FlipFitAdminBusiness implements IFlipFitAdmin {
         System.out.println("AdminUserBusiness.adminLogin");
         return true;
     }
-    public List<Object> getPendingOwnerList(String adminId){
+    public List<Object> getPendingOwnerList(){
         System.out.println("AdminUserBusiness.getPendingOwnerList");
         return new ArrayList<Object>();
     }

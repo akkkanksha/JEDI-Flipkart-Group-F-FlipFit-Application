@@ -3,29 +3,30 @@ package com.flipkart.bean;
 import java.util.ArrayList;
 
 public class FlipFitGymCentre {
-    private String centreID;
-    private String ownerID;
+    private int centreID;
+    private int ownerID;
     private int capacity;
     private boolean approved;
     private String city;
     private String state;
-    private String pincode;
+    private int pincode;
 
-    public String getCentreID() {
+    public int getCentreID() {
         return centreID;
     }
 
-    public void setCentreID(String centreID) {
+    public void setCentreID(int centreID) {
         this.centreID = centreID;
     }
 
-    public String getOwnerID() {
+    public int getOwnerID() {
         return ownerID;
     }
 
-    public void setOwnerID(String ownerID) {
+    public void setOwnerID(int ownerID) {
         this.ownerID = ownerID;
     }
+
 
     public int getCapacity() {
         return capacity;
@@ -59,14 +60,12 @@ public class FlipFitGymCentre {
         this.state = state;
     }
 
-    public String getPincode() {
+    public int getPincode() {
         return pincode;
     }
 
-    public void setPincode(String pincode) {
+    public void setPincode(int pincode) {
         this.pincode = pincode;
     }
-
-    
 
 }

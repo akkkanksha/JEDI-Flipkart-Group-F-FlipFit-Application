@@ -1,12 +1,11 @@
 package com.flipkart.dao.interfaces;
 
-import com.flipkart.bean.FlipFitGymCustomer;
-
 public interface IFlipFitGymCustomerDAO {
-
-    public FlipFitGymCustomer registerCustomer(String username, String password, String emailID, String phoneNumber, String city, String pinCode, int role);
-    public boolean checkBookingConflicts(int userId, String slot);
-
-    public boolean makePayment(int userId);
-    public FlipFitGymCustomer editDetails(int userId);
+    public void viewBookedSlots(int userID);
+    public boolean checkBookingConflicts(int userID, String slot);
+    public void viewCentres();
+    public boolean makePayment(int userID);
+    public void viewPaymentDetails(int userID);
+    public void editPaymentDetails(int userID);
+    public boolean editDetails(int userID);
 }

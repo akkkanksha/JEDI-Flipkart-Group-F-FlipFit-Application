@@ -9,7 +9,7 @@ package com.flipkart.bean;
 public class FlipFitGymCustomer extends AbstractUser{
 	public int paymentType;
     public String paymentInfo;
-	public void registerCustomer(String username){}
+    
 	public int getPaymentType() {
 		return paymentType;
 	}

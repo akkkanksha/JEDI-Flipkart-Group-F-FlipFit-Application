@@ -2,7 +2,7 @@ package com.flipkart.dao;
 import com.flipkart.dao.interfaces.*;
 import java.sql.*;
 import com.flipkart.bean.FlipFitSlots;
-
+import com.flipkart.constant.DBConstants;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,9 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
     @Override
     public boolean addSlot(FlipFitSlots slot) {
         try {
-            Connection con = GetConnection.getConnection();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
             PreparedStatement stmt = con.prepareStatement("INSERT INTO Slot (slotId, centerId, startTime, seatsAvailable) VALUES (?, ?, ?, ?)");
 
@@ -21,7 +23,6 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
             stmt.setInt(2, slot.getCenterId());
             stmt.setLong(3, slot.getStartTime());
             stmt.setInt(4, slot.getSeatsAvailable());
-
             int i = stmt.executeUpdate();
             System.out.println(i + " slot added");
             con.close();
@@ -38,7 +39,9 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
     @Override
     public boolean deleteSlot(int slotID) {
         try {
-            Connection con = GetConnection.getConnection();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
             PreparedStatement stmt = con.prepareStatement("DELETE FROM Slot WHERE slotId = ?");
 
@@ -61,7 +64,9 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
     @Override
     public boolean changeSlot(FlipFitSlots slot) {
         try {
-            Connection con = GetConnection.getConnection();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
             PreparedStatement stmt = con.prepareStatement("UPDATE Slot SET centerId = ?, startTime = ?, seatsAvailable = ? WHERE slotId = ?");
 
@@ -89,13 +94,14 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
         List<FlipFitSlots> slots = new ArrayList<>();
 
         try {
-            Connection con = GetConnection.getConnection();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
 
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM Slot WHERE centerId = ?");
             stmt.setInt(1, CenterID);
 
             ResultSet rs = stmt.executeQuery();
-
             while (rs.next()) {
                 int slotID = rs.getInt("slotId");
                 int centerID = rs.getInt("centerId");
@@ -105,13 +111,13 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
                 FlipFitSlots slot = new FlipFitSlots();
                 slots.add(slot);
             }
-
             rs.close();
             stmt.close();
             con.close();
-
         } catch (SQLException e) {
             System.out.println("Error retrieving slots: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return slots;
     }

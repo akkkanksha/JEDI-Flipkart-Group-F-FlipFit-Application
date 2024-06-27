@@ -32,7 +32,13 @@ public class GymFlipFitCustomerMenu {
             }
             case 3: {
                 System.out.println("Edit Details");
-                System.out.println("Owner details edited:> " + FCBservice.editDetails(1));
+                boolean change = FCBservice.editDetails(1);
+                if (change) {
+                    System.out.println("Successfully edited details");
+                }
+                else {
+                    System.out.println("Failed to edit details");
+                }
                 break;
             }
         }
