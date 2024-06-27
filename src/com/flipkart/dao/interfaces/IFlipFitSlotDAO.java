@@ -1,7 +1,8 @@
 package com.flipkart.dao.interfaces;
 
+import com.flipkart.bean.FlipFitSlots;
+
 public interface IFlipFitSlotDAO {
-    public boolean addSlot(int slotID);
-    public boolean deleteSlot(int slotID);
-    public boolean changeSlot(int slotID);
+    public FlipFitSlots addSlot(int centerId, long startTime, int seatsAvailable);
+    public boolean deleteSlot(int slotID, int seatsAvailable);
 }

@@ -8,15 +8,6 @@ import java.util.List;
 
 public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
     List<FlipFitGymCentre> gymCentreList = new ArrayList<FlipFitGymCentre>();
-    private String centreID;
-    private String ownerID;
-    private ArrayList<String> slots;
-    private int capacity;
-    private boolean approved;
-    private String city;
-    private String state;
-    private String pincode;
-
 
     public void createGymCentre(String centreCity, String centreCapacity, String centreState,String centreZipCode, String slotsTiming){
         System.out.println("Creating Gym Centre:> ");
