@@ -17,7 +17,6 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
     }
     public void viewCentres() {
         System.out.println("view centres called:> ");
-
     }
     public boolean makePayment(int userId) {
         System.out.println("Make payment called:> ");

@@ -30,7 +30,7 @@ public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
         System.out.println("View Gym Centre:> ");
         return true;
     }
-    public boolean viewAllGymCentres(String OwnerId) {
+    public boolean viewAllGymCentresByOwnerId(String OwnerId) {
         System.out.println("View All Gym Centre:> ");
         return true;
     }
@@ -40,7 +40,6 @@ public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
     }
 
     public void viewAvailableSlots(String centreID) {
-
         System.out.println("Viewing Available Slots:> ");
     }
 }

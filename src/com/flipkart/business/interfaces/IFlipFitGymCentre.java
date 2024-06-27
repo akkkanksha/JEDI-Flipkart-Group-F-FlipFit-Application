@@ -5,6 +5,6 @@ public interface IFlipFitGymCentre {
     public boolean updateGymCentre(String CentreId);
     public boolean deleteGymCentre(String CentreId);
     public boolean viewGymCentre(String city);
-    public boolean viewAllGymCentres(String OwnerId);
+    public boolean viewAllGymCentresByOwnerId(String OwnerId);
     public void viewAvailableSlots(String CentreId);
 }
