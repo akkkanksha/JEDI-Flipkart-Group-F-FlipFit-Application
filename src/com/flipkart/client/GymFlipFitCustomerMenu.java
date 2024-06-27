@@ -40,7 +40,7 @@ public class GymFlipFitCustomerMenu {
                 List<FlipFitSlots> slotsList = FCService.viewAvailableSlots(centreId);
                 System.out.println("These are the available slots:");
                 for (FlipFitSlots flipFitSlots : slotsList) {
-                    System.out.println("Slot Id is" + flipFitSlots.getSlotId() + "Slot Timing is " + flipFitSlots.getStartTime() + "Availability is " + flipFitSlots.getSeatsAvailable());
+                    System.out.println("Slot Id is" + flipFitSlots.getSlotId() + "Slot Timing is " + flipFitSlots.getSlotTime() + "Availability is " + flipFitSlots.getSeatsAvailable());
                 }
                 System.out.println("Give the SlotId you wish to book");
                 int slotId=sc.nextInt();
