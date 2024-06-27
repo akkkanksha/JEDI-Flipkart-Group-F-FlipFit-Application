@@ -2,15 +2,15 @@ package com.flipkart.bean;
 
 public class FlipFitPayments {
     private int userID;
-    private int paymentID;
+    // 1 -> UPI / 2 -> Debit Card
     private int paymentType;
 
-    public String getPaymentAmount() {
-        return paymentAmount;
+    public String getPaymentInfo() {
+        return paymentInfo;
     }
 
-    public void setPaymentAmount(String paymentAmount) {
-        this.paymentAmount = paymentAmount;
+    public void setPaymentInfo(String paymentInfo) {
+        this.paymentInfo = paymentInfo;
     }
 
     public int getPaymentType() {
@@ -21,13 +21,6 @@ public class FlipFitPayments {
         this.paymentType = paymentType;
     }
 
-    public int getPaymentID() {
-        return paymentID;
-    }
-
-    public void setPaymentID(int paymentID) {
-        this.paymentID = paymentID;
-    }
 
     public int getUserID() {
         return userID;
@@ -37,5 +30,5 @@ public class FlipFitPayments {
         this.userID = userID;
     }
 
-    private String paymentAmount;
+    private String paymentInfo;
 }
