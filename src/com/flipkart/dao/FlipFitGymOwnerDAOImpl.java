@@ -10,7 +10,7 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
     }
 
     @Override
-    public void viewCentres(){
+    public void viewCentres() {
 
     }
 
@@ -19,10 +19,7 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
 
     }
 
-    @Override
-    public void viewPayments() {
 
-    }
 
     @Override
     public boolean editDetails() {

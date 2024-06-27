@@ -1,14 +1,9 @@
 package com.flipkart.dao;
 
-import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.dao.interfaces.IFlipFitGymCustomerDAO;
 
 public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
 
-    @Override
-    public void registerCustomer(FlipFitGymCustomer flipFitGymCustomer) {
-
-    }
 
     @Override
     public void viewBookedSlots(int userId) {
@@ -16,7 +11,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
     }
 
     @Override
-    public boolean checkBookingConflicts(int userId, String slot) {
+    public boolean checkBookingConflicts(int userID, String slot) {
         return false;
     }
 
@@ -26,12 +21,22 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
     }
 
     @Override
-    public boolean makePayment(int userId) {
+    public boolean makePayment(int userID) {
         return false;
     }
 
     @Override
-    public void editDetails(FlipFitGymCustomer flipFitGymCustomer) {
+    public void viewPaymentDetails(int userID) {
 
+    }
+
+    @Override
+    public void editPaymentDetails(int userID) {
+
+    }
+
+    @Override
+    public boolean editDetails(int userId) {
+        return false;
     }
 }
