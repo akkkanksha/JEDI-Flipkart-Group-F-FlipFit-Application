@@ -6,33 +6,38 @@ import com.flipkart.bean.FlipFitUser;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Random;
 
 public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
     Random rand = new Random();
 
-//    public static void main(String[] args) {
-//        FlipFitUser FFU = new FlipFitUser();
-//
-//        FFU.setUserName("PP");
-//        FFU.setPassword("pp2");
-//        FFU.setRoleID(1);
-//        FFU.setEmailID("pp@mail");
-//        FFU.setPhoneNumber("9800756987");
-//
-//        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
-//        FFUDAO.addUser(FFU);
-//
-//        FlipFitUser FFU1 = new FlipFitUser();
-//
-//        FFU.setUserName("GG");
-//        FFU.setPassword("gg2");
-//        FFU.setRoleID(0);
-//        FFU.setEmailID("gg@mail");
-//        FFU.setPhoneNumber("9899756987");
-//
-//        FFUDAO.changeUser(FFU);
-//    }
+    public static void main(String[] args) {
+        FlipFitUser FFU = new FlipFitUser();
+
+        FFU.setUserName("PP");
+        FFU.setPassword("pp2");
+        FFU.setRoleID(1);
+        FFU.setEmailID("pp@mail");
+        FFU.setPhoneNumber("9800756987");
+
+        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
+        FFUDAO.addUser(FFU);
+
+        FlipFitUser FFU1 = new FlipFitUser();
+
+        FFU.setUserName("GG");
+        FFU.setPassword("gg2");
+        FFU.setRoleID(0);
+        FFU.setEmailID("gg@mail");
+        FFU.setPhoneNumber("9899756987");
+
+        FFUDAO.changeUser(FFU);
+        FlipFitUser FFU2 = FFUDAO.getUser(644);
+        System.out.println(FFU2.getEmailID());
+        System.out.println(FFU2.getPhoneNumber());
+
+    }
 
     @Override
     public int login(String emailID, String password){
@@ -133,7 +138,32 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
     @Override
     public FlipFitUser getUser(int userID) {
         FlipFitUser FFU = new FlipFitUser();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
+
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM User WHERE userId = ?");
+            stmt.setInt(1, userID);
+
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+
+            FFU.setUserID(rs.getInt("userID"));
+            FFU.setUserName(rs.getString("userName"));
+            FFU.setPassword(rs.getString("password"));
+            FFU.setRoleID(rs.getInt("roleID"));
+            FFU.setEmailID(rs.getString("emailId"));
+            FFU.setPhoneNumber(rs.getString("phoneNumber"));
+
+            int i = stmt.executeUpdate();
+            System.out.println(i + " user fetched");
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return FFU;
     }
-
 }
