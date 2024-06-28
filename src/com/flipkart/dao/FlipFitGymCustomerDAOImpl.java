@@ -15,7 +15,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
     @Override
     public List<FlipFitSlots> viewBookedSlots(int userID) {
         List<FlipFitSlots> bookedSlots = new ArrayList<>();
-        String sql = "SELECT * FROM Booking WHERE userID = ?";
+        String sql = "SELECT * FROM Booking WHERE userID = ? and isDeleted=FALSE";
 
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1, userID);
