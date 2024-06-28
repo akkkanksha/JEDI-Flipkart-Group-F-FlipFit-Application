@@ -10,5 +10,5 @@ public interface IFlipFitGymCentreDAO {
         public void updateGymCentre(FlipFitGymCentre FFGC);
         public void deleteGymCentre(FlipFitGymCentre FFGC);
         public ArrayList<FlipFitSlots> viewAvailableSlots(FlipFitGymCentre FFGC);
-        public ArrayList<FlipFitGymCentre> viewCentres(String city);
+        public ArrayList<FlipFitGymCentre> viewCentresByyCity(String city);
 }

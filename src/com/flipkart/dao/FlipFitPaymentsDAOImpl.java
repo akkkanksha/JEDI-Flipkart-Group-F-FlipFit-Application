@@ -12,22 +12,6 @@ import java.sql.PreparedStatement;
 public class FlipFitPaymentsDAOImpl implements IFlipFitPaymentsDAO {
     Random rand = new Random();
 
-    public static void main(String[] args) {
-        FlipFitPayments FFP = new FlipFitPayments();
-        FlipFitPaymentsDAOImpl FFPDAO = new FlipFitPaymentsDAOImpl();
-
-        FFP.setUserID(108);
-        FFP.setPaymentType(1);
-        FFP.setPaymentInfo("ppan@icici");
-//
-//        FFPDAO.setPaymentInfo(FFP);
-//
-//        FFP.setPaymentType(2);
-//        FFP.setPaymentInfo("123456781298;445");
-//        FFPDAO.setPaymentInfo(FFP);
-
-        FFPDAO.deletePaymentInfo(FFP);
-    }
     @Override
     public void setPaymentInfo(FlipFitPayments FFP) {
         try{
@@ -51,8 +35,6 @@ public class FlipFitPaymentsDAOImpl implements IFlipFitPaymentsDAO {
             System.out.println(e);
         }
     }
-
-
 
     @Override
     public void deletePaymentInfo(FlipFitPayments FFP) {

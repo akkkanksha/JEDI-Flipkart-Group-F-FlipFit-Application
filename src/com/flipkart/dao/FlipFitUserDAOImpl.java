@@ -11,55 +11,33 @@ import java.util.Random;
 
 public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
     Random rand = new Random();
-//
-//    public static void main(String[] args) {
-//        FlipFitUser FFU = new FlipFitUser();
-//
-//        FFU.setUserName("PP");
-//        FFU.setPassword("pp2");
-//        FFU.setRoleID(1);
-//        FFU.setEmailID("pp@mail");
-//        FFU.setPhoneNumber("9800756987");
-//
-//        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
-//        FFUDAO.addUser(FFU);
-//
-//        FlipFitUser FFU1 = new FlipFitUser();
-//
-//        FFU.setUserName("GG");
-//        FFU.setPassword("gg2");
-//        FFU.setRoleID(0);
-//        FFU.setEmailID("gg@mail");
-//        FFU.setPhoneNumber("9899756987");
-//
-//        FFUDAO.changeUser(FFU);
-//        FlipFitUser FFU2 = FFUDAO.getUser(644);
-//        System.out.println(FFU2.getEmailID());
-//        System.out.println(FFU2.getPhoneNumber());
-//
-//    }
 
     @Override
     public int login(String emailID, String password){
+        int userID = -1;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO User VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM User WHERE emailId = ?");
 
-            FlipFitUser FFU = new FlipFitUser();
+            stmt.setString(1, emailID);
 
+            ResultSet rs = stmt.executeQuery();
 
-
-            int i = stmt.executeUpdate();
-            System.out.println(i + " user added");
+            if(rs.next()) {
+                String pw = rs.getString("password");
+                if(pw.equals(password)) userID = rs.getInt("userID");
+                else System.out.println("Wrong Password, login failed");
+            }
+            else return -1;
 
             con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return 0;
+        return userID;
     }
 
     @Override
@@ -111,7 +89,7 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
     }
 
     @Override
-    public void changeUser(FlipFitUser FFU) {
+    public void updateUser(FlipFitUser FFU) {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
