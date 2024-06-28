@@ -5,7 +5,7 @@ public class GetConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/flipfit_schema", "root", "password");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/FlipFitSchema", "root", "password: Fk!@#%215036");
             return con;
         }
         catch (Exception e) {

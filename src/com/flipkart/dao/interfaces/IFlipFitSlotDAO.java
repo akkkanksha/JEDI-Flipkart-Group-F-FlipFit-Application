@@ -11,4 +11,5 @@ public interface IFlipFitSlotDAO {
     public boolean changeSlot(FlipFitSlots slot);
     public List<FlipFitSlots> getAllSlots(int slotID);
     public FlipFitSlots getSlotDetailsById(int slotId);
+    public List<FlipFitSlots> getSlotDetails(int slotId);
 }
