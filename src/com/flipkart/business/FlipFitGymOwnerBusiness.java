@@ -19,6 +19,7 @@ public class FlipFitGymOwnerBusiness implements IFlipFitGymOwner {
         System.out.print("Address: ");
         String address = scanner.nextLine();
         System.out.println("Centre added:> with name " + name + " and city " + city + " and address " + address);
+
         return true;
     }
 
