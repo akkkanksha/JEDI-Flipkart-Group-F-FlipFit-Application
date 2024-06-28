@@ -73,7 +73,7 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
-                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
+                    DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
 
             PreparedStatement stmt = con.prepareStatement("DELETE FROM User WHERE userID=(?)");
 

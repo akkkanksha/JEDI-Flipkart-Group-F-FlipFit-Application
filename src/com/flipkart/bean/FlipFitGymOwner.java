@@ -4,6 +4,7 @@ public class FlipFitGymOwner extends AbstractUser{
     public String panId;
     public String gstNum;
     public String aadharNumber;
+    public boolean isApproved;
 
     public String getPanId() {
         return panId;
@@ -27,5 +28,12 @@ public class FlipFitGymOwner extends AbstractUser{
 
     public void setAadharNumber(String aadharNumber) {
         aadharNumber = aadharNumber;
+    }
+
+    public boolean getIsApproved() {
+        return isApproved;
+    }
+    public void setIsApproved(boolean isApproved) {
+        this.isApproved = isApproved;
     }
 }

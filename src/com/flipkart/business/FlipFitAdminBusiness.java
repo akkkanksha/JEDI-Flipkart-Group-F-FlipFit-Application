@@ -1,7 +1,10 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.bean.FlipFitGymCustomer;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.interfaces.IFlipFitAdmin;
+import com.flipkart.dao.FlipFitAdminDAOImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,23 +16,31 @@ public class FlipFitAdminBusiness implements IFlipFitAdmin {
     }
 
     public boolean adminLogin(FlipFitAdmin adminUser){
+        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
         System.out.println("AdminUserBusiness.adminLogin");
+        flipFitAdminDAOImpl.adminLogin(adminUser);
         return true;
     }
-    public List<Object> getPendingOwnerList(){
+    public List<FlipFitGymOwner> getPendingOwnerList(){
         System.out.println("AdminUserBusiness.getPendingOwnerList");
-        return new ArrayList<Object>();
+        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
+        return flipFitAdminDAOImpl.getPendingOwnerList();
     }
-    public List<Object> getUserList(){
+    public List<FlipFitGymCustomer> getUserList(){
         System.out.println("AdminUserBusiness.getUserList");
-        return new ArrayList<Object>();
+        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
+        return flipFitAdminDAOImpl.getUserList();
     }
     public boolean validateOwner(int ownerId){
         System.out.println("AdminUserBusiness.validateOwner "+ownerId);
+        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
+        flipFitAdminDAOImpl.validateOwner(ownerId);
         return true;
     }
     public boolean deleteOwner(int ownerId){
         System.out.println("AdminUserBusiness.deleteOwner" + ownerId);
+        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
+        flipFitAdminDAOImpl.deleteOwner(ownerId);
         return true;
     }
 
