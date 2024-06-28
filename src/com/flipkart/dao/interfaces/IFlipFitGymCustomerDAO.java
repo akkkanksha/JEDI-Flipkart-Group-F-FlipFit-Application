@@ -1,9 +1,7 @@
 package com.flipkart.dao.interfaces;
 
-import com.flipkart.bean.FlipFitGymCentre;
-import com.flipkart.bean.FlipFitGymCustomer;
-import com.flipkart.bean.FlipFitSlots;
-import com.flipkart.bean.FlipFitUser;
+import com.flipkart.bean.*;
+
 import java.util.List;
 
 public interface IFlipFitGymCustomerDAO {
@@ -12,8 +10,9 @@ public interface IFlipFitGymCustomerDAO {
 //    public boolean makePayment(int userID);
 //    public void viewPaymentDetails(int userID);
 //    public void editPaymentDetails(int userID);
-    public List<FlipFitGymCustomer> getUserList();
 
+    public List<FlipFitGymCustomer> getUserList();
+    public FlipFitGymCustomer createCustomer(FlipFitGymCustomer flipFitGymCustomer);
     public boolean editDetails(FlipFitGymCustomer customer);
     public List<FlipFitUser> viewFlipFitCustomers(FlipFitGymCentre centre);
 
