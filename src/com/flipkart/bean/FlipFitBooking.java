@@ -4,6 +4,7 @@ public class FlipFitBooking {
     private int bookingId;
     public int userId;
     private int slotId;
+    private int slotTime;
     private boolean isdeleted;
 
     public int getBookingId() {
@@ -40,5 +41,10 @@ public class FlipFitBooking {
         this.isdeleted = isdeleted;
     }
 
-
+    public int getSlotTime() {
+        return slotTime;
+    }
+    public void setSlotTime(int slotTime) {
+        this.slotTime = slotTime;
+    }
 }

@@ -28,11 +28,11 @@ public class GymFlipFitCustomerMenu {
         switch (choice) {
             case 1: {
                 System.out.println("View Booked Slots:");
-                FCBservice.viewBookedSlots(1);
+                FCBservice.viewBookedSlots(gymCustomer.getUserId());
                 System.out.println("Type 2. If you wish to cancel");
                 choice=sc.nextInt();
                 if(choice == 2) {
-                    System.out.println("Choose the slot you wish to cancel");
+                    System.out.println("Choose the bookingId you wish to cancel");
                     int bookingId=sc.nextInt();
                     BService.deleteBooking(bookingId);
                 }
@@ -41,7 +41,7 @@ public class GymFlipFitCustomerMenu {
             case 2: {
                 System.out.println("View Centres");
                 FCBservice.viewCentres();
-                System.out.println("Choose a centre you want to book slot in");
+                System.out.println("Choose a centre you want to book a slot in");
                 int centreId=sc.nextInt();
                 List<FlipFitSlots> slotsList = FCService.viewAvailableSlots(centreId);
                 System.out.println("These are the available slots:");
@@ -55,6 +55,7 @@ public class GymFlipFitCustomerMenu {
             }
             case 3: {
                 System.out.println("Edit Details");
+
                 boolean change = FCBservice.editDetails(1);
                 if (change) {
                     System.out.println("Successfully edited details");
