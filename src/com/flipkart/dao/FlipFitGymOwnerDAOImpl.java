@@ -9,6 +9,7 @@ import java.util.Random;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.flipkart.bean.FlipFitUser;
 
 public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
     Random rand = new Random();
@@ -65,13 +66,42 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
     }
 
     @Override
-    public void viewFlipFitCustomers() {
+    public List<FlipFitUser> viewFlipFitCustomers(FlipFitGymCentre centre) {
+        List<FlipFitUser> flipfitusers = new ArrayList<>();
+        String sql = "SELECT userID from Booking where userID = centre.centreID";
+        try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                FlipFitUser flipfituser = new FlipFitUser();
+                flipfituser.setUserID(rs.getInt("userID"));
+                flipfitusers.add(flipfituser);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        return flipfitusers;
     }
 
 
     @Override
-    public boolean editDetails() {
+    public boolean editDetails(FlipFitGymOwner owner) {
+        String sql = "UPDATE GymOwner SET PAN=?, Aadhar=? ,GSTIN=? WHERE ownerID=owner.userId";
+
+        try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, owner.getPanId());
+            stmt.setString(2, owner.getAadharNumber());
+            stmt.setString(3,owner.getGSTNum());
+            ResultSet rs = stmt.executeQuery();
+            if(rs!=null) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
+
     }
 }
