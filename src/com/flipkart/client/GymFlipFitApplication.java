@@ -1,5 +1,6 @@
 package com.flipkart.client;
 import com.flipkart.bean.FlipFitGymCustomer;
+import com.flipkart.bean.FlipFitGymOwner;
 
 import java.util.*;
 
@@ -68,8 +69,10 @@ public class GymFlipFitApplication {
                     String password = in.next();
                     String role = "Customer";
                     System.out.println("Registration completed");
-                    System.out.println("Customer Menu");
+
                     FlipFitGymCustomer gymCustomer = new FlipFitGymCustomer();
+                    // create customer
+                    System.out.println("Customer Menu");
                     GymFlipFitCustomerMenu.getFlipFitCustomerMenu(gymCustomer);
                     break;
                 }
@@ -87,6 +90,8 @@ public class GymFlipFitApplication {
                     String password = in.next();
                     String role = "Gym Owner";
                     // owner have to verify first
+                    FlipFitGymOwner gymOwner = new FlipFitGymOwner();
+                    // create customer
                     System.out.println("Registration completed");
                     System.out.println("GymOwner Menu");
                     GymFlipFitOwnerMenu.getFlipFitOwnerView();
