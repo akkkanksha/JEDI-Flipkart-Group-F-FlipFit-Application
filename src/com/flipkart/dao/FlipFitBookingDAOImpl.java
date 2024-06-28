@@ -10,7 +10,7 @@ import java.util.List;
 
 public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
 
-        public static void main(String[] args) {
+        /*public static void main(String[] args) {
 
             IFlipFitBookingDAO bookingDAO = new FlipFitBookingDAOImpl();
 
@@ -46,7 +46,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             for (FlipFitBooking booking : bookingDetails) {
                 System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
             }
-        }
+        }*/
 
     @Override
     public void makeBooking(FlipFitBooking booking) {
