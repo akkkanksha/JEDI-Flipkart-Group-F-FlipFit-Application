@@ -13,7 +13,7 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
     public void registerCustomer(FlipFitGymCustomer flipFitGymCustomer) {
 
 
-        System.out.println("Registering Customer " + username);
+//        System.out.println("Registering Customer " + username);
     }
 
 

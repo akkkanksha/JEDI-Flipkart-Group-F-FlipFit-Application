@@ -9,54 +9,30 @@ public class DAOTester {
     DAOTester DAOT  = new DAOTester();
 
         //test payments
-//        DAOT.paymentsTester();
+        DAOT.paymentsTester();
 
         //test user
         DAOT.userTester();
 
         //test gymcentre
-//        DAOT.gymCentreTester();
+        DAOT.gymCentreTester();
     }
 
     public void paymentsTester(){
-        FlipFitGymCentre FFGC = new FlipFitGymCentre();
-        FlipFitGymCentreDAOImpl FFGCDAO = new FlipFitGymCentreDAOImpl();
+        FlipFitPayments FFP = new FlipFitPayments();
+        FlipFitPaymentsDAOImpl FFPDAO = new FlipFitPaymentsDAOImpl();
 
-        //test part
-        FFGC.setOwnerID(344);
-        FFGC.setApproved(true);
-        FFGC.setCapacity(45);
-        FFGC.setCity("Pune");
-        FFGC.setState("MH");
-        FFGC.setPincode("411027");
+        FFP.setUserID(108);
+        FFP.setPaymentType(1);
+        FFP.setPaymentInfo("ppan@icici");
 
+        FFPDAO.setPaymentInfo(FFP);
 
+        FFP.setPaymentType(2);
+        FFP.setPaymentInfo("123456781298;445");
+        FFPDAO.setPaymentInfo(FFP);
 
-        System.out.println("Testing createGymCentre");
-        FFGCDAO.createGymCentre(FFGC);
-        FFGC.setPincode("560066");
-
-        System.out.println("Testing updateGymCentre");
-        FFGCDAO.updateGymCentre(FFGC);
-        FFGC.setCentreID(61);
-
-        System.out.println("Testing deleteGymCentre");
-        FFGCDAO.deleteGymCentre(FFGC);
-
-
-        System.out.println("Testing viewCentresByyCity");
-        ArrayList<FlipFitGymCentre> arr = FFGCDAO.viewCentresByCity("Pune");
-        for(FlipFitGymCentre ffgc : arr){
-            System.out.println(ffgc.getCentreID());
-        }
-
-
-        System.out.println("Testing viewAvailableSlots");
-        FFGC.setCentreID(187);
-        ArrayList<FlipFitSlots> ffsarr = FFGCDAO.viewAvailableSlots(FFGC);
-        for(FlipFitSlots fs : ffsarr){
-            System.out.println(fs.getSlotId());
-        }
+        FFPDAO.deletePaymentInfo(FFP);
     }
 
     public void userTester(){
@@ -96,6 +72,37 @@ public class DAOTester {
     }
 
     public void gymCentreTester(){
+        FlipFitGymCentre FFGC = new FlipFitGymCentre();
+        FlipFitGymCentreDAOImpl FFDAO = new FlipFitGymCentreDAOImpl();
 
+        FFGC.setOwnerID(644);
+        FFGC.setApproved(true);
+        FFGC.setCapacity(45);
+        FFGC.setCity("Ranchi");
+        FFGC.setState("JH");
+        FFGC.setPincode("834004");
+
+        System.out.println("Testing createGymCentre");
+        FFDAO.createGymCentre(FFGC);
+
+        System.out.println("Testing updateGymCentre");
+        FFGC.setCity("Jamshedpur");
+        FFDAO.updateGymCentre(FFGC);
+
+        System.out.println("Testing deleteGymCentre");
+        FFDAO.deleteGymCentre(FFGC.getCentreID());
+
+        System.out.println("Testing viewCentresByCity");
+        ArrayList<FlipFitGymCentre> arr = FFDAO.viewCentresByCity("Pune");
+        for(FlipFitGymCentre ffgc : arr){
+            System.out.println(ffgc.getCentreID());
+        }
+
+        System.out.println("Testing viewAvailableSlots");
+        FFGC.setCentreID(187);
+        ArrayList<FlipFitSlots> ffsarr = FFDAO.viewAvailableSlots(FFGC.getCentreID());
+        for(FlipFitSlots fs : ffsarr){
+            System.out.println(fs.getSlotId());
+        }
     }
 }

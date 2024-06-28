@@ -2,11 +2,12 @@ package com.flipkart.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
+import com.flipkart.dao.interfaces.IFlipFitGymCentreDAO;
 import com.flipkart.bean.FlipFitGymCentre;
 import com.flipkart.constant.DBConstants;
 import com.flipkart.bean.FlipFitSlots;
 
-public class FlipFitGymCentreDAOImpl {
+public class FlipFitGymCentreDAOImpl implements IFlipFitGymCentreDAO{
     Random rand = new Random();
 
     public void createGymCentre(FlipFitGymCentre FFGC){
@@ -63,7 +64,7 @@ public class FlipFitGymCentreDAOImpl {
         }
     };
 
-    public void deleteGymCentre(FlipFitGymCentre FFGC){
+    public void deleteGymCentre(int centreID){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
@@ -71,7 +72,7 @@ public class FlipFitGymCentreDAOImpl {
 
             PreparedStatement stmt = con.prepareStatement("DELETE FROM GymCentre WHERE centreID=(?)");
 
-            stmt.setInt(1, FFGC.getCentreID());
+            stmt.setInt(1, centreID);
 
             int i = stmt.executeUpdate();
             System.out.println( i + " centre deleted");
@@ -116,7 +117,7 @@ public class FlipFitGymCentreDAOImpl {
         return ffarray;
     }
 
-    public ArrayList<FlipFitSlots> viewAvailableSlots(FlipFitGymCentre FFGC){
+    public ArrayList<FlipFitSlots> viewAvailableSlots(int centreID){
             ArrayList<FlipFitSlots> ffarray = new ArrayList<FlipFitSlots>();
 
             try{
@@ -125,7 +126,7 @@ public class FlipFitGymCentreDAOImpl {
                         DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
                 PreparedStatement stmt = con.prepareStatement("SELECT * FROM Slots WHERE centreID = ? and seatsAvailable > 0");
-                stmt.setInt(1, FFGC.getCentreID());
+                stmt.setInt(1, centreID);
 
                 ResultSet rs = stmt.executeQuery();
 

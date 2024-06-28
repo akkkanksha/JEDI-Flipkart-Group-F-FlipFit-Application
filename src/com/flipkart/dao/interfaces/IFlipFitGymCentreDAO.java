@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface IFlipFitGymCentreDAO {
         public void createGymCentre(FlipFitGymCentre FFGC);
         public void updateGymCentre(FlipFitGymCentre FFGC);
-        public void deleteGymCentre(FlipFitGymCentre FFGC);
-        public ArrayList<FlipFitSlots> viewAvailableSlots(FlipFitGymCentre FFGC);
-        public ArrayList<FlipFitGymCentre> viewCentresByyCity(String city);
+        public void deleteGymCentre(int centreID);
+        public ArrayList<FlipFitSlots> viewAvailableSlots(int centreID);
+        public ArrayList<FlipFitGymCentre> viewCentresByCity(String city);
 }
