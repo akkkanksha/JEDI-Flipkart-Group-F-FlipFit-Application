@@ -27,7 +27,7 @@ public class FlipFitGymOwner extends AbstractUser{
     }
 
     public void setAadharNumber(String aadharNumber) {
-        aadharNumber = aadharNumber;
+        this.aadharNumber = aadharNumber;
     }
 
     public boolean getIsApproved() {

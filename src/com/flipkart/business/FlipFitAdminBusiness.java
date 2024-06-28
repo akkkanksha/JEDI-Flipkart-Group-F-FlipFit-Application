@@ -1,6 +1,7 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.bean.FlipFitGymCentre;
 import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.interfaces.IFlipFitAdmin;
@@ -26,6 +27,11 @@ public class FlipFitAdminBusiness implements IFlipFitAdmin {
         FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
         return flipFitAdminDAOImpl.getPendingOwnerList();
     }
+    public List<FlipFitGymOwner> getApprovedOwnerList(){
+        System.out.println("AdminUserBusiness.getApprovedOwnerList");
+        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
+        return flipFitAdminDAOImpl.getApprovedOwnerList();
+    }
     public List<FlipFitGymCustomer> getUserList(){
         System.out.println("AdminUserBusiness.getUserList");
         FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
@@ -43,6 +49,10 @@ public class FlipFitAdminBusiness implements IFlipFitAdmin {
         flipFitAdminDAOImpl.deleteOwner(ownerId);
         return true;
     }
-
+    public List<FlipFitGymCentre> getGymCentreUsingOwnerId(int ownerId){
+        System.out.println("AdminUserBusiness.getGymCentreUsingOwnerId "+ownerId);
+        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
+        return flipFitAdminDAOImpl.getGymCentreUsingOwnerId(ownerId);
+    }
 
 }
