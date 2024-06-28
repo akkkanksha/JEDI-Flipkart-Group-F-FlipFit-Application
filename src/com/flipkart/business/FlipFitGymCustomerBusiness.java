@@ -7,6 +7,8 @@ import com.flipkart.dao.FlipFitSlotDAOImpl;
 
 public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
 
+    private int UserId;
+
     public void registerCustomer(String username) {
         System.out.println("Registering Customer " + username);
     }
@@ -18,7 +20,7 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
         System.out.println("Viewing booked slots:> ");
         FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
         FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
-        List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(userId);
+        List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(UserId);
         for (FlipFitBooking booking : bookingsList) {
             FlipFitSlots slotdetails = slotDAO.getSlotDetailsById(booking.getSlotId());
             System.out.println("Booking ID: " + booking.getBookingId() + "Slot timing " + slotdetails.getSlotTime());
