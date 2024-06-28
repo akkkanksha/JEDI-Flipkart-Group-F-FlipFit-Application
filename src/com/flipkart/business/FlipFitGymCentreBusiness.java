@@ -42,8 +42,7 @@ public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
         FlipFitGymCentreDAOImpl gymCentreDAO = new FlipFitGymCentreDAOImpl();
 
         FlipFitGymCentre flipFitGymCentre = new FlipFitGymCentre();
-
-        gymCentreDAO.viewAvailableSlots(flipFitGymCentre);
-        return null;
+        flipFitGymCentre.setCentreID(centreId);
+        return gymCentreDAO.viewAvailableSlots(flipFitGymCentre);
     }
 }

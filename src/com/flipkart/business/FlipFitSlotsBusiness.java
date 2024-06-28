@@ -6,13 +6,10 @@ import com.flipkart.dao.FlipFitSlotDAOImpl;
 
 public class FlipFitSlotsBusiness implements IFlipFitSlots {
 
-    public boolean updateAvailability(int slotId) {
+    public boolean updateAvailability(FlipFitSlots flipFitSlots) {
         System.out.println("Updating Slot Availability");
         FlipFitSlotDAOImpl flipFitSlotDAO = new FlipFitSlotDAOImpl();
-        FlipFitSlots flipFitSlots = flipFitSlotDAO.getSlotDetailsById(slotId);
-        FlipFitSlots currflipFitSlots = flipFitSlots;
-        currflipFitSlots.setSeatsAvailable(flipFitSlots.getSeatsAvailable()-1);
-        flipFitSlotDAO.changeSlot(currflipFitSlots);
+        flipFitSlotDAO.changeSlot(flipFitSlots);
         return true;
     }
 

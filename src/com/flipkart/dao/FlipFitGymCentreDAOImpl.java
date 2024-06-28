@@ -153,7 +153,7 @@ public class FlipFitGymCentreDAOImpl {
                 Connection con = DriverManager.getConnection(
                         DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
-                PreparedStatement stmt = con.prepareStatement("SELECT * FROM Slots WHERE centreID = ?");
+                PreparedStatement stmt = con.prepareStatement("SELECT * FROM Slots WHERE centreID = ? and seatsAvailable > 0");
                 stmt.setInt(1, FFGC.getCentreID());
 
                 ResultSet rs = stmt.executeQuery();

@@ -39,7 +39,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("DELETE FROM Booking WHERE id =  values(?, ?, ?)");
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM Booking WHERE id = ?");
             stmt.setInt(1, bookingId);
 
             int i = stmt.executeUpdate();
