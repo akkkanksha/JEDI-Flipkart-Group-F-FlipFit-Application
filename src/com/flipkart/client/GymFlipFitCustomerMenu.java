@@ -33,7 +33,7 @@ public class GymFlipFitCustomerMenu {
                 switch (choice) {
                     case 1: {
                         System.out.println("View Booked Slots:");
-                        FCBservice.viewBookedSlots(1);
+                        FCBservice.viewBookedSlots(userId);
                         System.out.println("Type 2. If you wish to cancel");
                         choice = sc.nextInt();
                         if (choice == 2) {

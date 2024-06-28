@@ -11,4 +11,6 @@ public interface IFlipFitBookingDAO {
     public List<FlipFitBooking> getAllBookings(int userId);
     public List<FlipFitBooking> getBookingDetails(int bookingId);
     public List<FlipFitBooking> bookings = new ArrayList<>();
+    public boolean checkBookingConflicts(int userID, int slotID);
+
 }

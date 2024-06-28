@@ -5,6 +5,8 @@ import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.interfaces.IFlipFitAdmin;
 import com.flipkart.dao.FlipFitAdminDAOImpl;
+import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
+import com.flipkart.dao.FlipFitGymOwnerDAOImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,13 @@ public class FlipFitAdminBusiness implements IFlipFitAdmin {
     }
     public List<FlipFitGymOwner> getPendingOwnerList(){
         System.out.println("AdminUserBusiness.getPendingOwnerList");
-        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
-        return flipFitAdminDAOImpl.getPendingOwnerList();
+        FlipFitGymOwnerDAOImpl flipFitGymOwnerDAOImpl=new FlipFitGymOwnerDAOImpl();
+        return flipFitGymOwnerDAOImpl.getPendingOwnerList();
     }
     public List<FlipFitGymCustomer> getUserList(){
         System.out.println("AdminUserBusiness.getUserList");
-        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
-        return flipFitAdminDAOImpl.getUserList();
+        FlipFitGymCustomerDAOImpl flipFitGymCustomerDAO=new FlipFitGymCustomerDAOImpl();
+        return flipFitGymCustomerDAO.getUserList();
     }
     public boolean validateOwner(int ownerId){
         System.out.println("AdminUserBusiness.validateOwner "+ownerId);
@@ -39,9 +41,8 @@ public class FlipFitAdminBusiness implements IFlipFitAdmin {
     }
     public boolean deleteOwner(int ownerId){
         System.out.println("AdminUserBusiness.deleteOwner" + ownerId);
-        FlipFitAdminDAOImpl flipFitAdminDAOImpl=new FlipFitAdminDAOImpl();
-        flipFitAdminDAOImpl.deleteOwner(ownerId);
-        return true;
+        FlipFitGymOwnerDAOImpl flipFitGymOwnerDAOImpl=new FlipFitGymOwnerDAOImpl();
+        return flipFitGymOwnerDAOImpl.deleteOwner(ownerId);
     }
 
 

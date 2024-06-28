@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IFlipFitAdminDAO {
     public boolean adminLogin(FlipFitAdmin adminUser);
-    public List<FlipFitGymOwner> getPendingOwnerList();
-    public List<FlipFitGymCustomer> getUserList();
+//    public List<FlipFitGymOwner> getPendingOwnerList();
+//    public List<FlipFitGymCustomer> getUserList();
     public boolean validateOwner(int ownerId);
-    public boolean deleteOwner(int ownerId);
+//    public boolean deleteOwner(int ownerId);
 }

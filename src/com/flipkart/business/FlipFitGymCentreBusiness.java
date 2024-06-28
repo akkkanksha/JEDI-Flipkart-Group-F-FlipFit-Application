@@ -5,6 +5,7 @@ import com.flipkart.bean.FlipFitGymCentre;
 import com.flipkart.bean.FlipFitSlots;
 import com.flipkart.business.interfaces.IFlipFitGymCentre;
 import com.flipkart.dao.FlipFitGymCentreDAOImpl;
+import com.flipkart.dao.FlipFitSlotDAOImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +40,9 @@ public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
 
     public List<FlipFitSlots> viewAvailableSlots(int centreId) {
         System.out.println("Viewing Available Slots:> ");
-        FlipFitGymCentreDAOImpl gymCentreDAO = new FlipFitGymCentreDAOImpl();
-
+        FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
         FlipFitGymCentre flipFitGymCentre = new FlipFitGymCentre();
         flipFitGymCentre.setCentreID(centreId);
-        return gymCentreDAO.viewAvailableSlots(flipFitGymCentre);
+        return slotDAO.viewAvailableSlots(flipFitGymCentre);
     }
 }
