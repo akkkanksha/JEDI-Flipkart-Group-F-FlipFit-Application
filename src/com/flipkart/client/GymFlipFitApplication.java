@@ -1,6 +1,11 @@
 package com.flipkart.client;
 
+import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitGymCustomer;
+import com.flipkart.business.FlipFitAdminBusiness;
+import com.flipkart.business.interfaces.IFlipFitAdmin;
+import com.flipkart.dao.FlipFitAdminDAOImpl;
+import com.flipkart.dao.interfaces.IFlipFitAdminDAO;
 import com.flipkart.exceptions.ExceptionHandler;
 import com.flipkart.exceptions.InvalidChoiceException;
 
@@ -32,7 +37,7 @@ public class GymFlipFitApplication {
                         String password = in.next();
                         System.out.print("Enter your role:> Customer/Admin/GymOwner ");
                         String role = in.next();
-                        System.out.println("Login Successful");
+//                        System.out.println("Login Successful");
 
                         switch (role) {
                             case "Customer": {
@@ -44,8 +49,19 @@ public class GymFlipFitApplication {
                             }
                             case "Admin": {
                                 // admin menu
-                                System.out.println("Admin Menu");
-                                GymFlipFitAdminMenu.getAdminView();
+                                FlipFitAdmin admin= new FlipFitAdmin();
+                                admin.setEmailID(username);
+                                admin.setPassword(password);
+                                IFlipFitAdmin flipFitAdmin = new FlipFitAdminBusiness(admin);
+                                try {
+                                    boolean res=flipFitAdmin.adminLogin(admin);
+                                    if(res) {
+                                        System.out.println("Admin Menu");
+                                        GymFlipFitAdminMenu.getAdminView();
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
                                 break;
                             }
                             case "GymOwner": {
