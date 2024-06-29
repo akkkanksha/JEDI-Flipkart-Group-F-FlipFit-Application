@@ -2,6 +2,8 @@ package com.flipkart.client;
 
 import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitGymCustomer;
+import com.flipkart.business.FlipFitAdminBusiness;
+import com.flipkart.business.interfaces.IFlipFitAdmin;
 import com.flipkart.dao.FlipFitAdminDAOImpl;
 import com.flipkart.dao.interfaces.IFlipFitAdminDAO;
 import com.flipkart.exceptions.ExceptionHandler;
@@ -47,12 +49,12 @@ public class GymFlipFitApplication {
                             }
                             case "Admin": {
                                 // admin menu
-                                IFlipFitAdminDAO flipFitAdminDAO = new FlipFitAdminDAOImpl();
                                 FlipFitAdmin admin= new FlipFitAdmin();
                                 admin.setEmailID(username);
                                 admin.setPassword(password);
+                                IFlipFitAdmin flipFitAdmin = new FlipFitAdminBusiness(admin);
                                 try {
-                                    boolean res=flipFitAdminDAO.adminLogin(admin);
+                                    boolean res=flipFitAdmin.adminLogin(admin);
                                     if(res) {
                                         System.out.println("Admin Menu");
                                         GymFlipFitAdminMenu.getAdminView();
