@@ -1,4 +1,5 @@
 package com.flipkart.dao;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.dao.interfaces.IFlipFitBookingDAO;
 import java.sql.*;
 import com.flipkart.bean.FlipFitBooking;
@@ -166,5 +167,27 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             throw new RuntimeException(e);
         }
         return bookings;
+    }
+    public FlipFitBooking getBookingDetailsByBookingId(int bookingId) {
+        FlipFitBooking booking = null;
+        String sql = "SELECT * FROM Booking WHERE bookingID = ?";
+
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, bookingId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    booking = new FlipFitBooking();
+                    booking.setBookingId(rs.getInt("bookingID"));
+                    booking.setSlotId(rs.getInt("slotID"));
+                    booking.setSlotTime(rs.getInt("slotTime"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return booking;
     }
 }

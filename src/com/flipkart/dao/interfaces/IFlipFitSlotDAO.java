@@ -5,7 +5,12 @@ import com.flipkart.bean.FlipFitSlots;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface IFlipFitSlotDAO {
+
+/**
+ IFlipFitSlotDAO interface defines the contract for managing gym slot operations in the FlipFit Gym application.
+ It provides methods to add, delete, update, and retrieve information about gym slots.
+ */
+ public interface IFlipFitSlotDAO {
 
     // addSlot - It is a Method to add a new slot.
     // It takes FlipFitSlots object as a parameter and adds it to the system slot.

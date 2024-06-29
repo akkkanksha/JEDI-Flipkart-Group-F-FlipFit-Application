@@ -5,6 +5,9 @@ import com.flipkart.bean.FlipFitBooking;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ IFlipFitBookingDAO interface defines methods for managing booking operations within the FlipFit Gym application.
+ */
 public interface IFlipFitBookingDAO {
 
     // makeBooking - It is a method to make a new booking.
@@ -16,7 +19,7 @@ public interface IFlipFitBookingDAO {
     // It takes an integer bookingId as a parameter to identify which booking to delete.
     // It returns a boolean as true or false which indicates if the deletion was successful or not.
     // if successful - true, if not successful - false
-    boolean deleteBooking(int bookingId);
+    public boolean deleteBooking(int bookingId);
 
     // FlipFitBooking - It is a method to retrieve/get all the bookings for a specific user.
     // It takes an integer userId as a parameter to identify which user's bookings to retrieve/get.
