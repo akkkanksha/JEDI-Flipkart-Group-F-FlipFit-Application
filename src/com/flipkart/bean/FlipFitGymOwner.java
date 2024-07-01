@@ -1,25 +1,25 @@
 package com.flipkart.bean;
 
 public class FlipFitGymOwner extends AbstractUser{
-    public String panId;
-    public String gstNum;
+    public String PAN;
+    public String GSTIN;
     public String aadharNumber;
     public boolean isApproved;
 
-    public String getPanId() {
-        return panId;
+    public String getPAN() {
+        return PAN;
     }
 
-    public void setPanId(String panId) {
-        panId = panId;
+    public void setPAN(String PAN) {
+        PAN = PAN;
     }
 
-    public String getGSTNum() {
-        return gstNum;
+    public String getGSTIN() {
+        return GSTIN;
     }
 
     public void setGSTIN(String gstNum) {
-        this.gstNum = gstNum;
+        this.GSTIN = gstNum;
     }
 
     public String getAadharNumber() {
@@ -30,7 +30,7 @@ public class FlipFitGymOwner extends AbstractUser{
         aadharNumber = aadharNumber;
     }
 
-    public boolean getIsApproved() {
+    public boolean isApproved() {
         return isApproved;
     }
     public void setIsApproved(boolean isApproved) {

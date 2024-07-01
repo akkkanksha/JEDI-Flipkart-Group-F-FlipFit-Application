@@ -9,13 +9,28 @@ public class DAOTester {
     DAOTester DAOT  = new DAOTester();
 
         //test payments
-        DAOT.paymentsTester();
+//        DAOT.paymentsTester();
 
         //test user
-        DAOT.userTester();
+//        DAOT.userTester();
 
         //test gymcentre
-        DAOT.gymCentreTester();
+//        DAOT.gymCentreTester();
+
+        //test gymowner
+        DAOT.gymOwnerTester();
+    }
+
+    public void gymOwnerTester() {
+        FlipFitGymOwner FFGO = new FlipFitGymOwner();
+        FlipFitGymOwnerDAOImpl FFGODAO = new FlipFitGymOwnerDAOImpl();
+
+        FFGO.setAadharNumber("123456789021");
+        FFGO.setGSTIN("GST139486");
+        FFGO.setPAN("PAN2F1241");
+        FFGO.setIsApproved(true);
+
+        FFGODAO.viewCentres(FFGO);
     }
 
     public void paymentsTester(){

@@ -41,7 +41,7 @@ public class GymFlipFitAdminMenu {
                 System.out.println("Printing list of Approved Owners");
                 List<FlipFitGymOwner> flipFitGymOwnerList=  adminService.getPendingOwnerList();
                 for(FlipFitGymOwner flipFitGymOwner: flipFitGymOwnerList){
-                    if(flipFitGymOwner.getIsApproved() == true) {
+                    if(flipFitGymOwner.isApproved() == true) {
                         System.out.println("Owner name :" + flipFitGymOwner.getUserName() + " City :" + flipFitGymOwner.getCity());
                     }
                 }
