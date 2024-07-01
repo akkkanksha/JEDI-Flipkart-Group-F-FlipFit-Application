@@ -1,8 +1,9 @@
 package com.flipkart.dao.tests;
 import com.flipkart.bean.*;
 import com.flipkart.dao.*;
-
+import com.flipkart.dao.interfaces.IFlipFitBookingDAO;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DAOTester {
     public static void main(String[] args) {
@@ -18,7 +19,47 @@ public class DAOTester {
 //        DAOT.gymCentreTester();
 
         //test gymowner
-        DAOT.gymOwnerTester();
+//        DAOT.gymOwnerTester();
+
+        // test bookings
+        DAOT.testBookings();
+    }
+
+    public void testBookings() {
+        IFlipFitBookingDAO bookingDAO = new FlipFitBookingDAOImpl();
+
+        FlipFitBooking newBooking = new FlipFitBooking();
+        newBooking.setUserId(101);
+        newBooking.setSlotId(5);
+        newBooking.setIsdeleted(false);
+
+        //Connection con = GetConnection.getConnection();
+
+        System.out.println("Making a new booking:");
+        bookingDAO.makeBooking(newBooking);
+
+
+        int userIdToGet = 101;
+
+        System.out.println("\nGet all bookings for user ID: " + userIdToGet);
+        List<FlipFitBooking> bookings = bookingDAO.getAllBookings(userIdToGet);
+        for (FlipFitBooking booking : bookings) {
+            System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
+        }
+
+        int bookingIdToDelete = 1;
+        System.out.println("\nDeleting booking with ID: " + bookingIdToDelete);
+        boolean deleteSuccess = bookingDAO.deleteBooking(bookingIdToDelete);
+        System.out.println("Booking deletion successful: " + deleteSuccess);
+
+        bookingDAO = new FlipFitBookingDAOImpl();
+
+        int bookingIdToGet = 1;
+        System.out.println("Get booking details for booking ID: " + bookingIdToGet);
+        List<FlipFitBooking> bookingDetails = bookingDAO.getBookingDetails(bookingIdToGet);
+        for (FlipFitBooking booking : bookingDetails) {
+            System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
+        }
     }
 
     public void gymOwnerTester() {
@@ -30,7 +71,25 @@ public class DAOTester {
         FFGO.setPAN("PAN2F1241");
         FFGO.setIsApproved(true);
 
-        FFGODAO.viewCentres(FFGO);
+
+        FFGO.setUserId(344);
+//        List<FlipFitGymCentre> FFGOUser = FFGODAO.viewCentres(FFGO);
+//        for (FlipFitGymCentre fs : FFGOUser){
+//            System.out.println(fs.getCentreID());
+//        }
+
+        FlipFitGymCentre FFGC = new FlipFitGymCentre();
+        FFGC.setOwnerID(344);
+        FFGC.setApproved(true);
+        FFGC.setCapacity(45);
+        FFGC.setCity("Ranchi");
+        FFGC.setState("JH");
+        FFGC.setPincode("834004");
+
+        List<FlipFitUser> FFV = FFGODAO.viewFlipFitCustomers(FFGC);
+        for (FlipFitUser fs : FFV){
+            System.out.println(fs.getUserID());
+        }
     }
 
     public void paymentsTester(){
@@ -105,17 +164,17 @@ public class DAOTester {
         FFDAO.updateGymCentre(FFGC);
 
         System.out.println("Testing deleteGymCentre");
-        FFDAO.deleteGymCentre(FFGC.getCentreID());
+        FFDAO.deleteGymCentre(FFGC);
 
         System.out.println("Testing viewCentresByCity");
-        ArrayList<FlipFitGymCentre> arr = FFDAO.viewCentresByCity("Pune");
+        ArrayList<FlipFitGymCentre> arr = FFDAO.viewCentres("Pune");
         for(FlipFitGymCentre ffgc : arr){
             System.out.println(ffgc.getCentreID());
         }
 
         System.out.println("Testing viewAvailableSlots");
         FFGC.setCentreID(187);
-        ArrayList<FlipFitSlots> ffsarr = FFDAO.viewAvailableSlots(FFGC.getCentreID());
+        ArrayList<FlipFitSlots> ffsarr = FFDAO.viewAvailableSlots(FFGC);
         for(FlipFitSlots fs : ffsarr){
             System.out.println(fs.getSlotId());
         }

@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitAdmin;
+import com.flipkart.bean.FlipFitGymCentre;
 import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.dao.interfaces.*;
@@ -15,18 +16,27 @@ import java.util.List;
 public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
     @Override
     public boolean adminLogin(FlipFitAdmin adminUser) {
-        String sql = "SELECT * FROM GymAdmin WHERE adminID = ? AND password = ?";
+        String sql = "SELECT * FROM GymAdmin WHERE emailId = ? AND password = ?";
         try (Connection conn = GetConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, adminUser.getUserID());
+            stmt.setString(1, adminUser.getEmailID());
             stmt.setString(2, adminUser.getPassword());
 
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs.next(); // If there's a result, login is successful
+                boolean res= rs.next();
+                if(res){
+                    System.out.println("Logged in Successfully");
+                }
+                else{
+                    System.out.println("Invalid Credentials!!!!");
+                }
+                return res;
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Logged in Failed");
             return false;
         }
     }
@@ -34,7 +44,7 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
     @Override
     public List<FlipFitGymOwner> getPendingOwnerList() {
         List<FlipFitGymOwner> pendingOwners = new ArrayList<>();
-        String sql = "SELECT * FROM GymOwner WHERE approved = 0";
+        String sql = "SELECT ownerID,Aadhar FROM GymOwner WHERE approved = 0";
 
         try (Connection conn = GetConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
@@ -51,6 +61,27 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
         }
         return pendingOwners;
     }
+    @Override
+    public List<FlipFitGymOwner> getApprovedOwnerList() {
+        List<FlipFitGymOwner> pendingOwners = new ArrayList<>();
+        String sql = "SELECT * FROM GymOwner WHERE approved = 1";
+
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                FlipFitGymOwner owner = new FlipFitGymOwner();
+                owner.setUserId(rs.getInt("ownerID"));
+                owner.setAadharNumber(rs.getString("Aadhar"));
+                pendingOwners.add(owner);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pendingOwners;
+    }
+
 
     @Override
     public List<FlipFitGymCustomer> getUserList() {
@@ -99,5 +130,30 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
             e.printStackTrace();
             return false;
         }
+    }
+    @Override
+    public List<FlipFitGymCentre> getGymCentreUsingOwnerId(int ownerId) {
+        List<FlipFitGymCentre> gymCentres = new ArrayList<>();
+        String sql = "SELECT * FROM GymCentre WHERE ownerID = ? AND approved = 1";
+
+        try (Connection conn = GetConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, ownerId);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    FlipFitGymCentre gymCentre = new FlipFitGymCentre();
+                    gymCentre.setCentreID(rs.getInt("centreID"));
+                    gymCentre.setCapacity(rs.getInt("capacity"));
+                    gymCentre.setCity(rs.getString("city"));
+                    gymCentres.add(gymCentre);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Consider logging the error or throwing a custom exception
+        }
+        return gymCentres;
     }
 }

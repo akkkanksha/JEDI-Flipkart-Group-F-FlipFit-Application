@@ -33,7 +33,7 @@ public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
         System.out.println("Deleting Gym Centre:> ");
         FlipFitGymCentreDAOImpl gymCentreDAO = new FlipFitGymCentreDAOImpl();
         FlipFitGymCentre flipFitGymCentre = new FlipFitGymCentre();
-        gymCentreDAO.deleteGymCentre(flipFitGymCentre.getCentreID());
+        gymCentreDAO.deleteGymCentre(flipFitGymCentre);
         return true;
     }
 
@@ -43,6 +43,6 @@ public class FlipFitGymCentreBusiness implements IFlipFitGymCentre {
 
         FlipFitGymCentre flipFitGymCentre = new FlipFitGymCentre();
         flipFitGymCentre.setCentreID(centreId);
-        return gymCentreDAO.viewAvailableSlots(flipFitGymCentre.getCentreID());
+        return gymCentreDAO.viewAvailableSlots(flipFitGymCentre);
     }
 }

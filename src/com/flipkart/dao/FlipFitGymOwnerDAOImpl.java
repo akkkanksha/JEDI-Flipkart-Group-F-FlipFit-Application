@@ -20,7 +20,9 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("SELECT centreID, ownerID, capacity FROM GymCentre where ownerID=owner.userID");
+            PreparedStatement stmt = con.prepareStatement("SELECT centreID, capacity, city FROM GymCentre where ownerID=?");
+
+            stmt.setInt(1, owner.getUserId());
 //
 //        String sql = "SELECT centreID, ownerID, capacity FROM GymCentre where ownerID=this.userID";
 //        try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
@@ -28,7 +30,7 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
             while (rs.next()) {
                 FlipFitGymCentre gymcentre = new FlipFitGymCentre();
                 gymcentre.setCentreID(rs.getInt("centreID"));
-                gymcentre.setOwnerID(rs.getInt("ownerID"));
+                gymcentre.setCity(rs.getString("city"));
                 gymcentre.setCapacity(rs.getInt("capacity"));
                 gymcentres.add(gymcentre);
             }
@@ -43,8 +45,10 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
     @Override
     public List<FlipFitUser> viewFlipFitCustomers(FlipFitGymCentre centre) {
         List<FlipFitUser> flipfitusers = new ArrayList<>();
-        String sql = "SELECT userID from Booking where userID = centre.centreID";
+        String sql = "SELECT userID from Booking where userID = ?";
+
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, centre.getOwnerID());
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 FlipFitUser flipfituser = new FlipFitUser();
