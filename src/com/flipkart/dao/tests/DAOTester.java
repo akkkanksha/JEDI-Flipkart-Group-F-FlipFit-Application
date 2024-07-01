@@ -2,6 +2,8 @@ package com.flipkart.dao.tests;
 import com.flipkart.bean.*;
 import com.flipkart.dao.*;
 import com.flipkart.dao.interfaces.IFlipFitBookingDAO;
+import com.flipkart.dao.interfaces.IFlipFitSlotDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,46 @@ public class DAOTester {
     }
 
     public void testSlots() {
+        FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
+
+        FlipFitSlots newSlot = new FlipFitSlots();
+//        newSlot.setSlotId(1);
+        newSlot.setCentreId(557);
+        newSlot.setSlotTime(System.currentTimeMillis());
+        newSlot.setSeatsAvailable(50);
+
+        System.out.println("Adding a new slot:");
+        boolean isAdded = slotDAO.addSlot(newSlot);
+        System.out.println("Slot added: " + isAdded);
+
+        int centerIdToRetrieve = 288;
+        System.out.println("\nRetrieving all slots for center ID: " + centerIdToRetrieve);
+        List<FlipFitSlots> slots = slotDAO.getAllSlots(centerIdToRetrieve);
+        for (FlipFitSlots slot : slots) {
+            System.out.println("Slot ID: " + slot.getSlotId() + ", Center ID: " + slot.getCentreId() +
+                    ", Slot Time: " + slot.getSlotTime() + ", Seats Available: " + slot.getSeatsAvailable());
+        }
+
+        FlipFitSlots slotToUpdate = new FlipFitSlots();
+        slotToUpdate.setSlotId(2);
+        slotToUpdate.setCentreId(789);
+        slotToUpdate.setSlotTime(System.currentTimeMillis() + 3600000);
+        slotToUpdate.setSeatsAvailable(45);
+
+        System.out.println("\nUpdating slot with ID: " + slotToUpdate.getSlotId());
+        boolean isUpdated = slotDAO.changeSlot(slotToUpdate);
+        System.out.println("Slot updated: " + isUpdated);
+
+        int slotIdToDelete = 878;
+        System.out.println("\nDeleting slot with ID: " + slotIdToDelete);
+        boolean isDeleted = slotDAO.deleteSlot(slotIdToDelete);
+        System.out.println("Slot deleted: " + isDeleted);
+
+        int slotIdToGet = 887;
+        System.out.println("\nGet slot details for slot ID: " + slotIdToGet);
+        FlipFitSlots slot = slotDAO.getSlotDetails(slotIdToGet);
+        System.out.println("Slot ID: " + slot.getSlotId() + ", Center ID: " + slot.getCentreId() +
+                    ", Slot Time: " + slot.getSlotTime() + ", Seats Available: " + slot.getSeatsAvailable());
 
     }
 

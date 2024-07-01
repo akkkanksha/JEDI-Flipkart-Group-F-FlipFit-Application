@@ -44,5 +44,5 @@ import java.util.List;
 
     // getSlotDetails - It is a method to get detailed information about a specific slot by its slotId.
     // Returns a list of FlipFitSlots objects, multiple elements if there are related slots.
-    public List<FlipFitSlots> getSlotDetails(int slotId);
+    public FlipFitSlots getSlotDetails(int slotId);
 }
