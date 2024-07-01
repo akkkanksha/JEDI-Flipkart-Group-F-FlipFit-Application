@@ -27,7 +27,72 @@ public class DAOTester {
 //        DAOT.testBookings();
 
         // test slots
-        DAOT.testSlots();
+//        DAOT.testSlots();
+
+        // test GymCustomer
+        DAOT.gymCustomerTester();
+
+    }
+
+    public void gymCustomerTester() {
+        FlipFitUser FFU = new FlipFitUser();
+        FlipFitGymCustomer FFGCU = new FlipFitGymCustomer();
+        FlipFitGymCustomerDAOImpl FFGCDAO = new FlipFitGymCustomerDAOImpl();
+
+        FFGCU.setUserId(101);
+        FFGCU.setCity("Pune");
+        List<FlipFitBooking> ffb = FFGCDAO.viewBookedSlots(FFGCU.getUserId());
+        for (FlipFitBooking flipFitBookings : ffb) {
+            System.out.println(flipFitBookings.getBookingId());
+        }
+
+        List<FlipFitGymCentre> ffgc = FFGCDAO.viewCentres();
+        for (FlipFitGymCentre ffgcs : ffgc) {
+            System.out.println(ffgcs.getCentreID());
+        }
+
+        FFGCU.setUserId(191);
+        List<FlipFitPayments> FFP = FFGCDAO.viewPaymentDetails(FFGCU.getUserId());
+        for (FlipFitPayments flipFitPayments : FFP) {
+            System.out.println(flipFitPayments.getPaymentInfo());
+        }
+
+        FFGCU.setUserId(84);
+        FFGCU.setPinCode("411027");
+        System.out.println(FFGCDAO.editDetails(FFGCU));
+
+        int slotID = 5;
+        FFGCU.setUserId(108);
+        System.out.println(FFGCDAO.checkBookingConflicts(FFGCU.getUserId(), slotID));
+
+//
+//        FFU.setUserName("PP");
+//        FFU.setPassword("pp2");
+//        FFU.setRoleID(1);
+//        FFU.setEmailID("pp@mail");
+//        FFU.setPhoneNumber("9800756987");
+//        FFU.setUserID(1);
+//
+//
+//        FlipFitUser FFU1 = new FlipFitUser();
+//
+//        FFU1.setUserName("PP1");
+//        FFU1.setPassword("pp21");
+//        FFU1.setRoleID(11);
+//        FFU1.setEmailID("pp1@mail");
+//        FFU1.setPhoneNumber("98007569871");
+//        FFU1.setUserID(2);
+
+//        FlipFitUserDAOImpl FFUDAO = new FlipFitUserDAOImpl();
+//        FFUDAO.addUser(FFU);
+//        FFUDAO.addUser(FFU1);
+
+//
+//        FlipFitGymCustomerDAOImpl FFGCDAO = new FlipFitGymCustomerDAOImpl();
+//        List<FlipFitSlots> slots=FFGCDAO.viewBookedSlots(FFU.getUserID());
+//        for(FlipFitSlots slot : slots){
+//            System.out.println(slot.getSlotId());
+//        }
     }
 
     public void testSlots() {

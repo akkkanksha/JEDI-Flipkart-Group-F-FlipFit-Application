@@ -1,8 +1,6 @@
 package com.flipkart.dao.interfaces;
 
-import com.flipkart.bean.FlipFitGymCentre;
-import com.flipkart.bean.FlipFitGymCustomer;
-import com.flipkart.bean.FlipFitSlots;
+import com.flipkart.bean.*;
 
 import java.util.List;
 
@@ -18,7 +16,7 @@ public interface IFlipFitGymCustomerDAO {
      It takes userID as parameter and  the ID of the user for whom to view booked slots.
      It returns a List of FlipFitSlots objects representing the booked slots.
      */
-    public List<FlipFitSlots> viewBookedSlots(int userID);
+    public List<FlipFitBooking> viewBookedSlots(int userID);
 
     /**
      checkBookingConflicts - It is a method which Checks if there are any booking conflicts for a user attempting to book a specific slot.
@@ -46,13 +44,13 @@ public interface IFlipFitGymCustomerDAO {
      viewPaymentDetails - It is a method which views the payment details for a specific user.
      It takes userID as parameter and the ID of the user for whom to view payment details.
      */
-    public void viewPaymentDetails(int userID);
+    public List<FlipFitPayments> viewPaymentDetails(int userID);
 
     /**
      editPaymentDetails - It is a method which edits the payment details for a specific user.
      It takes userID as parameter and the ID of the user for whom to edit payment details.
      */
-    public void editPaymentDetails(int userID);
+    public void editPaymentDetails(FlipFitPayments FFP);
 
     /**
      editDetails - It is a method which edits the details of a customer.
