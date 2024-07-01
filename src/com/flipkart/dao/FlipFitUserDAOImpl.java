@@ -1,13 +1,11 @@
 package com.flipkart.dao;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.constant.DBConstants;
 import com.flipkart.dao.interfaces.*;
 import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitUser;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.Random;
 
 public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
@@ -41,32 +39,49 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
 //    }
 
     @Override
-    public FlipFitGymCustomer login(String emailID, String password){
-        try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
+    public FlipFitUser loginAsCustomer(String emailID, String password) {
+        String sql = "SELECT * from User where emailID=? and password=? and roleID=1";
+        try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, emailID);
+            stmt.setString(2, password);
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * from User where email=? and password=?");
-            stmt.setString(1,emailID);
-            stmt.setString(2,password);
-            ResultSet rsUser = stmt.executeQuery();
-            if(rsUser.next()){
-                stmt = con.prepareStatement("SELECT * from Customer where customerID = ?");
-                stmt.setInt(1,rsUser.getInt("customerID"));
-                ResultSet rsCustomer = stmt.executeQuery();
-                FlipFitGymCustomer flipFitGymCustomer = new FlipFitGymCustomer();
-                flipFitGymCustomer.setCity(rsCustomer.getString("city"));
-                flipFitGymCustomer.setEmailID(rsUser.getString("emailID"));
-                flipFitGymCustomer.setPinCode(rsCustomer.getString("pinCode"));
-                flipFitGymCustomer.setPassword(rsUser.getString("password"));
-                flipFitGymCustomer.setPhoneNumber(rsUser.getString("phoneNumber"));
-                flipFitGymCustomer.setUserName(rsUser.getString("userName"));
-                return flipFitGymCustomer;
+            try(ResultSet rs = stmt.executeQuery()) {
+                if(rs.next()) {
+                    FlipFitUser flipFitUser = new FlipFitUser();
+                    flipFitUser.setEmailID(emailID);
+                    flipFitUser.setPassword(password);
+                    flipFitUser.setUserID(rs.getInt("userID"));
+                    flipFitUser.setRoleID(rs.getInt("roleID"));
+                    flipFitUser.setUserName(rs.getString("userName"));
+                    return flipFitUser;
+                }
             }
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public FlipFitUser loginAsOwner(String emailID, String password) {
+        String sql = "SELECT * from User where emailID=? and password=? and roleID=2";
+        try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, emailID);
+            stmt.setString(2, password);
+
+            try(ResultSet rs = stmt.executeQuery()) {
+                if(rs.next()) {
+                    FlipFitUser flipFitUser = new FlipFitUser();
+                    flipFitUser.setEmailID(emailID);
+                    flipFitUser.setPassword(password);
+                    flipFitUser.setUserID(rs.getInt("userID"));
+                    flipFitUser.setRoleID(rs.getInt("roleID"));
+                    flipFitUser.setUserName(rs.getString("userName"));
+                    return flipFitUser;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }

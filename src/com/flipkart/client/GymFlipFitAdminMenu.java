@@ -5,6 +5,7 @@ import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.business.FlipFitAdminBusiness;
 import com.flipkart.business.FlipFitGymOwnerBusiness;
 import com.flipkart.business.interfaces.IFlipFitAdmin;
+import com.flipkart.dao.FlipFitAdminDAOImpl;
 import com.flipkart.exceptions.ExceptionHandler;
 import com.flipkart.exceptions.InvalidChoiceException;
 
@@ -15,9 +16,8 @@ public class GymFlipFitAdminMenu {
     public static void getAdminView() throws InvalidChoiceException {
         try{
             Scanner sc=new Scanner(System.in);
-            FlipFitAdmin adminUser = new FlipFitAdmin();
+            FlipFitAdminDAOImpl adminUser = new FlipFitAdminDAOImpl();
             FlipFitAdminBusiness adminService = new FlipFitAdminBusiness(adminUser);
-            FlipFitGymOwnerBusiness ownerService = new FlipFitGymOwnerBusiness();
             System.out.println("1. View Pending Requests");
             System.out.println("2. View Approved Owners");
             System.out.println("3. View all FlipFit Customers");

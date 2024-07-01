@@ -96,15 +96,14 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
             stmt.setString(2, owner.getAadharNumber());
             stmt.setString(3,owner.getGSTNum());
             ResultSet rs = stmt.executeQuery();
-            if(rs==null) {
-                return null;
+            if(rs.next()) {
+                return owner;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return owner;
-
+        return null;
     }
 
     @Override

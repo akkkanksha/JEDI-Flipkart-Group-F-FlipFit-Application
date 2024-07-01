@@ -37,20 +37,6 @@ public class FlipFitGymOwnerBusiness implements IFlipFitGymOwner {
     }
     public FlipFitGymOwner editDetails(FlipFitGymOwner owner) throws InvalidChoiceException {
         return flipFitGymOwnerDAO.editDetails(owner);
-//        try
-//        {
-//
-//                default: {
-//                    throw new InvalidChoiceException("Invalid choice entered: " + choice);
-//                }
-//            }
-//            return true;
-//        }
-//        catch (InvalidChoiceException e)
-//        {
-//            ExceptionHandler.InvalidChoiceEditDetailsMenu(e);
-//            return false;
-//        }
     }
     public FlipFitGymOwner registerOwner(FlipFitGymOwner GymOwner) {
 
@@ -69,7 +55,7 @@ public class FlipFitGymOwnerBusiness implements IFlipFitGymOwner {
     public FlipFitUser login(FlipFitUser flipFitUser) {
         FlipFitUserDAOImpl userDAO = new FlipFitUserDAOImpl();
         flipFitUser.setRoleID(2);
-        userDAO.login(flipFitUser.getEmailID(), flipFitUser.getPassword());
+        flipFitUser=userDAO.loginAsOwner(flipFitUser.getEmailID(), flipFitUser.getPassword());
         return flipFitUser;
     }
 }

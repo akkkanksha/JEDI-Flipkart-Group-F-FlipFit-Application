@@ -2,9 +2,13 @@ package com.flipkart.client;
 
 import com.flipkart.bean.FlipFitAdmin;
 import com.flipkart.bean.FlipFitGymCustomer;
+import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.bean.FlipFitUser;
 import com.flipkart.business.FlipFitAdminBusiness;
+import com.flipkart.business.FlipFitGymOwnerBusiness;
 import com.flipkart.business.interfaces.IFlipFitAdmin;
 import com.flipkart.dao.FlipFitAdminDAOImpl;
+import com.flipkart.dao.FlipFitGymOwnerDAOImpl;
 import com.flipkart.dao.interfaces.IFlipFitAdminDAO;
 import com.flipkart.exceptions.ExceptionHandler;
 import com.flipkart.exceptions.InvalidChoiceException;
@@ -67,8 +71,16 @@ public class GymFlipFitApplication {
                             }
                             case "GymOwner": {
                                 // gym owner
+                                FlipFitUser gymOwner= new FlipFitUser();
+                                gymOwner.setEmailID(username);
+                                gymOwner.setPassword(password);
+
+                                FlipFitGymOwnerDAOImpl flipFitGymOwnerDAO = new FlipFitGymOwnerDAOImpl();
+                                FlipFitGymOwnerBusiness GOBservice = new FlipFitGymOwnerBusiness(flipFitGymOwnerDAO);
+
+                                gymOwner=GOBservice.login(gymOwner);
                                 System.out.println("GymOwner Menu");
-                                GymFlipFitOwnerMenu.getFlipFitOwnerView();
+                                GymFlipFitOwnerMenu.getFlipFitOwnerView(gymOwner);
                                 break;
                             }
                         }
@@ -106,11 +118,23 @@ public class GymFlipFitApplication {
                         String pinCode = in.next();
                         System.out.print("Enter your password:> ");
                         String password = in.next();
-                        String role = "Gym Owner";
-                        // owner have to verify first
+                        String role = "GymOwner";
+
+
+                        FlipFitGymOwner flipFitOwner = new FlipFitGymOwner();
+                        flipFitOwner.setEmailID(emailID);
+                        flipFitOwner.setPassword(password);
+                        flipFitOwner.setPhoneNumber(phoneNumber);
+                        flipFitOwner.setCity(city);
+                        flipFitOwner.setPinCode(pinCode);
+
+                        FlipFitGymOwnerDAOImpl flipFitGymOwnerDAO = new FlipFitGymOwnerDAOImpl();
+                        FlipFitGymOwnerBusiness GOBservice = new FlipFitGymOwnerBusiness(flipFitGymOwnerDAO);
+
+                        GOBservice.registerOwner(flipFitOwner);
+
                         System.out.println("Registration completed");
-                        System.out.println("GymOwner Menu");
-                        GymFlipFitOwnerMenu.getFlipFitOwnerView();
+
                         break;
                     }
                     case 4: {

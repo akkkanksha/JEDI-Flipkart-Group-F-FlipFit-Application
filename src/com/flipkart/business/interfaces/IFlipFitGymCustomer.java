@@ -14,6 +14,6 @@ public interface IFlipFitGymCustomer {
     public List<FlipFitGymCentre> viewCentres();
     public boolean makePayment(int userId);
     public FlipFitGymCustomer editDetails(FlipFitGymCustomer flipFitGymCustomer) throws InvalidChoiceException;
-    public FlipFitGymCustomer login(FlipFitUser flipFitUser);
+    public FlipFitUser login(FlipFitUser flipFitUser);
     public FlipFitGymCustomer registerCustomer(FlipFitGymCustomer flipFitGymCustomer);
 }
