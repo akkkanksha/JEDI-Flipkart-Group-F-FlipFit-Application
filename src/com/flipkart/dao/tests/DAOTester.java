@@ -22,7 +22,14 @@ public class DAOTester {
 //        DAOT.gymOwnerTester();
 
         // test bookings
-        DAOT.testBookings();
+//        DAOT.testBookings();
+
+        // test slots
+        DAOT.testSlots();
+    }
+
+    public void testSlots() {
+
     }
 
     public void testBookings() {
@@ -48,19 +55,22 @@ public class DAOTester {
             System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isDeleted());
         }
 
-        int bookingIdToDelete = 563;
+        int bookingIdToDelete = 833;
         System.out.println("\nDeleting booking with ID: " + bookingIdToDelete);
         boolean deleteSuccess = bookingDAO.deleteBooking(bookingIdToDelete);
         System.out.println("Booking deletion successful: " + deleteSuccess);
 
         bookingDAO = new FlipFitBookingDAOImpl();
 
-        int bookingIdToGet = 1;
+        int bookingIdToGet = 708;
         System.out.println("Get booking details for booking ID: " + bookingIdToGet);
         List<FlipFitBooking> bookingDetails = bookingDAO.getBookingDetails(bookingIdToGet);
         for (FlipFitBooking booking : bookingDetails) {
             System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isDeleted());
         }
+
+        FlipFitBooking ffb = bookingDAO.getBookingDetailsByBookingId(708);
+        System.out.println(ffb.getBookingId());
     }
 
     public void gymOwnerTester() {

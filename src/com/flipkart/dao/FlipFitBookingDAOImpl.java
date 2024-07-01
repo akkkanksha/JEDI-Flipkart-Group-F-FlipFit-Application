@@ -15,44 +15,6 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
     Random rand = new Random();
 
 
-        /*public static void main(String[] args) {
-
-            IFlipFitBookingDAO bookingDAO = new FlipFitBookingDAOImpl();
-
-            FlipFitBooking newBooking = new FlipFitBooking();
-            newBooking.setUserId(101);
-            newBooking.setSlotId(5);
-            newBooking.setIsdeleted(false);
-
-            //Connection con = GetConnection.getConnection();
-
-            System.out.println("Making a new booking:");
-            bookingDAO.makeBooking(newBooking);
-
-
-            int userIdToGet = 101;
-
-            System.out.println("\nGet all bookings for user ID: " + userIdToGet);
-            List<FlipFitBooking> bookings = bookingDAO.getAllBookings(userIdToGet);
-            for (FlipFitBooking booking : bookings) {
-                System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
-            }
-
-            int bookingIdToDelete = 1;
-            System.out.println("\nDeleting booking with ID: " + bookingIdToDelete);
-            boolean deleteSuccess = bookingDAO.deleteBooking(bookingIdToDelete);
-            System.out.println("Booking deletion successful: " + deleteSuccess);
-
-            bookingDAO = new FlipFitBookingDAOImpl();
-
-            int bookingIdToGet = 1;
-            System.out.println("Get booking details for booking ID: " + bookingIdToGet);
-            List<FlipFitBooking> bookingDetails = bookingDAO.getBookingDetails(bookingIdToGet);
-            for (FlipFitBooking booking : bookingDetails) {
-                System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
-            }
-        }*/
-
     @Override
     public void makeBooking(FlipFitBooking booking) {
         try {
@@ -86,7 +48,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("DELETE FROM Booking WHERE id = ?");
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM Booking WHERE bookingID = ?");
             stmt.setInt(1, bookingId);
 
             int i = stmt.executeUpdate();
@@ -148,7 +110,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Booking WHERE id = ?");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Booking WHERE bookingID = ?");
             stmt.setInt(1, bookingId);
 
             ResultSet rs = stmt.executeQuery();
