@@ -128,7 +128,9 @@ public class GymFlipFitApplication {
                         flipFitGymCustomer.setPinCode(pinCode);
                         flipFitGymCustomer.setRole(1);
 
-                        GCBservice.registerCustomer(flipFitGymCustomer);
+
+                        flipFitGymCustomer=GCBservice.registerCustomer(flipFitGymCustomer);
+                        gymCustomer.setUserID(flipFitGymCustomer.getUserId());
                         System.out.println("Registration completed");
                         System.out.println("Customer Menu");
 
