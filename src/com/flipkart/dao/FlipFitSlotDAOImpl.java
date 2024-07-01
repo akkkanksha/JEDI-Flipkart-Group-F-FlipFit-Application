@@ -7,9 +7,56 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
+    public static void main(String[] args) {
+        IFlipFitSlotDAO slotDAO = new FlipFitSlotDAOImpl();
+
+        FlipFitSlots newSlot = new FlipFitSlots();
+        newSlot.setSlotId(1);
+        newSlot.setCentreId(101);
+        newSlot.setSlotTime(System.currentTimeMillis());
+        newSlot.setSeatsAvailable(50);
+
+        System.out.println("Adding a new slot:");
+        boolean isAdded = slotDAO.addSlot(newSlot);
+        System.out.println("Slot added: " + isAdded);
+
+        int centerIdToRetrieve = 101;
+        System.out.println("\nRetrieving all slots for center ID: " + centerIdToRetrieve);
+        List<FlipFitSlots> slots = slotDAO.getAllSlots(centerIdToRetrieve);
+        for (FlipFitSlots slot : slots) {
+            System.out.println("Slot ID: " + slot.getSlotId() + ", Center ID: " + slot.getCentreId() +
+                    ", Slot Time: " + slot.getSlotTime() + ", Seats Available: " + slot.getSeatsAvailable());
+        }
+
+        FlipFitSlots slotToUpdate = new FlipFitSlots();
+        slotToUpdate.setSlotId(1);
+        slotToUpdate.setCentreId(102);
+        slotToUpdate.setSlotTime(System.currentTimeMillis() + 3600000);
+        slotToUpdate.setSeatsAvailable(45);
+
+        System.out.println("\nUpdating slot with ID: " + slotToUpdate.getSlotId());
+        boolean isUpdated = slotDAO.changeSlot(slotToUpdate);
+        System.out.println("Slot updated: " + isUpdated);
+
+        int slotIdToDelete = 1;
+        System.out.println("\nDeleting slot with ID: " + slotIdToDelete);
+        boolean isDeleted = slotDAO.deleteSlot(slotIdToDelete);
+        System.out.println("Slot deleted: " + isDeleted);
+
+        int slotIdToGet = 1;
+        System.out.println("\nGet slot details for slot ID: " + slotIdToGet);
+        List<FlipFitSlots> slotDetails = slotDAO.getSlotDetails(slotIdToGet);
+        for (FlipFitSlots slot : slotDetails) {
+            System.out.println("Slot ID: " + slot.getSlotId() + ", Center ID: " + slot.getCentreId() +
+                    ", Slot Time: " + slot.getSlotTime() + ", Seats Available: " + slot.getSeatsAvailable());
+        }
+    }
+
+
     @Override
     public boolean addSlot(FlipFitSlots slot) {
         try {
@@ -104,7 +151,7 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int slotID = rs.getInt("slotId");
-                int centerID = rs.getInt("centerId");
+                int centreID = rs.getInt("centerId");
                 long StartTime = rs.getLong("startTime");
                 int SeatsAvailable = rs.getInt("seatsAvailable");
 
@@ -121,7 +168,39 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
         }
         return slots;
     }
-    public FlipFitSlots getSlotDetailsById(int slotId){
-        return new FlipFitSlots();
+
+    @Override
+    public FlipFitSlots getSlotDetailsById(int slotId) {
+        return null;
+    }
+
+    @Override
+    public List<FlipFitSlots> getSlotDetails(int slotId) {
+        FlipFitSlots slot = null;
+        try {
+            Connection con = GetConnection.getConnection();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Slot WHERE slotId = ?");
+            stmt.setInt(1, slotId);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int slotid = rs.getInt("slotID");
+                int centreId = rs.getInt("centreID");
+                long StartTime = rs.getLong("startTime");
+                int SeatsAvailable = rs.getInt("seatsAvailable");
+
+                slot = new FlipFitSlots();
+            }
+
+            rs.close();
+            stmt.close();
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error retrieving slot details by ID: " + e.getMessage());
+        }
+        return Collections.singletonList(slot);
     }
 }
