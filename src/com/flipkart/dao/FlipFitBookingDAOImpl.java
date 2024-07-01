@@ -9,8 +9,11 @@ import com.flipkart.constant.DBConstants;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
+    Random rand = new Random();
+
 
         /*public static void main(String[] args) {
 
@@ -57,10 +60,13 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO Booking VALUES (?, ?, ?)");
-            stmt.setInt(1, booking.getUserId());
-            stmt.setInt(2, booking.getSlotId());
-            stmt.setBoolean(3, booking.isdeleted());
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Booking VALUES (?, ?, ?, ?, ?)");
+            booking.setBookingId(rand.nextInt(1000));
+            stmt.setInt(1, booking.getBookingId());
+            stmt.setInt(2, booking.getUserId());
+            stmt.setInt(3, booking.getSlotTime());
+            stmt.setInt(4, booking.getSlotId());
+            stmt.setBoolean(5, booking.isDeleted());
 
             int i = stmt.executeUpdate();
             System.out.println(i + " records inserted");

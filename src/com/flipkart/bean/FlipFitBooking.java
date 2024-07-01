@@ -33,7 +33,7 @@ public class FlipFitBooking {
     }
 
 
-    public boolean isdeleted() {
+    public boolean isDeleted() {
         return isdeleted;
     }
 

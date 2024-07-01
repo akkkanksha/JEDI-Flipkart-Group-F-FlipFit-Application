@@ -32,6 +32,7 @@ public class DAOTester {
         newBooking.setUserId(101);
         newBooking.setSlotId(5);
         newBooking.setIsdeleted(false);
+        newBooking.setSlotTime(3);
 
         //Connection con = GetConnection.getConnection();
 
@@ -44,10 +45,10 @@ public class DAOTester {
         System.out.println("\nGet all bookings for user ID: " + userIdToGet);
         List<FlipFitBooking> bookings = bookingDAO.getAllBookings(userIdToGet);
         for (FlipFitBooking booking : bookings) {
-            System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
+            System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isDeleted());
         }
 
-        int bookingIdToDelete = 1;
+        int bookingIdToDelete = 563;
         System.out.println("\nDeleting booking with ID: " + bookingIdToDelete);
         boolean deleteSuccess = bookingDAO.deleteBooking(bookingIdToDelete);
         System.out.println("Booking deletion successful: " + deleteSuccess);
@@ -58,7 +59,7 @@ public class DAOTester {
         System.out.println("Get booking details for booking ID: " + bookingIdToGet);
         List<FlipFitBooking> bookingDetails = bookingDAO.getBookingDetails(bookingIdToGet);
         for (FlipFitBooking booking : bookingDetails) {
-            System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
+            System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isDeleted());
         }
     }
 
