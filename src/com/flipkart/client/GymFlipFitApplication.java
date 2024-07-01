@@ -5,9 +5,11 @@ import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.bean.FlipFitUser;
 import com.flipkart.business.FlipFitAdminBusiness;
+import com.flipkart.business.FlipFitGymCustomerBusiness;
 import com.flipkart.business.FlipFitGymOwnerBusiness;
 import com.flipkart.business.interfaces.IFlipFitAdmin;
 import com.flipkart.dao.FlipFitAdminDAOImpl;
+import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
 import com.flipkart.dao.FlipFitGymOwnerDAOImpl;
 import com.flipkart.dao.interfaces.IFlipFitAdminDAO;
 import com.flipkart.exceptions.ExceptionHandler;
@@ -46,8 +48,15 @@ public class GymFlipFitApplication {
                         switch (role) {
                             case "Customer": {
                                 // customer menu
+                                FlipFitUser gymCustomer = new FlipFitUser();
+                                gymCustomer.setEmailID(username);
+                                gymCustomer.setPassword(password);
+
+                                FlipFitGymCustomerDAOImpl flipFitGymCustomerDAO = new FlipFitGymCustomerDAOImpl();
+                                FlipFitGymCustomerBusiness GCBservice = new FlipFitGymCustomerBusiness(flipFitGymCustomerDAO);
+
+                                gymCustomer=GCBservice.login(gymCustomer);
                                 System.out.println("Customer Menu");
-                                FlipFitGymCustomer gymCustomer = new FlipFitGymCustomer();
                                 GymFlipFitCustomerMenu.getFlipFitCustomerMenu(gymCustomer);
                                 break;
                             }
@@ -101,8 +110,7 @@ public class GymFlipFitApplication {
                         String role = "Customer";
                         System.out.println("Registration completed");
                         System.out.println("Customer Menu");
-                        FlipFitGymCustomer gymCustomer = new FlipFitGymCustomer();
-
+                        FlipFitUser gymCustomer = new FlipFitUser();
                         GymFlipFitCustomerMenu.getFlipFitCustomerMenu(gymCustomer);
                         break;
                     }

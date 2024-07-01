@@ -55,7 +55,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO{
 
     public List<FlipFitGymCentre> viewCentres() {
         List<FlipFitGymCentre> gymcentres = new ArrayList<>();
-        String sql = "SELECT centreID, ownerID, capacity FROM GymCentre";
+        String sql = "SELECT * FROM GymCentre";
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -63,6 +63,8 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO{
                 gymcentre.setCentreID(rs.getInt("centreID"));
                 gymcentre.setOwnerID(rs.getInt("ownerID"));
                 gymcentre.setCapacity(rs.getInt("capacity"));
+                gymcentre.setCity(rs.getString("city"));
+                gymcentre.setPincode(rs.getString("pincode"));
                 gymcentres.add(gymcentre);
             }
         }

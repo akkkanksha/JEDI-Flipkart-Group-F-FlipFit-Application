@@ -102,7 +102,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL, DBConstants.USER, DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Booking WHERE userId = ?");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Booking WHERE userID = ?");
             stmt.setInt(1, userId);
 
             ResultSet rs = stmt.executeQuery();
@@ -110,12 +110,14 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             while (rs.next()) {
                 int UserId = rs.getInt("userID");
                 int slotId = rs.getInt("slotID");
+                int bookingId = rs.getInt("bookingID");
                 boolean isdeleted = rs.getBoolean("isdeleted");
 
                 FlipFitBooking booking = new FlipFitBooking();
                 booking.setUserId(UserId);
                 booking.setSlotId(slotId);
                 booking.setIsdeleted(isdeleted);
+                booking.setBookingId(bookingId);
 
                 bookings.add(booking);
             }

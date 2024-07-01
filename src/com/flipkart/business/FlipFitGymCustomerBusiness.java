@@ -20,7 +20,7 @@ public class FlipFitGymCustomerBusiness implements IFlipFitGymCustomer {
         List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(userId);
         for (FlipFitBooking booking : bookingsList) {
             FlipFitSlots slotdetails = slotDAO.getSlotDetailsById(booking.getSlotId());
-            System.out.println("Booking ID: " + booking.getBookingId() + "Slot timing " + slotdetails.getSlotTime());
+            System.out.println("Booking ID: " + booking.getBookingId() + " Slot timing " + slotdetails.getSlotTime());
         }
         return bookingsList;
     }
@@ -72,6 +72,8 @@ public class FlipFitGymCustomerBusiness implements IFlipFitGymCustomer {
     public FlipFitUser login(FlipFitUser flipFitUser) {
         FlipFitUserDAOImpl userDAO = new FlipFitUserDAOImpl();
         flipFitUser.setRoleID(1);
-        return userDAO.loginAsCustomer(flipFitUser.getEmailID(), flipFitUser.getPassword());
+        flipFitUser = userDAO.loginAsCustomer(flipFitUser.getEmailID(), flipFitUser.getPassword());
+        return flipFitUser;
     }
+
 }
