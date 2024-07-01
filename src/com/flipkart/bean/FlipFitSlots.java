@@ -1,25 +1,25 @@
 package com.flipkart.bean;
 
 public class FlipFitSlots {
-    private int slotId;
-    private int centreId;
+    private int slotID;
+    private int centreID;
     private long slotTime;
     private int seatsAvailable;
 
-    public int getSlotId() {
-        return slotId;
+    public int getSlotID() {
+        return slotID;
     }
 
-    public void setSlotId(int slotId) {
-        this.slotId = slotId;
+    public void setSlotID(int slotID) {
+        this.slotID = slotID;
     }
 
-    public int getCentreId() {
-        return centreId;
+    public int getCentreID() {
+        return centreID;
     }
 
-    public void setCentreId(int centerId) {
-        this.centreId = centerId;
+    public void setCentreID(int centerId) {
+        this.centreID = centerId;
     }
 
     public long getSlotTime() {

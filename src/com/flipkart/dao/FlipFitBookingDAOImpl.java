@@ -1,5 +1,4 @@
 package com.flipkart.dao;
-import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.dao.interfaces.IFlipFitBookingDAO;
 import java.sql.*;
 import com.flipkart.bean.FlipFitBooking;
@@ -17,7 +16,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
 
             FlipFitBooking newBooking = new FlipFitBooking();
             newBooking.setUserId(101);
-            newBooking.setSlotId(5);
+            newBooking.setSlotID(5);
             newBooking.setIsdeleted(false);
 
             //Connection con = GetConnection.getConnection();
@@ -31,7 +30,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             System.out.println("\nGet all bookings for user ID: " + userIdToGet);
             List<FlipFitBooking> bookings = bookingDAO.getAllBookings(userIdToGet);
             for (FlipFitBooking booking : bookings) {
-                System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
+                System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotID() + ", Is Deleted: " + booking.isdeleted());
             }
 
             int bookingIdToDelete = 1;
@@ -45,7 +44,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
             System.out.println("Get booking details for booking ID: " + bookingIdToGet);
             List<FlipFitBooking> bookingDetails = bookingDAO.getBookingDetails(bookingIdToGet);
             for (FlipFitBooking booking : bookingDetails) {
-                System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotId() + ", Is Deleted: " + booking.isdeleted());
+                System.out.println("Booking ID: " + booking.getUserId() + ", Slot ID: " + booking.getSlotID() + ", Is Deleted: " + booking.isdeleted());
             }
         }
 
@@ -58,7 +57,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
 
             PreparedStatement stmt = con.prepareStatement("INSERT INTO Booking VALUES (?, ?, ?)");
             stmt.setInt(1, booking.getUserId());
-            stmt.setInt(2, booking.getSlotId());
+            stmt.setInt(2, booking.getSlotID());
             stmt.setBoolean(3, booking.isdeleted());
 
             int i = stmt.executeUpdate();
@@ -117,7 +116,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
 
                 FlipFitBooking booking = new FlipFitBooking();
                 booking.setUserId(UserId);
-                booking.setSlotId(slotId);
+                booking.setSlotID(slotId);
                 booking.setIsdeleted(isdeleted);
 
                 bookings.add(booking);
@@ -153,7 +152,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
 
                 FlipFitBooking booking = new FlipFitBooking();
                 booking.setUserId(UserId);
-                booking.setSlotId(SlotId);
+                booking.setSlotID(SlotId);
                 booking.setIsdeleted(IsDeleted);
 
                 bookings.add(booking);
@@ -181,7 +180,7 @@ public class FlipFitBookingDAOImpl implements IFlipFitBookingDAO {
                 if (rs.next()) {
                     booking = new FlipFitBooking();
                     booking.setBookingId(rs.getInt("bookingID"));
-                    booking.setSlotId(rs.getInt("slotID"));
+                    booking.setSlotID(rs.getInt("slotID"));
                     booking.setSlotTime(rs.getInt("slotTime"));
                 }
             }

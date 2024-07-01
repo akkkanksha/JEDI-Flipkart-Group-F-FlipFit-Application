@@ -42,7 +42,7 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
 
             while (rs.next()) {
                 FlipFitGymOwner owner = new FlipFitGymOwner();
-                owner.setUserId(rs.getInt("ownerID"));
+                owner.setUserID(rs.getInt("ownerID"));
                 owner.setAadharNumber(rs.getString("Aadhar"));
                 pendingOwners.add(owner);
             }
@@ -63,7 +63,7 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
             while (rs.next()) {
                 // Assuming you have a User class
                 FlipFitGymCustomer user = new FlipFitGymCustomer(); // Replace with actual User class
-                user.setUserId(rs.getInt("userID"));
+                user.setUserID(rs.getInt("userID"));
                 user.setUserName(rs.getString("userName"));
                 users.add(user);
             }

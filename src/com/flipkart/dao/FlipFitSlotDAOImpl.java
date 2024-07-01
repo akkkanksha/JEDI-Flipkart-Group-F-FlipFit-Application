@@ -15,8 +15,8 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
         IFlipFitSlotDAO slotDAO = new FlipFitSlotDAOImpl();
 
         FlipFitSlots newSlot = new FlipFitSlots();
-        newSlot.setSlotId(1);
-        newSlot.setCentreId(101);
+        newSlot.setSlotID(1);
+        newSlot.setCentreID(101);
         newSlot.setSlotTime(System.currentTimeMillis());
         newSlot.setSeatsAvailable(50);
 
@@ -28,17 +28,17 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
         System.out.println("\nRetrieving all slots for center ID: " + centerIdToRetrieve);
         List<FlipFitSlots> slots = slotDAO.getAllSlots(centerIdToRetrieve);
         for (FlipFitSlots slot : slots) {
-            System.out.println("Slot ID: " + slot.getSlotId() + ", Center ID: " + slot.getCentreId() +
+            System.out.println("Slot ID: " + slot.getSlotID() + ", Center ID: " + slot.getCentreID() +
                     ", Slot Time: " + slot.getSlotTime() + ", Seats Available: " + slot.getSeatsAvailable());
         }
 
         FlipFitSlots slotToUpdate = new FlipFitSlots();
-        slotToUpdate.setSlotId(1);
-        slotToUpdate.setCentreId(102);
+        slotToUpdate.setSlotID(1);
+        slotToUpdate.setCentreID(102);
         slotToUpdate.setSlotTime(System.currentTimeMillis() + 3600000);
         slotToUpdate.setSeatsAvailable(45);
 
-        System.out.println("\nUpdating slot with ID: " + slotToUpdate.getSlotId());
+        System.out.println("\nUpdating slot with ID: " + slotToUpdate.getSlotID());
         boolean isUpdated = slotDAO.changeSlot(slotToUpdate);
         System.out.println("Slot updated: " + isUpdated);
 
@@ -51,7 +51,7 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
         System.out.println("\nGet slot details for slot ID: " + slotIdToGet);
         List<FlipFitSlots> slotDetails = slotDAO.getSlotDetails(slotIdToGet);
         for (FlipFitSlots slot : slotDetails) {
-            System.out.println("Slot ID: " + slot.getSlotId() + ", Center ID: " + slot.getCentreId() +
+            System.out.println("Slot ID: " + slot.getSlotID() + ", Center ID: " + slot.getCentreID() +
                     ", Slot Time: " + slot.getSlotTime() + ", Seats Available: " + slot.getSeatsAvailable());
         }
     }
@@ -66,8 +66,8 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
 
             PreparedStatement stmt = con.prepareStatement("INSERT INTO Slot (slotId, centerId, startTime, seatsAvailable) VALUES (?, ?, ?, ?)");
 
-            stmt.setInt(1, slot.getSlotId());
-            stmt.setInt(2, slot.getCentreId());
+            stmt.setInt(1, slot.getSlotID());
+            stmt.setInt(2, slot.getCentreID());
             stmt.setLong(3, slot.getSlotTime());
             stmt.setInt(4, slot.getSeatsAvailable());
             int i = stmt.executeUpdate();
@@ -117,10 +117,10 @@ public class FlipFitSlotDAOImpl implements IFlipFitSlotDAO {
 
             PreparedStatement stmt = con.prepareStatement("UPDATE Slot SET centerId = ?, startTime = ?, seatsAvailable = ? WHERE slotId = ?");
 
-            stmt.setInt(1, slot.getCentreId());
+            stmt.setInt(1, slot.getCentreID());
             stmt.setLong(2, slot.getSlotTime());
             stmt.setInt(3, slot.getSeatsAvailable());
-            stmt.setInt(4, slot.getSlotId());
+            stmt.setInt(4, slot.getSlotID());
 
             int i = stmt.executeUpdate();
             System.out.println(i + " slot updated");

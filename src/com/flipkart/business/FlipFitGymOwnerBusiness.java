@@ -1,33 +1,46 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.FlipFitGymCentre;
 import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.interfaces.IFlipFitGymOwner;
+import com.flipkart.dao.FlipFitGymCentreDAOImpl;
+import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
+import com.flipkart.dao.FlipFitGymOwnerDAOImpl;
 import com.flipkart.exceptions.ExceptionHandler;
 import com.flipkart.exceptions.InvalidChoiceException;
 
 import java.util.Scanner;
-
+import java.util.List;
 public class FlipFitGymOwnerBusiness implements IFlipFitGymOwner {
     Scanner scanner = new Scanner(System.in);
     public boolean addCentre() {
-        System.out.println("Give the following details:");
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("City: ");
-        String city = scanner.nextLine();
-        System.out.print("Address: ");
-        String address = scanner.nextLine();
-        System.out.println("Centre added:> with name " + name + " and city " + city + " and address " + address);
-
+        FlipFitGymCentreBusiness flipFitGymCentre = new FlipFitGymCentreBusiness();
+        flipFitGymCentre.createGymCentre();
         return true;
     }
 
-    public void viewCentres() {
+    public void viewCentresByOwnerID(int ownerID) {
         System.out.println("Centres listed:> ");
+        FlipFitGymOwnerDAOImpl flipFitGymOwnerDAO = new FlipFitGymOwnerDAOImpl();
+        FlipFitGymOwner owner = flipFitGymOwnerDAO.getOwnerDetailsByID(ownerID);
+        FlipFitGymCentreDAOImpl flipFitGymCentreDAO = new FlipFitGymCentreDAOImpl();
+        List<FlipFitGymCentre> centreList = flipFitGymCentreDAO.viewCentres(owner);
+        for (FlipFitGymCentre centre : centreList) {
+            System.out.println("Centre ID: " + centre.getCentreID() + "City is: " + centre.getCity());
+        }
     }
-    public void viewFlipFitCustomers() {
+    public void viewFlipFitCustomersByOwnerID(int ownerID) {
         System.out.println("Flip fit customers:> ");
+        FlipFitGymOwnerDAOImpl flipFitGymOwnerDAO = new FlipFitGymOwnerDAOImpl();
+        FlipFitGymOwner owner = flipFitGymOwnerDAO.getOwnerDetailsByID(ownerID);
+
+        FlipFitGymCustomerDAOImpl flipFitGymCustomerDAO = new FlipFitGymCustomerDAOImpl();
+        List<FlipFitGymCustomer> customerList=flipFitGymCustomerDAO.viewFlipFitCustomersByOwner(owner);
+        for (FlipFitGymCustomer customer : customerList) {
+            System.out.println("Customer ID: " + customer.getUserID() + "EmailID: " + customer.getEmailID() + "PhoneNumber: " + customer.getPhoneNumber()  + "City: " + customer.getCity());
+        }
+
     }
     public void viewPayments() {
         System.out.println("Payments listed:> ");

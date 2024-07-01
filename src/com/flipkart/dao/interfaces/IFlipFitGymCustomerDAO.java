@@ -14,6 +14,7 @@ public interface IFlipFitGymCustomerDAO {
     public List<FlipFitGymCustomer> getUserList();
     public FlipFitGymCustomer createCustomer(FlipFitGymCustomer flipFitGymCustomer);
     public boolean editDetails(FlipFitGymCustomer customer);
-    public List<FlipFitUser> viewFlipFitCustomers(FlipFitGymCentre centre);
+    public List<FlipFitGymCustomer> viewFlipFitCustomersByCentre(FlipFitGymCentre centre);
+    public List<FlipFitGymCustomer> viewFlipFitCustomersByOwner(FlipFitGymOwner owner);
 
 }

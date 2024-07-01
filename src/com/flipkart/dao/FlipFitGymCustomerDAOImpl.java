@@ -23,7 +23,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
 
             while (rs.next()) {
                 FlipFitSlots slot = new FlipFitSlots();
-                slot.setSlotId(rs.getInt("slotID"));
+                slot.setSlotID(rs.getInt("slotID"));
                 bookedSlots.add(slot);
             }
         } catch (SQLException e) {
@@ -92,7 +92,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, customer.getCity());
             stmt.setString(2, customer.getPinCode());
-            stmt.setInt(3,customer.getUserId());
+            stmt.setInt(3,customer.getUserID());
             ResultSet rs = stmt.executeQuery();
             if(rs!=null) {
                 return true;
@@ -106,7 +106,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, customer.getUserName());
             stmt.setString(2, customer.getPassword());
-            stmt.setInt(3,customer.getUserId());
+            stmt.setInt(3,customer.getUserID());
             ResultSet rs = stmt.executeQuery();
             if(rs!=null) {
                 return true;
@@ -146,7 +146,7 @@ public class FlipFitGymCustomerDAOImpl implements IFlipFitGymCustomerDAO {
         FlipFitGymCustomerDAOImpl FFGCDAO = new FlipFitGymCustomerDAOImpl();
         List<FlipFitSlots> slots=FFGCDAO.viewBookedSlots(FFU.getUserID());
         for(FlipFitSlots slot : slots){
-            System.out.println(slot.getSlotId());
+            System.out.println(slot.getSlotID());
         }
 
 

@@ -4,6 +4,9 @@ public class FlipFitUser {
     private String userName;
     private int userID;
     private int roleID;
+    private String emailID;
+    private String phoneNumber;
+    private String password;
 
     public String getEmailID() {
         return emailID;
@@ -21,8 +24,6 @@ public class FlipFitUser {
         this.phoneNumber = phoneNumber;
     }
 
-    private String emailID;
-    private String phoneNumber;
 
     public String getPassword() {
         return password;
@@ -56,5 +57,5 @@ public class FlipFitUser {
         this.userName = userName;
     }
 
-    private String password;
+
 }

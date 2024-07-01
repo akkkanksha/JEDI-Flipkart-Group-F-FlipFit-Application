@@ -1,7 +1,7 @@
 package com.flipkart.bean;
 
 abstract class AbstractUser {
-    private int userId;
+    private int userID;
     private String userName;
     private String password;
     private String emailID;
@@ -11,12 +11,12 @@ abstract class AbstractUser {
     // Role: 0 -> customer, 1 -> gym owner
     private int role;
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {

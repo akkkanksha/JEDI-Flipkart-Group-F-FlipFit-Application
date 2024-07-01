@@ -1,6 +1,6 @@
 package com.flipkart.client;
 
-import com.flipkart.business.FlipFitGymCentreBusiness;
+import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.business.FlipFitGymOwnerBusiness;
 import com.flipkart.exceptions.InvalidChoiceException;
 
@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class GymFlipFitOwnerMenu {
     public static void getFlipFitOwnerView() throws InvalidChoiceException {
+        FlipFitGymOwner owner = new FlipFitGymOwner();
+
         try {
             FlipFitGymOwnerBusiness GOBservice = new FlipFitGymOwnerBusiness();
             Scanner sc = new Scanner(System.in);
@@ -29,13 +31,13 @@ public class GymFlipFitOwnerMenu {
                         break;
                     }
                     case 2: {
-                        System.out.println("View Centres");
-                        GOBservice.viewCentres();
+                        System.out.println("View Centres Of Owner");
+                        GOBservice.viewCentresByOwnerID(owner.getUserID());
                         break;
                     }
                     case 3: {
                         System.out.println("View Customers");
-                        GOBservice.viewFlipFitCustomers();
+                        GOBservice.viewFlipFitCustomersByOwnerID(owner.getUserID());
                         break;
                     }
                     case 4: {

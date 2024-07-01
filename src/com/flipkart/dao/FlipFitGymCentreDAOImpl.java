@@ -132,8 +132,8 @@ public class FlipFitGymCentreDAOImpl implements IFlipFitGymCentreDAO{
 
                 while(rs.next()){
                     FlipFitSlots FFS = new FlipFitSlots();
-                    FFS.setSlotId(rs.getInt("slotID"));
-                    FFS.setCentreId(rs.getInt("centreID"));
+                    FFS.setSlotID(rs.getInt("slotID"));
+                    FFS.setCentreID(rs.getInt("centreID"));
                     FFS.setSeatsAvailable(rs.getInt("seatsAvailable"));
                     FFS.setSlotTime(rs.getInt("slotTime"));
 

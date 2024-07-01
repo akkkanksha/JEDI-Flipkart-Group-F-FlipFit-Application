@@ -8,11 +8,14 @@ import com.flipkart.dao.FlipFitAdminDAOImpl;
 import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
 import com.flipkart.dao.FlipFitGymOwnerDAOImpl;
 
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class FlipFitAdminBusiness implements IFlipFitAdmin {
     private FlipFitAdmin FFAdmin;
+    Scanner sc=new Scanner(System.in);
     public FlipFitAdminBusiness(FlipFitAdmin FFAdmin){
         this.FFAdmin=FFAdmin;
     }
@@ -23,10 +26,42 @@ public class FlipFitAdminBusiness implements IFlipFitAdmin {
         flipFitAdminDAOImpl.adminLogin(adminUser);
         return true;
     }
-    public List<FlipFitGymOwner> getPendingOwnerList(){
+    public void getPendingOwnerList(){
         System.out.println("AdminUserBusiness.getPendingOwnerList");
         FlipFitGymOwnerDAOImpl flipFitGymOwnerDAOImpl=new FlipFitGymOwnerDAOImpl();
-        return flipFitGymOwnerDAOImpl.getPendingOwnerList();
+        List<FlipFitGymOwner> flipFitGymOwnerList = flipFitGymOwnerDAOImpl.getOwnerList();
+        for(FlipFitGymOwner flipFitGymOwner: flipFitGymOwnerList){
+            if(flipFitGymOwner.isApproved==false){
+                System.out.println("Owner name :" + flipFitGymOwner.getUserName() + " City :" + flipFitGymOwner.getCity());
+            }
+        }
+        System.out.println("Type the ownerId of owner you wish to approve");
+        int ownerID = sc.nextInt();
+        if(validateOwner(ownerID)){
+            FlipFitGymOwner flipFitGymOwner = flipFitGymOwnerDAOImpl.getOwnerDetailsByID(ownerID);
+            flipFitGymOwnerDAOImpl.createOwner(flipFitGymOwner);
+        }
+    }
+    public void getApprovedOwnerList(){
+        System.out.println("AdminUserBusiness.getPendingOwnerList");
+        FlipFitGymOwnerDAOImpl flipFitGymOwnerDAOImpl=new FlipFitGymOwnerDAOImpl();
+
+        List<FlipFitGymOwner> flipFitGymOwnerList = flipFitGymOwnerDAOImpl.getOwnerList();
+        for(FlipFitGymOwner flipFitGymOwner: flipFitGymOwnerList){
+            if(flipFitGymOwner.getIsApproved()){
+                System.out.println("Owner name :" + flipFitGymOwner.getUserName() + " City :" + flipFitGymOwner.getCity());
+            }
+        }
+
+        System.out.println("Type the ownerId of owner you wish to delete");
+        int ownerID = sc.nextInt();
+        if(flipFitGymOwnerDAOImpl.getOwnerDetailsByID(ownerID)!=null){
+            deleteOwner(ownerID);
+            System.out.println("Successfully deleted owner :" + ownerID);
+        }
+        else{
+            System.out.println("Was not able to delete owner :" + ownerID);
+        }
     }
     public List<FlipFitGymCustomer> getUserList(){
         System.out.println("AdminUserBusiness.getUserList");

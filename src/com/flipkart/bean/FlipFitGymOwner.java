@@ -1,17 +1,17 @@
 package com.flipkart.bean;
 
 public class FlipFitGymOwner extends AbstractUser{
-    public String panId;
+    public String panID;
     public String gstNum;
     public String aadharNumber;
     public boolean isApproved;
 
-    public String getPanId() {
-        return panId;
+    public String getPanID() {
+        return panID;
     }
 
-    public void setPanId(String panId) {
-        panId = panId;
+    public void setPanID(String panID) {
+        panID = panID;
     }
 
     public String getGSTNum() {

@@ -102,7 +102,7 @@ public class DAOTester {
         FFGC.setCentreID(187);
         ArrayList<FlipFitSlots> ffsarr = FFDAO.viewAvailableSlots(FFGC.getCentreID());
         for(FlipFitSlots fs : ffsarr){
-            System.out.println(fs.getSlotId());
+            System.out.println(fs.getSlotID());
         }
     }
 }

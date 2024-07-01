@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.flipkart.dao.FlipFitBookingDAOImpl;
+import com.flipkart.dao.FlipFitGymCentreDAOImpl;
 import com.flipkart.dao.FlipFitSlotDAOImpl;
 import com.flipkart.exceptions.ExceptionHandler;
 import com.flipkart.exceptions.InvalidChoiceException;
@@ -24,7 +25,7 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
         FlipFitSlotDAOImpl slotDAO = new FlipFitSlotDAOImpl();
         List<FlipFitBooking> bookingsList= bookingDAO.getAllBookings(userId);
         for (FlipFitBooking booking : bookingsList) {
-            FlipFitSlots slotdetails = slotDAO.getSlotDetailsById(booking.getSlotId());
+            FlipFitSlots slotdetails = slotDAO.getSlotDetailsById(booking.getSlotID());
             System.out.println("Booking ID: " + booking.getBookingId() + "Slot timing " + slotdetails.getSlotTime());
         }
 
@@ -40,7 +41,12 @@ public class FlipFitGymCustomerBusiness implements  IFlipFitGymCustomer {
         return true;
     }
     public void viewCentres() {
-        System.out.println("view centres called:> ");
+        System.out.println("Here are all the centres in your city : ");
+        FlipFitGymCentreDAOImpl flipFitGymCentreDAO = new FlipFitGymCentreDAOImpl();
+        List<FlipFitGymCentre> flipFitGymCentres = flipFitGymCentreDAO.viewAllCentres();
+        for(FlipFitGymCentre centre : flipFitGymCentres){
+            System.out.println();
+        }
     }
     public boolean makePayment(int userId) {
         System.out.println("Make payment called:> ");

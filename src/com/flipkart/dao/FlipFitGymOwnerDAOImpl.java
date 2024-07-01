@@ -1,7 +1,6 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.FlipFitGymCentre;
-import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.constant.DBConstants;
 import com.flipkart.dao.interfaces.IFlipFitGymOwnerDAO;
@@ -90,7 +89,7 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
         String sql = "UPDATE GymOwner SET PAN=?, Aadhar=? ,GSTIN=? WHERE ownerID=owner.userId";
 
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
-            stmt.setString(1, owner.getPanId());
+            stmt.setString(1, owner.getPanID());
             stmt.setString(2, owner.getAadharNumber());
             stmt.setString(3,owner.getGSTNum());
             ResultSet rs = stmt.executeQuery();

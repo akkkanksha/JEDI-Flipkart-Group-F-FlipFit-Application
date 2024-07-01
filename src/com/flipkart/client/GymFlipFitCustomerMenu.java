@@ -16,7 +16,7 @@ public class GymFlipFitCustomerMenu {
 
     public static void getFlipFitCustomerMenu(FlipFitGymCustomer gymCustomer) throws InvalidChoiceException {
         try {
-            int userId = gymCustomer.getUserId();
+            int userId = gymCustomer.getUserID();
             Scanner sc = new Scanner(System.in);
             FlipFitGymCustomerBusiness FCBservice = new FlipFitGymCustomerBusiness();
             FlipFitGymCentreBusiness FCService = new FlipFitGymCentreBusiness();
@@ -37,7 +37,7 @@ public class GymFlipFitCustomerMenu {
                         System.out.println("Type 2. If you wish to cancel");
                         choice = sc.nextInt();
                         if (choice == 2) {
-                            System.out.println("Choose the slot you wish to cancel");
+                            System.out.println("Enter the booking ID you wish to cancel");
                             int bookingId = sc.nextInt();
                             BService.deleteBooking(bookingId);
                         }
@@ -51,7 +51,7 @@ public class GymFlipFitCustomerMenu {
                         List<FlipFitSlots> slotsList = FCService.viewAvailableSlots(centreId);
                         System.out.println("These are the available slots:");
                         for (FlipFitSlots flipFitSlots : slotsList) {
-                            System.out.println("Slot Id is" + flipFitSlots.getSlotId() + "Slot Timing is " + flipFitSlots.getSlotTime() + "Availability is " + flipFitSlots.getSeatsAvailable());
+                            System.out.println("Slot Id is" + flipFitSlots.getSlotID() + "Slot Timing is " + flipFitSlots.getSlotTime() + "Availability is " + flipFitSlots.getSeatsAvailable());
                         }
                         System.out.println("Give the SlotId you wish to book");
                         int slotId = sc.nextInt();

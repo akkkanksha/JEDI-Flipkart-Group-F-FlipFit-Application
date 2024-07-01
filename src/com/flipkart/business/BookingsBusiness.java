@@ -14,8 +14,8 @@ public class BookingsBusiness {
 
         FlipFitBookingDAOImpl bookingDAO = new FlipFitBookingDAOImpl();
         FlipFitBooking booking = new FlipFitBooking();
-        booking.setUserId(new Random().nextInt(100));
-        booking.setSlotId(slotId);
+        booking.setBookingId(new Random().nextInt(100));
+        booking.setSlotID(slotId);
         booking.setUserId(userId);
         booking.setIsdeleted(false);
         bookingDAO.makeBooking(booking);
@@ -27,6 +27,7 @@ public class BookingsBusiness {
         FlipFitSlots currflipFitSlots = flipFitSlots;
         currflipFitSlots.setSeatsAvailable(flipFitSlots.getSeatsAvailable()-1);
         flipFitSlotsBusiness.updateAvailability(currflipFitSlots);
+
     }
 
     public boolean deleteBooking(int bookingId) {
