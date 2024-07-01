@@ -12,6 +12,7 @@ import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
 import com.flipkart.dao.FlipFitGymOwnerDAOImpl;
 import com.flipkart.exceptions.InvalidChoiceException;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class GymFlipFitOwnerMenu {
@@ -26,8 +27,7 @@ public class GymFlipFitOwnerMenu {
                 System.out.println("Choose an option:" +
                         "\n 1. Add Centre" +
                         "\n 2. View Centres" +
-                        "\n 3. Edit Owner Details" +
-                        "\n 4. Logout");
+                        "\n 3. Logout");
                 choice = sc.nextInt();
                 switch (choice) {
                     case 1: {
@@ -62,25 +62,16 @@ public class GymFlipFitOwnerMenu {
                         break;
                     }
                     case 2: {
-                        System.out.println("View Centres");
+                        System.out.println("View Centres for the owner : " + gymOwner.getUserID());
                         FlipFitGymOwner flipFitGymOwner = new FlipFitGymOwner();
                         flipFitGymOwner.setUserId(gymOwner.getUserID());
-                        GOBservice.viewCentres(flipFitGymOwner);
-                        break;
-                    }
-                    case 3: {
-                        System.out.println("Edit Details");
-                        FlipFitGymOwner flipFitGymOwner = new FlipFitGymOwner();
-                        flipFitGymOwner.setUserId(gymOwner.getUserID());
-                        FlipFitGymOwner updatedGymOwner = GOBservice.editDetails(flipFitGymOwner);
-                        if (updatedGymOwner!=null) {
-                            System.out.println("Successfully edited details");
-                        } else {
-                            System.out.println("Failed to edit details");
+                        List<FlipFitGymCentre> centreList = GOBservice.viewCentres(flipFitGymOwner);
+                        for (FlipFitGymCentre centre : centreList) {
+                            System.out.println("CentreID : " + centre.getCentreID() + " Capacity : " + centre.getCapacity() + " City : " + centre.getCity() + " State : " + centre.getState());
                         }
                         break;
                     }
-                    case 4: {
+                    case 3: {
                         System.out.println("Successful logout");
                     }
                     default: {

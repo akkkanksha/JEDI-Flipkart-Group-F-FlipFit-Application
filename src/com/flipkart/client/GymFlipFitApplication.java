@@ -11,7 +11,6 @@ import com.flipkart.business.interfaces.IFlipFitAdmin;
 import com.flipkart.dao.FlipFitAdminDAOImpl;
 import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
 import com.flipkart.dao.FlipFitGymOwnerDAOImpl;
-import com.flipkart.dao.interfaces.IFlipFitAdminDAO;
 import com.flipkart.exceptions.ExceptionHandler;
 import com.flipkart.exceptions.InvalidChoiceException;
 
@@ -28,8 +27,7 @@ public class GymFlipFitApplication {
                         "\n 1-> Login, " +
                         "\n 2-> Registration of Customer " +
                         "\n 3-> Registration of Gym Owner " +
-                        "\n 4-> Change Password" +
-                        "\n 5-> Exit \n"
+                        "\n 4-> Exit \n"
                 );
 
                 choice = in.nextInt();
@@ -96,7 +94,7 @@ public class GymFlipFitApplication {
                         break;
                     }
                     case 2: {
-
+                        System.out.println("Registration of gym customer");
                         System.out.println("Enter your email address:> ");
                         String emailID = in.next();
                         System.out.println("Enter your phone number:> ");
@@ -105,12 +103,35 @@ public class GymFlipFitApplication {
                         String city = in.next();
                         System.out.println("Enter your pin code:> ");
                         String pinCode = in.next();
-                        System.out.print("Enter your password:> ");
+                        System.out.println("Enter your password:> ");
                         String password = in.next();
-                        String role = "Customer";
+                        System.out.println("Enter username: ");
+                        String username = in.next();
+
+
+                        FlipFitUser gymCustomer = new FlipFitUser();
+                        gymCustomer.setEmailID(emailID);
+                        gymCustomer.setPassword(password);
+                        gymCustomer.setPhoneNumber(phoneNumber);
+                        gymCustomer.setUserName(username);
+
+                        FlipFitGymCustomerDAOImpl flipFitGymCustomerDAO = new FlipFitGymCustomerDAOImpl();
+                        FlipFitGymCustomerBusiness GCBservice = new FlipFitGymCustomerBusiness(flipFitGymCustomerDAO);
+
+
+                        FlipFitGymCustomer flipFitGymCustomer=new FlipFitGymCustomer();
+                        flipFitGymCustomer.setEmailID(emailID);
+                        flipFitGymCustomer.setPassword(password);
+                        flipFitGymCustomer.setPhoneNumber(phoneNumber);
+                        flipFitGymCustomer.setUserName(username);
+                        flipFitGymCustomer.setCity(city);
+                        flipFitGymCustomer.setPinCode(pinCode);
+                        flipFitGymCustomer.setRole(1);
+
+                        GCBservice.registerCustomer(flipFitGymCustomer);
                         System.out.println("Registration completed");
                         System.out.println("Customer Menu");
-                        FlipFitUser gymCustomer = new FlipFitUser();
+
                         GymFlipFitCustomerMenu.getFlipFitCustomerMenu(gymCustomer);
                         break;
                     }
@@ -124,9 +145,17 @@ public class GymFlipFitApplication {
                         String city = in.next();
                         System.out.println("Enter your pin code:> ");
                         String pinCode = in.next();
-                        System.out.print("Enter your password:> ");
+                        System.out.println("Enter your password:> ");
                         String password = in.next();
-                        String role = "GymOwner";
+                        System.out.println("Enter username: ");
+                        String username = in.next();
+                        System.out.println("Enter your panId: ");
+                        String panId = in.next();
+                        System.out.println("Enter your gstNum: ");
+                        String gstNum = in.next();
+                        System.out.println("Enter your aadharNumber: ");
+                        String aadharNumber = in.next();
+
 
 
                         FlipFitGymOwner flipFitOwner = new FlipFitGymOwner();
@@ -135,6 +164,12 @@ public class GymFlipFitApplication {
                         flipFitOwner.setPhoneNumber(phoneNumber);
                         flipFitOwner.setCity(city);
                         flipFitOwner.setPinCode(pinCode);
+                        flipFitOwner.setUserName(username);
+                        flipFitOwner.setRole(2);
+                        flipFitOwner.setGSTIN(gstNum);
+                        flipFitOwner.setAadharNumber(aadharNumber);
+                        flipFitOwner.setPanId(panId);
+                        flipFitOwner.setIsApproved(false);
 
                         FlipFitGymOwnerDAOImpl flipFitGymOwnerDAO = new FlipFitGymOwnerDAOImpl();
                         FlipFitGymOwnerBusiness GOBservice = new FlipFitGymOwnerBusiness(flipFitGymOwnerDAO);
@@ -146,10 +181,6 @@ public class GymFlipFitApplication {
                         break;
                     }
                     case 4: {
-                        System.out.println("Change password");
-                        break;
-                    }
-                    case 5: {
                         System.out.println("Exit");
                         break;
                     }

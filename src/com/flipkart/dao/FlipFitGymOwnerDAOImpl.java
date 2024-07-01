@@ -1,5 +1,6 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.FlipFitBooking;
 import com.flipkart.bean.FlipFitGymCentre;
 import com.flipkart.bean.FlipFitGymOwner;
 import com.flipkart.dao.interfaces.IFlipFitGymOwnerDAO;
@@ -45,7 +46,7 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
     public List<FlipFitGymCentre> viewCentresByOwnerID(FlipFitGymOwner owner) {
         List<FlipFitGymCentre> gymcentres = new ArrayList<>();
         int userId = owner.getUserId();
-        String sql = "SELECT centreID, ownerID, capacity FROM GymCentre where ownerID=?";
+        String sql = "SELECT centreID, ownerID, capacity, city, state, pincode FROM GymCentre where ownerID=?";
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
@@ -54,6 +55,9 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
                 gymcentre.setCentreID(rs.getInt("centreID"));
                 gymcentre.setOwnerID(rs.getInt("ownerID"));
                 gymcentre.setCapacity(rs.getInt("capacity"));
+                gymcentre.setCity(rs.getString("city"));
+                gymcentre.setState(rs.getString("state"));
+                gymcentre.setPincode(rs.getString("pincode"));
                 gymcentres.add(gymcentre);
             }
         }
@@ -89,15 +93,18 @@ public class FlipFitGymOwnerDAOImpl implements IFlipFitGymOwnerDAO {
 
     @Override
     public FlipFitGymOwner editDetails(FlipFitGymOwner owner) {
-        String sql = "UPDATE GymOwner SET PAN=?, Aadhar=? ,GSTIN=? WHERE ownerID=owner.userId";
+        int userId = owner.getUserId();
+        String sql = "UPDATE GymOwner SET PAN=?, Aadhar=? ,GSTIN=? WHERE ownerID=?";
 
         try (Connection conn = GetConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
             stmt.setString(1, owner.getPanId());
             stmt.setString(2, owner.getAadharNumber());
             stmt.setString(3,owner.getGSTNum());
-            ResultSet rs = stmt.executeQuery();
-            if(rs.next()) {
-                return owner;
+            stmt.setInt(4, userId);
+            try(ResultSet rs = stmt.executeQuery()) {
+                if(rs.next()) {
+                    return owner;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
