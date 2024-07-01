@@ -3,7 +3,7 @@ package com.flipkart.bean;
 public class FlipFitSlots {
     private int slotId;
     private int centreId;
-    private long slotTime;
+    private int slotTime;
     private int seatsAvailable;
 
     public int getSlotId() {
@@ -22,11 +22,11 @@ public class FlipFitSlots {
         this.centreId = centerId;
     }
 
-    public long getSlotTime() {
+    public int getSlotTime() {
         return slotTime;
     }
 
-    public void setSlotTime(long startTime) {
+    public void setSlotTime(int slotTime) {
         this.slotTime = slotTime;
     }
 

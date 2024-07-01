@@ -1,10 +1,14 @@
 package com.flipkart.client;
 
+import com.flipkart.bean.FlipFitGymCentre;
 import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitSlots;
 import com.flipkart.business.BookingsBusiness;
 import com.flipkart.business.FlipFitGymCentreBusiness;
 import com.flipkart.business.FlipFitGymCustomerBusiness;
+import com.flipkart.dao.FlipFitBookingDAOImpl;
+import com.flipkart.dao.FlipFitGymCentreDAOImpl;
+import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
 import com.flipkart.exceptions.ExceptionHandler;
 import com.flipkart.exceptions.InvalidChoiceException;
 
@@ -18,9 +22,12 @@ public class GymFlipFitCustomerMenu {
         try {
             int userId = gymCustomer.getUserId();
             Scanner sc = new Scanner(System.in);
-            FlipFitGymCustomerBusiness FCBservice = new FlipFitGymCustomerBusiness();
-            FlipFitGymCentreBusiness FCService = new FlipFitGymCentreBusiness();
-            BookingsBusiness BService = new BookingsBusiness();
+            FlipFitGymCustomerDAOImpl flipFitGymCustomerDAO = new FlipFitGymCustomerDAOImpl();
+            FlipFitGymCustomerBusiness FCBservice = new FlipFitGymCustomerBusiness(flipFitGymCustomerDAO);
+            FlipFitGymCentreDAOImpl flipFitGymCenterDAO = new FlipFitGymCentreDAOImpl();
+            FlipFitGymCentreBusiness FCService = new FlipFitGymCentreBusiness(flipFitGymCenterDAO);
+            FlipFitBookingDAOImpl flipFitBookingDAO = new FlipFitBookingDAOImpl();
+            BookingsBusiness BService = new BookingsBusiness(flipFitBookingDAO);
             int choice =0;
             do {
                 System.out.println("FlipFit Customer Menu:> ");
@@ -51,21 +58,23 @@ public class GymFlipFitCustomerMenu {
                         List<FlipFitSlots> slotsList = FCService.viewAvailableSlots(centreId);
                         System.out.println("These are the available slots:");
                         for (FlipFitSlots flipFitSlots : slotsList) {
-                            System.out.println("Slot Id is" + flipFitSlots.getSlotId() + "Slot Timing is " + flipFitSlots.getSlotTime() + "Availability is " + flipFitSlots.getSeatsAvailable());
+                            System.out.println("Slot Id is" + flipFitSlots.getSlotId() + "Slot Timing is " + flipFitSlots.getSlotTime() + "Availability is " + flipFitSlots.getSeatsAvailable() + "CentreId is: " + flipFitSlots.getCentreId());
                         }
-                        System.out.println("Give the SlotId you wish to book");
-                        int slotId = sc.nextInt();
-                        BService.makeBooking(slotId, userId);
+                        System.out.println("Give the startTime you wish to book");
+                        int startTime = sc.nextInt();
+                        System.out.println("Give the centre ID: ");
+                        int centreID = sc.nextInt();
+                        BService.makeBooking(startTime, userId, centreID);
                         break;
                     }
                     case 3: {
                         System.out.println("Edit Details");
-                        boolean change = FCBservice.editDetails(1);
-                        if (change) {
-                            System.out.println("Successfully edited details");
-                        } else {
-                            System.out.println("Failed to edit details");
-                        }
+//                        boolean change = FCBservice.editDetails(1);
+//                        if (change) {
+//                            System.out.println("Successfully edited details");
+//                        } else {
+//                            System.out.println("Failed to edit details");
+//                        }
                         break;
                     }
                     case 4:

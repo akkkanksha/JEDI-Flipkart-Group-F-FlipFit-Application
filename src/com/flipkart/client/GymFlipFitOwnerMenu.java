@@ -1,7 +1,12 @@
 package com.flipkart.client;
 
+import com.flipkart.bean.FlipFitGymCentre;
+import com.flipkart.business.FlipFitAdminBusiness;
 import com.flipkart.business.FlipFitGymCentreBusiness;
 import com.flipkart.business.FlipFitGymOwnerBusiness;
+import com.flipkart.dao.FlipFitAdminDAOImpl;
+import com.flipkart.dao.FlipFitGymCentreDAOImpl;
+import com.flipkart.dao.FlipFitGymCustomerDAOImpl;
 import com.flipkart.exceptions.InvalidChoiceException;
 
 import java.util.Scanner;
@@ -24,8 +29,34 @@ public class GymFlipFitOwnerMenu {
                 choice = sc.nextInt();
                 switch (choice) {
                     case 1: {
-                        System.out.println("Add Centre");
-                        GOBservice.addCentre();
+                        System.out.println("Give details to add Centre : ");
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.println("Enter Owner ID: ");
+                        int ownerID = scanner.nextInt();
+                        System.out.println("Enter Capacity: ");
+                        int capacity = scanner.nextInt();
+                        System.out.println("Enter City: ");
+                        String city = scanner.next();
+                        System.out.println("Enter State: ");
+                        String state = scanner.next();
+                        System.out.println("Enter Pincode: ");
+                        String pincode = scanner.next();
+
+                        FlipFitAdminDAOImpl adminDAO = new FlipFitAdminDAOImpl();
+                        FlipFitAdminBusiness flipFitAdminBusiness = new FlipFitAdminBusiness(adminDAO);
+                        boolean approved = flipFitAdminBusiness.validateOwner(ownerID);
+
+                        FlipFitGymCentreDAOImpl gymCentreDAO = new FlipFitGymCentreDAOImpl();
+                        FlipFitGymCentre flipFitGymCentre = new FlipFitGymCentre();
+
+                        flipFitGymCentre.setOwnerID(ownerID);
+                        flipFitGymCentre.setCapacity(capacity);
+                        flipFitGymCentre.setCity(city);
+                        flipFitGymCentre.setState(state);
+                        flipFitGymCentre.setPincode(pincode);
+                        flipFitGymCentre.setApproved(approved);
+                        gymCentreDAO.createGymCentre(flipFitGymCentre);
+                        System.out.println("Gym Centre created successfully.");
                         break;
                     }
                     case 2: {
@@ -35,7 +66,7 @@ public class GymFlipFitOwnerMenu {
                     }
                     case 3: {
                         System.out.println("View Customers");
-                        GOBservice.viewFlipFitCustomers();
+//                        GOBservice.viewFlipFitCustomers();
                         break;
                     }
                     case 4: {

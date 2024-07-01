@@ -38,7 +38,7 @@ public class FlipFitGymCentreDAOImpl {
 //            System.out.println(fs.getSlotId());
 //        }
 //    }
-    public void createGymCentre(FlipFitGymCentre FFGC){
+    public FlipFitGymCentre createGymCentre(FlipFitGymCentre FFGC){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
@@ -64,9 +64,10 @@ public class FlipFitGymCentreDAOImpl {
         } catch(Exception e){
             System.out.println(e);
         }
+        return FFGC;
     };
 
-    public void updateGymCentre(FlipFitGymCentre FFGC){
+    public FlipFitGymCentre updateGymCentre(FlipFitGymCentre FFGC){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
@@ -90,6 +91,7 @@ public class FlipFitGymCentreDAOImpl {
         } catch(Exception e){
             System.out.println(e);
         }
+        return FFGC;
     };
 
     public void deleteGymCentre(FlipFitGymCentre FFGC){

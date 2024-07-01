@@ -11,7 +11,7 @@ public class FlipFitGymOwner extends AbstractUser{
     }
 
     public void setPanId(String panId) {
-        panId = panId;
+        this.panId = panId;
     }
 
     public String getGSTNum() {

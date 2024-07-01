@@ -52,7 +52,8 @@ public class GymFlipFitApplication {
                                 FlipFitAdmin admin= new FlipFitAdmin();
                                 admin.setEmailID(username);
                                 admin.setPassword(password);
-                                IFlipFitAdmin flipFitAdmin = new FlipFitAdminBusiness(admin);
+                                FlipFitAdminDAOImpl adminDAO = new FlipFitAdminDAOImpl();
+                                IFlipFitAdmin flipFitAdmin = new FlipFitAdminBusiness(adminDAO);
                                 try {
                                     boolean res=flipFitAdmin.adminLogin(admin);
                                     if(res) {

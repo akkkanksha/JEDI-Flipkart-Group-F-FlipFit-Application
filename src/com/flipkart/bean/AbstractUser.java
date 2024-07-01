@@ -75,5 +75,4 @@ abstract class AbstractUser {
         this.role = role;
     }
 
-
 }

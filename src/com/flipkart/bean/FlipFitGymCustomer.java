@@ -6,7 +6,7 @@ package com.flipkart.bean;
 /**
  * 
  */
-public class FlipFitGymCustomer extends AbstractUser{
+public class FlipFitGymCustomer extends AbstractUser {
 	public int paymentType;
     public String paymentInfo;
     

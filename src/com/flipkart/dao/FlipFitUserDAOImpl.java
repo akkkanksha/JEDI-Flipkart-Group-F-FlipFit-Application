@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 import com.flipkart.constant.DBConstants;
 import com.flipkart.dao.interfaces.*;
+import com.flipkart.bean.FlipFitGymCustomer;
 import com.flipkart.bean.FlipFitUser;
 
 import java.sql.Connection;
@@ -40,26 +41,34 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
 //    }
 
     @Override
-    public int login(String emailID, String password){
+    public FlipFitGymCustomer login(String emailID, String password){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(
                     DBConstants.DB_URL,DBConstants.USER,DBConstants.PASSWORD);
 
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO User VALUES (?, ?, ?, ?, ?, ?)");
-
-            FlipFitUser FFU = new FlipFitUser();
-
-
-
-            int i = stmt.executeUpdate();
-            System.out.println(i + " user added");
-
+            PreparedStatement stmt = con.prepareStatement("SELECT * from User where email=? and password=?");
+            stmt.setString(1,emailID);
+            stmt.setString(2,password);
+            ResultSet rsUser = stmt.executeQuery();
+            if(rsUser.next()){
+                stmt = con.prepareStatement("SELECT * from Customer where customerID = ?");
+                stmt.setInt(1,rsUser.getInt("customerID"));
+                ResultSet rsCustomer = stmt.executeQuery();
+                FlipFitGymCustomer flipFitGymCustomer = new FlipFitGymCustomer();
+                flipFitGymCustomer.setCity(rsCustomer.getString("city"));
+                flipFitGymCustomer.setEmailID(rsUser.getString("emailID"));
+                flipFitGymCustomer.setPinCode(rsCustomer.getString("pinCode"));
+                flipFitGymCustomer.setPassword(rsUser.getString("password"));
+                flipFitGymCustomer.setPhoneNumber(rsUser.getString("phoneNumber"));
+                flipFitGymCustomer.setUserName(rsUser.getString("userName"));
+                return flipFitGymCustomer;
+            }
             con.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return 0;
+        return null;
     }
 
     @Override
@@ -74,12 +83,13 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
 
             // Generate random integers in range 0 to 999
             FFU.setUserID(rand.nextInt(1000));
-            stmt.setString(1, FFU.getUserName());
+            stmt.setInt(1,FFU.getUserID());
             stmt.setInt(2, FFU.getUserID());
             stmt.setInt(3, FFU.getRoleID());
-            stmt.setString(4, FFU.getEmailID());
             stmt.setString(5, FFU.getPhoneNumber());
+            stmt.setString(4, FFU.getEmailID());
             stmt.setString(6, FFU.getPassword());
+
 
             int i = stmt.executeUpdate();
             System.out.println(i + " user added");
@@ -119,12 +129,12 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
 
             PreparedStatement stmt = con.prepareStatement(("UPDATE User SET userName = ?, roleID =? , emailId = ?, phoneNumber = ?, password = ? WHERE userID = ?"));
 
-            stmt.setString(1, FFU.getUserName());
-            stmt.setInt(2, FFU.getRoleID());
-            stmt.setString(3, FFU.getEmailID());
-            stmt.setString(4, FFU.getPhoneNumber());
-            stmt.setString(5, FFU.getPassword());
-            stmt.setInt(6, FFU.getUserID());
+            stmt.setInt(1,FFU.getUserID());
+            stmt.setInt(2, FFU.getUserID());
+            stmt.setInt(3, FFU.getRoleID());
+            stmt.setString(5, FFU.getPhoneNumber());
+            stmt.setString(4, FFU.getEmailID());
+            stmt.setString(6, FFU.getPassword());
 
             int i = stmt.executeUpdate();
             System.out.println(i + " user changed");
@@ -149,13 +159,12 @@ public class FlipFitUserDAOImpl implements IFlipFitUserDAO {
 
             ResultSet rs = stmt.executeQuery();
             rs.next();
-
-            FFU.setUserID(rs.getInt("userID"));
             FFU.setUserName(rs.getString("userName"));
+            FFU.setUserID(rs.getInt("userID"));
             FFU.setPassword(rs.getString("password"));
+            FFU.setPhoneNumber(rs.getString("phoneNumber"));
             FFU.setRoleID(rs.getInt("roleID"));
             FFU.setEmailID(rs.getString("emailId"));
-            FFU.setPhoneNumber(rs.getString("phoneNumber"));
 
             int i = stmt.executeUpdate();
             System.out.println(i + " user fetched");

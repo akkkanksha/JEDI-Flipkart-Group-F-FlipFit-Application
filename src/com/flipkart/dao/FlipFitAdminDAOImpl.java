@@ -1,27 +1,21 @@
 package com.flipkart.dao;
 
-import com.flipkart.bean.FlipFitAdmin;
-import com.flipkart.bean.FlipFitGymCentre;
-import com.flipkart.bean.FlipFitGymCustomer;
-import com.flipkart.bean.FlipFitGymOwner;
+import com.flipkart.bean.*;
 import com.flipkart.dao.interfaces.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
     @Override
-    public boolean adminLogin(FlipFitAdmin adminUser) {
+    public boolean adminLogin(FlipFitAdmin flipFitAdmin) {
         String sql = "SELECT * FROM GymAdmin WHERE emailId = ? AND password = ?";
         try (Connection conn = GetConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, adminUser.getEmailID());
-            stmt.setString(2, adminUser.getPassword());
+            stmt.setString(1, flipFitAdmin.getEmailID());
+            stmt.setString(2, flipFitAdmin.getPassword());
 
             try (ResultSet rs = stmt.executeQuery()) {
                 boolean res= rs.next();
@@ -156,4 +150,7 @@ public class FlipFitAdminDAOImpl implements  IFlipFitAdminDAO {
         }
         return gymCentres;
     }
+
+
 }
+

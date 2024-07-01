@@ -1,10 +1,12 @@
 package com.flipkart.bean;
 
 public class FlipFitUser {
-    private String userName;
     private int userID;
     private int roleID;
-
+    private String emailID;
+    private String password;
+    private String userName;
+    private String phoneNumber;
     public String getEmailID() {
         return emailID;
     }
@@ -12,18 +14,6 @@ public class FlipFitUser {
     public void setEmailID(String emailID) {
         this.emailID = emailID;
     }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    private String emailID;
-    private String phoneNumber;
-
     public String getPassword() {
         return password;
     }
@@ -48,6 +38,15 @@ public class FlipFitUser {
         this.userID = userID;
     }
 
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -55,6 +54,4 @@ public class FlipFitUser {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    private String password;
 }

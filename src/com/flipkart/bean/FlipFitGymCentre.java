@@ -1,7 +1,5 @@
 package com.flipkart.bean;
 
-import java.util.ArrayList;
-
 public class FlipFitGymCentre {
     private int centreID;
     private int ownerID;
